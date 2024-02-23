@@ -42,12 +42,20 @@
 }
 
 .bot-icon img {
-  width: 100px; /* Adjust size as needed */
-  height: 50px; /* Adjust size as needed */
+  width: 100px; /* Default width */
+  height: 50px; /* Default height */
   border-radius: 25%;
   box-shadow: 0 2px 5px rgba(19, 14, 14, 0.2); /* Optional: Add a shadow */
   border: 1px solid #181818;
   cursor: pointer; /* Optional: Change cursor on hover */
+}
+
+/* Media query for small screens */
+@media only screen and (max-width: 600px) {
+  .bot-icon img {
+    width: 50px; /* Adjusted width for small screens */
+    height: 25px; /* Adjusted height for small screens */
+  }
 }
 
       </style>
