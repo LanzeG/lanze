@@ -787,15 +787,16 @@ border: 1px solid #777;
 </script>
 </div>
 <style>
+ <style>
  .contact-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+margin-top: 10px;
 }
 
 .buttonform {
-  width: 25%;
+  width: 300px;
   padding: 10px;
   border: 1px solid #4d4c4c;
     border-radius: 10px;
@@ -818,6 +819,12 @@ border: 1px solid #777;
   transform: scale(0.95);
 }
 
+@media screen and (max-width: 768px) {
+  .contact-container {
+    margin-top: auto;
+    margin-bottom: 30px;
+  }
+}
 
 </style>
 
