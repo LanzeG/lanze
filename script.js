@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Check if the developer tools are open
-/* function isDevToolsOpen() {
+function isDevToolsOpen() {
   // This is a simple technique to check if the dev tools are open
   // DevTools usually have a higher height in window.innerHeight
   return window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100;
@@ -26,7 +26,7 @@ function handleDevTools() {
   // For example, you could redirect the user away from the page or disable certain features:
   window.location.href = "notavailable.html";
   // You may try closing the window, but it might not work in most modern browsers due to security reasons
-  // window.close();
+  window.close();
 }
 
 // Check if dev tools are open on page load
@@ -39,5 +39,5 @@ window.addEventListener('resize', function() {
   if (isDevToolsOpen()) {
     handleDevTools();
   }
-}); */
+}); 
 
