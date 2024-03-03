@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Check if the developer tools are open
-function isDevToolsOpen() {
+/* function isDevToolsOpen() {
   // This is a simple technique to check if the dev tools are open
   // DevTools usually have a higher height in window.innerHeight
   return window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100;
@@ -39,5 +39,5 @@ window.addEventListener('resize', function() {
   if (isDevToolsOpen()) {
     handleDevTools();
   }
-});
+}); */
 
