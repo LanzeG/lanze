@@ -1,0 +1,206 @@
+/* Reset some default styles */
+body, h1, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f2f2f2;
+    height: 100vh;
+}
+
+header {
+    background-color: #2196F3;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.card {
+    width: 600px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.card img {
+    width: 80px;
+    margin-bottom: 5px;
+}
+
+.card h2 {
+    font-size: 20px;
+}
+
+.card p {
+    font-size: 16px;
+}
+
+.resources {
+    margin-top: 30px;
+}
+
+.resources h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.resources ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.resources li {
+    margin-bottom: 10px;
+}
+
+.resources a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Make the cards responsive */
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 100%; /* Adjust width to fit the screen */
+        margin: 10px 0; /* Add some spacing between cards */
+    }
+}
+
+/* styles.css */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: right; /* Align links to the right */
+}
+
+.nav-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.btns {
+    text-align: center;
+    margin-top: 20px;
+    border:1px solid #181818;
+    padding-bottom: 0px;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+.here {
+    border: 1px solid #383838;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #383838;
+    transition: all 300ms ease;
+    font-family: "Poppins", sans-serif;
+    margin-top: 5px;
+}
+
+.here:hover {
+    color: #383838;
+    background-color: #ffffff;
+}
+
+.content-section {
+    display: none; /* Hide content by default */
+    margin-top: 20px;
+}
+
+.bot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.bot-icon img {
+    width: 100px;
+    height: 50px;
+    border-radius: 10%;
+    box-shadow: 0 2px 5px rgba(19, 14, 14, 0.2);
+    border: 1px solid #181818;
+    cursor: pointer;
+}
+
+/* Media query for small screens */
+@media only screen and (max-width: 600px) {
+    .here {
+        width: 100%;
+        max-width: 200px; /* Adjust the maximum width of the button */
+        height: 40px;
+        margin-bottom: 10px; /* Reduce margin for smaller screens */
+    }
+
+    .nav-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .nav-links li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .bot-icon {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .bot-icon img {
+        width: 80px;
+        height: 40px;
+    }
+
+    .content-section {
+        margin: 20px 10px; /* Adjust margins for smaller screens */
+    }
+}
