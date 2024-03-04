@@ -24,7 +24,7 @@ function handleDevTools() {
   // You can do various things here like showing a warning message, disabling certain functionality, etc.
   console.log("Developer Tools are open!");
   // For example, you could redirect the user away from the page or disable certain features:
-  window.location.href = "notavailable.html";
+  // window.location.href = "notavailable.html";
   // You may try closing the window, but it might not work in most modern browsers due to security reasons
   window.close();
 }
