@@ -13,7 +13,7 @@
 
 </p>
 
-Hi! I'm Lanze and programming is my passion.
+Hi! I'm Lanze!
 
 
 
