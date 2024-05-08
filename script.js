@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // window.addEventListener('resize', checkDevTools);
 
 
-const values = ['RPA', 'Frontend', 'UI/UX', 'Lanze'];
+const values = ['Lanze', 'Frontend', 'UI/UX', 'RPA'];
 let index = 0;
 const textElement = document.querySelector('.animated-text');
 

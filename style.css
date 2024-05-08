@@ -116,8 +116,42 @@ a,
   transition: all 300ms ease;
   
 }
+/* TOP-NAV */
+.top-p{
+  color: rgb(219, 217, 217);
+  font-size: small;
+}
+.top-nav {
+  font-family: Akzidenz Grotesk BQ Light, Helvetica;
+  height: 4vh;
+  color: rgb(235, 231, 231);
+  background-color: #001e2b; /* Change to your desired background color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.slider-container {
+  width: 100%;
+}
+
+.keen-slider {
+  max-width: 90%; /* Adjust as needed */
+}
+
+.keen-slider__slide {
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  
+}
+
 
 /* DESKTOP NAV */
+
 
 nav,
 .nav-links {
@@ -127,8 +161,8 @@ nav,
 nav {
   justify-content: space-around;
   align-items: center;
-  height: 9vh;
-  border-bottom: 1px solid black;
+  height: 10vh;
+  border-bottom: 1px solid rgb(155, 154, 154);
  
 }
 
@@ -282,6 +316,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
   height: 90%;
 }
 
