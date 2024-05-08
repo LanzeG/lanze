@@ -131,6 +131,14 @@ a,
   justify-content: center;
 
 }
+@media screen and (max-width: 600px) {
+  /* Adjust height for smaller screens */
+  .top-nav {
+    height: 8vh;
+    font-size: 10px;
+  }
+ 
+}
 
 .slider-container {
   width: 100%;

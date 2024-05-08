@@ -162,3 +162,58 @@ function toggleQR() {
           }
       });
   }
+
+
+  function generateSlideHTML(slide) {
+    return `
+      <div class="keen-slider__slide">
+        <div class="bannerSlideWrap">
+          <p class="top-p">
+            <span class="lanzespan" style="background-color: #B1FF05; color:#001e2b; margin-right: 1rem; padding: 5px 15px; border-radius: 20px; font-family: Poppins, sans-serif; font-size: 11px; gap: 10px; letter-spacing: 1px; font-weight: 900;">${slide.category}</span>
+            ${slide.content} — <a href="${slide.link}"><span class="ctaText" style="color: rgb(0, 153, 255);">Read more</span><span class="doubleArrows"> &gt;&gt;</span></a>
+          </p>
+        </div>
+      </div>
+    `;
+  }
+
+  // Function to generate HTML for all slides
+  function generateSliderHTML() {
+    var sliderHTML = '';
+    slides.forEach(function(slide) {
+      sliderHTML += generateSlideHTML(slide);
+    });
+    return sliderHTML;
+  }
+
+  // Insert generated HTML into the slider container
+  document.querySelector('.keen-slider').innerHTML = generateSliderHTML();
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const slider = document.querySelector('.keen-slider');
+  const slides = slider.querySelectorAll('.keen-slider__slide');
+  let currentIndex = 0;
+
+  // Function to show a slide
+  const showSlide = (index) => {
+    // Hide all slides
+    slides.forEach(slide => {
+      slide.style.display = 'none';
+    });
+    // Show the slide at the specified index
+    slides[index].style.display = 'block';
+  };
+
+  // Initial slide display
+  showSlide(currentIndex);
+
+  // Change slide every 5 seconds
+  setInterval(() => {
+    // Increment current index
+    currentIndex = (currentIndex + 1) % slides.length;
+    // Show the next slide
+    showSlide(currentIndex);
+  }, 5000);
+});
