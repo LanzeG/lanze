@@ -8,6 +8,37 @@
  
 }
 
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none;
+  user-select: none;
+} 
+.bot-icon {
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 9999; 
+}
+
+.bot-icon img {
+width: 100px; /* Default width */
+height: 50px; /* Default height */
+border-radius: 10%;
+box-shadow: 0 2px 5px rgba(19, 14, 14, 0.2); /* Optional: Add a shadow */
+border: 1px solid #181818;
+cursor: pointer; /* Optional: Change cursor on hover */
+}
+
+/* Media query for small screens */
+@media only screen and (max-width: 600px) {
+.bot-icon img {
+  width: 50px; /* Adjusted width for small screens */
+  height: 25px; /* Adjusted height for small screens */
+}
+}
 /* Normal Usage */
 .spinner:before {
   transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
@@ -96,14 +127,15 @@ nav,
 nav {
   justify-content: space-around;
   align-items: center;
-  height: 17vh;
+  height: 9vh;
+  border-bottom: 1px solid black;
  
 }
 
 .nav-links {
-  gap: 2rem;
+  gap: 4rem;
   list-style: none;
-  font-size: 1.5rem;
+  font-size: medium;
 }
 
 a {
@@ -120,7 +152,7 @@ a:hover {
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: medium;
 }
 
 .logo:hover {
@@ -164,8 +196,9 @@ a:hover {
   overflow: hidden;
   transition: all 0.3 ease-in-out;
   grid-template-rows: auto auto;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: #fff;
+  z-index: 9999;
   
 
 }
@@ -174,7 +207,7 @@ a:hover {
   display: block;
   padding: 10px;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: medium;
   color: black;
   text-decoration: none;
   transition: all 0.3 ease-in-out;
@@ -187,8 +220,9 @@ a:hover {
 
 .menu-links.open {
   max-height: 300px;
-  border: 1px solid #1a1a1a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example shadow values */
 }
+
 
 .hamburger-icon.open span:first-child {
   transform: rotate(45deg) translate(10px, 5px);
@@ -232,21 +266,95 @@ section {
 
 #profile {
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  margin-left: 21rem;
   gap: 5rem;
   height: 80vh;
+}
+.container {
+  display: flex;
+  height: 90vh;
+}
+
+.left-div,
+.right-div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.left-div {
+  justify-content: center;
+  align-self: start;
+  
+}
+
+.section__text {
+  text-align: left;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.social-card {
+  display: flex;
+}
+
+.social-card a {
+  margin-right: 10px;
+}
+
+.social-card .Btn {
+  padding: 10px;
+}
+
+/* Additional styling for buttons and social icons */
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+ 
+  .right-div {
+    justify-content: center; /* Center content when viewport is less than or equal to 768px */
+    height: 10vh;
+    
+  }
+
+  /* Remove left margin and reduce button size */
+  #profile {
+    justify-content: center;
+    margin-left: 0;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .btn-container1 button {
+    padding: 8px;
+    font-size: 0.8em;
+  }
+  .left-div{
+    text-align: center;
+  }
 }
 
 .section__pic-container {
   display: flex;
-  height: 400px;
-  width: 400px;
+  height: 200px;
+  width: 200px;
   margin: auto 0;
 }
 
 .section__text {
   align-self: center;
-  text-align: center;
+
 }
 
 .section__text p {
@@ -393,11 +501,7 @@ section {
   height: 80%;
 }
 
-.section__pic-container {
-  height: 400px;
-  width: 400px;
-  margin: auto 0;
-}
+
 
 /* EXPERIENCE SECTION */
 
@@ -626,4 +730,114 @@ footer p {
   animation: typeAndDelete 4s steps(11) infinite,
     blinkCursor 0.5s step-end infinite alternate;
   margin-top: 1.5em;
+}
+.animated-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+}
+
+.social-card {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgb(255, 255, 255);
+  padding: 20px 25px;
+  border-radius: 14px;
+}
+.Btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.svgContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  letter-spacing: 0.8px;
+  border-radius: 25px;
+  transition: all 0.3s;
+  border: 1px solid rgba(156, 156, 156, 0.466);
+  z-index: 2;
+}
+
+.BG {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #181818;
+  z-index: 1;
+  border-radius: 25px;
+  pointer-events: none;
+  transition: all 0.3s;
+  font-size: 0px;
+}
+.github .BG {
+  background: #383838;
+}
+.linkdin .BG {
+  background: #0077b5;
+}
+.whatsapp .BG {
+  background: #097467;
+}
+.discord .BG {
+  background: #7289da;
+}
+.Btn:hover .BG {
+  transform: scale(1.5);
+  /* transform-origin: bottom; */
+  font-size: 20px;
+  color: white;
+}
+
+.Btn:hover .svgContainer {
+  border: 1px solid rgba(216, 216, 216, 0.466);
+  background-color: rgba(209, 209, 209, 0.466);
+  backdrop-filter: blur(4px);
+}
+         /* Custom CSS to adjust the size of the Swal modal */
+         .swal-confirm-button {
+          background-color: #ffffff !important; /* Change button background color */
+          border-radius: 20px !important;
+          border: 1px solid #383838 !important;
+          width: 100px !important;
+          color: #181818 !important;
+          
+      }
+        /* Custom CSS to adjust the size of the Swal modal */
+.swal2-popup {
+  border: 1px solid #383838 !important;
+  border-radius: 25px !important; /* Adjust border radius as needed */
+}
+
+/* Adjust the content inside the modal if needed */
+.swal2-title {
+  color: #383838 !important; /* Adjust title color if needed */
+  
+}
+
+.swal2-content {
+  color: #383838 !important; /* Adjust content color if needed */
+}
+.qr-icon {
+  margin-right: 5px; /* Adjust spacing between icon and label */
 }
