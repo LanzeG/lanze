@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // window.addEventListener('resize', checkDevTools);
 
 
-const values = ['Lanze', 'Frontend', 'UI/UX', 'RPA'];
+const values = ['Frontend', 'RPA', 'UI/UX', 'Dead'];
 let index = 0;
 const textElement = document.querySelector('.animated-text');
 
@@ -54,7 +54,7 @@ function animateText() {
         setTimeout(() => {
           textElement.style.transition = 'opacity 1s, transform 1s';
           textElement.style.opacity = 1;
-          textElement.style.transform = 'translateX(2%)';
+          textElement.style.transform = 'translateX(1%)';
           setTimeout(() => {
             textElement.style.transition = '';
             if (index < values.length - 1) {
@@ -63,10 +63,10 @@ function animateText() {
               index = 0;
             }
             animateText();
-          }, values[index] === 'Lanze' ? 10000 : 5000); // Duration based on the current text
-        }, 2000); // Pause before showing next text
+          }, values[index] === 'Dead' ? 10000 : 5000); 
+        }, 2000); 
       }
-    }, 100); // Interval between each character
+    }, 100); 
   } else {
     setTimeout(() => {
       if (index < values.length - 1) {
@@ -75,7 +75,7 @@ function animateText() {
         index = 0;
       }
       animateText();
-    }, 5000); // Default delay when there's no value to display
+    }, 5000); 
   }
 }
 
@@ -96,21 +96,17 @@ function toggleQR() {
   }
 }
 
-
-    // Get the download link element
     var downloadLink = document.getElementById('downloadLink');
                 
-    // Add an event listener to trigger the downloadQR function
     downloadLink.addEventListener('click', function(event) {
         downloadQR(event);
     });
 
     function downloadQR(event) {
         try {
-            // Preventing default behavior of the anchor tag
+
             event.preventDefault();
 
-            // Triggering download
             var url = downloadLink.getAttribute("href");
             var filename = downloadLink.getAttribute("download");
 
@@ -169,8 +165,8 @@ function toggleQR() {
       <div class="keen-slider__slide">
         <div class="bannerSlideWrap">
           <p class="top-p">
-            <span class="lanzespan" style="background-color: #B1FF05; color:#001e2b; margin-right: 1rem; padding: 5px 15px; border-radius: 20px; font-family: Poppins, sans-serif; font-size: 11px; gap: 10px; letter-spacing: 1px; font-weight: 900;">${slide.category}</span>
-            ${slide.content} — <a href="${slide.link}"><span class="ctaText" style="color: rgb(0, 153, 255);">Read more</span><span class="doubleArrows"> &gt;&gt;</span></a>
+            <span class="lanzespan">${slide.category}</span>
+            ${slide.content} — <a href="${slide.link}"><span class="ctaText" style="color: rgb(0, 153, 255);">Try now</span><span class="doubleArrows" style="color: rgb(0, 153, 255);"> &gt;&gt;</span></a>
           </p>
         </div>
       </div>

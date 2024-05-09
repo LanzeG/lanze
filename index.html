@@ -16,7 +16,7 @@
   <!-- <div class="spinner"></div> -->
   <body>
     <!-- Loading screen -->
-      <div class="loading-screen">
+      <!-- <div class="loading-screen">
       <div class="window">
         <div class="terminal-loader">
           <div class="terminal-header">
@@ -31,53 +31,23 @@
         </div>
         
       </div>
-    </div> 
+    </div>  -->
     <!-- <div class="bot-icon">
       <a href="https://lanzeonly.000webhostapp.com/login.php"><img src="assets/sendit.png" alt="Bot Icon"></a>
     </div> -->
-    <style>
-      /* Example styling for section */
-      #profile {
-          display: flex;
-          align-items: center; /* Align items vertically */
-      }
-
-      .section__text {
-          display: flex;
-          align-items: center; /* Align items vertically */
-      }
-
-      .content-wrapper {
-          flex: 1; /* Ensures the content takes up remaining space */
-          padding-right: 20px; /* Adjust spacing between content and image */
-      }
-
-      .image-wrapper {
-          flex: 1; /* Ensures the image takes up remaining space */
-       
-      }
-
-      .gif img {
-          max-width: 100%; /* Ensure image does not exceed its container */
-          display: block; /* Prevents whitespace below image */
-          
-      }
-  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <nav class="top-nav">
     <div id="experimentBanner" class="slider-container">
       <div class="keen-slider ready" data-keen-slider-v="">
-        <!-- Slider content will be dynamically generated here -->
       </div>
     </div>
   </nav>
-
   <script>
-    // Your slide data
+
     var slides = [
       {
         category: "Lanze",
-        content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        content: "SENDIT, Connect within seamless communication",
         link: "https://lanze.vercel.app/"
       },
       {
@@ -91,28 +61,23 @@
         link: "https://lanze.vercel.app/"
       }
     ];
-
-    // Function to generate HTML for each slide
 </script>
 
   </nav>
     <nav id="desktop-nav">
-      <div class="logo">lanzedev </div>
-      
-      <div>
-        
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-<!--           <li><a href="learning.html">Skill Progress</a></li> -->
-          
+      <div class="logo"><span><img src="assets/code-compare.svg" alt="" width="23px"></span>lanzedev </div>
+        <div>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+  <!--           <li><a href="learning.html">Skill Progress</a></li> -->
         </ul>
       </div>
     </nav>
     <nav id="hamburger-nav">
-      <div class="logo">lanzedev</div>
+      <div class="logo1"><span><img src="assets/code-compare.svg" alt="" width="19px"></span>lanzedev</div>
       
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
@@ -129,57 +94,65 @@
         </div>
       </div>
     </nav>
-  <style>
-   
-
-
-.left-div {
-  justify-content: center;
-
-}
-.right-div{
-
-  justify-content: center;
-}
-
-.section__text {
-  text-align: left;
-}
-.animated-text {
-  font-family: Akzidenz Grotesk BQ Light, Helvetica;
-  font-weight: 100;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border: 2px solid rgb(117, 117, 117); /* Add border for visualization */
-  height: 50px; /* Set a fixed height */
-  padding: 10px;
-  border-radius: 10px;
-  background-image: linear-gradient(45deg, #29b36e, #075728); /* Replace with your desired gradient */
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-  </style>
+  
 
     <div class="container">
       <div class="left-div">
         <div class="section__text">
           <div class="content-wrapper">
-            <p class="section__text-hello">I'm</p>
+            <p class="section__text-hello" style=" font-family: Source Code Pro, monospace; font-weight: lighter; letter-spacing: 2px; font-size: 14px;"><span style="color: #00ED64; ">|</span>ASPIRING DEVELOPER
+
+            </p>
+            <h1 style="margin-top: 1rem">Lester Lance Bermas.</h1>
             <div>
             <h1 class="animated-text"></h1>
           </div>
             <p class="section__text__p2">Aspiring Developer</p>
             <div class="btn-container1">
-              <button class="btn btn-color-1" onclick="window.open('./assets/cv.pdf')">
+              <button class="btn-new" onclick="window.open('./assets/cv.pdf')">
                 <i class="fas fa-download"></i> Download CV
               </button>
+              
               <div class="container-fluid">
-                <button class="btn btn-color-2" onclick="toggleQR()">
-                  <i class="fas fa-qrcode qr-icon"></i> Share
+                <button class="btn btn-share" onclick="toggleQR()">
+                  <i class="fas fa-qrcode qr-icon"></i>  Share  
                 </button>
+                <style>
+                  .btn-share {
+    background-color: white;
+    border: none;
+    align-items: start;
+    text-align: start;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .btn-share::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(92, 165, 149, 0.041);
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1;
+  }
+
+  .btn-share:hover::before {
+    transform: translate(-50%, -50%) scale(2);
+  }
+
+  .btn-share span {
+    position: relative;
+    z-index: 2;
+  }
+                </style>
                 <div id="qrCode" class="card">
                   <p>Scan to share</p>
                   <img src="assets/qr.png" alt="QR Code" style="max-width: 100%;">
@@ -261,6 +234,7 @@
                 </a>
               </div>
             </div>
+            <!-- <img src="assets/20240508-193643.jpg" alt="" style="border-radius: 20px;"> -->
           </div>
         </div>
       </div>
@@ -288,53 +262,6 @@
         </div>
       </div>
     </div>
-    <style>
-      @keyframes slideRight {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-10%);
-  }
-}
-
-.right-div {
-  position: relative;
-  overflow: hidden; /* Hide overflowing content */
-}
-
-.image-wrapper {
-  overflow: hidden; /* Hide overflowing images */
-}
-
-.webxp-481-carousels-wrapper {
-  overflow: hidden; /* Hide overflowing images */
-}
-
-.webxp-481-carousel-row {
-  display: flex;
-  animation: slideRight 10s linear infinite; /* Infinite animation for sliding right */
-  width: 200%; /* Double the width to create seamless loop */
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top left, rgba(255, 255, 255, 0.705) 0%, rgba(255,255,255,1) 90%);
-  pointer-events: none; /* Ensure the overlay doesn't interfere with mouse events */
-}
-.overlay1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.733) 0%, rgba(255,255,255,1) 90%);
-  pointer-events: none; /* Ensure the overlay doesn't interfere with mouse events */
-}
-    </style>
   </section>
     <!-- <img src="./assets/Brown and Light Brown, Circle Framed Instagram Profile Picture.png" alt="seraphim" /> -->
     <section id="about">
@@ -1250,4 +1177,110 @@ outline: none !important;
    margin-bottom: 10px;
   }
 
+      /* Example styling for section */
+      #profile {
+          display: flex;
+          align-items: center; /* Align items vertically */
+      }
+
+      .section__text {
+          display: flex;
+          align-items: center; /* Align items vertically */
+      }
+
+      .content-wrapper {
+          flex: 1; /* Ensures the content takes up remaining space */
+          padding-right: 20px; /* Adjust spacing between content and image */
+      }
+
+      .image-wrapper {
+          flex: 1; /* Ensures the image takes up remaining space */
+       
+      }
+
+      .gif img {
+          max-width: 100%; /* Ensure image does not exceed its container */
+          display: block; /* Prevents whitespace below image */
+          
+      }
   </style>
+  <style>
+    @keyframes slideRight {
+0% {
+  transform: translateX(0%);
+}
+100% {
+  transform: translateX(-10%);
+}
+}
+
+.right-div {
+position: relative;
+overflow: hidden; /* Hide overflowing content */
+}
+
+.image-wrapper {
+overflow: hidden; /* Hide overflowing images */
+}
+
+.webxp-481-carousels-wrapper {
+overflow: hidden; /* Hide overflowing images */
+}
+
+.webxp-481-carousel-row {
+display: flex;
+animation: slideRight 10s linear infinite; /* Infinite animation for sliding right */
+width: 200%; /* Double the width to create seamless loop */
+}
+.overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to top left, rgba(255, 255, 255, 0.705) 0%, rgba(255,255,255,1) 90%);
+pointer-events: none; /* Ensure the overlay doesn't interfere with mouse events */
+}
+.overlay1 {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.733) 0%, rgba(255,255,255,1) 90%);
+pointer-events: none; /* Ensure the overlay doesn't interfere with mouse events */
+}
+  </style>
+  <style>
+   
+
+
+    .left-div {
+      justify-content: center;
+    
+    }
+    .right-div{
+    
+      justify-content: center;
+    }
+    
+    .section__text {
+      text-align: left;
+    }
+    .animated-text {
+      font-family: Akzidenz Grotesk BQ Light, Helvetica;
+      font-weight: 100;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      border: 2px solid rgb(117, 117, 117); 
+      height: 50px; 
+      padding: 10px;
+      border-radius: 10px;
+      background-image: linear-gradient(45deg, #29b36e, #075728); 
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+      </style>

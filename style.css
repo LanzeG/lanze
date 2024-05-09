@@ -134,7 +134,7 @@ a,
 @media screen and (max-width: 600px) {
   /* Adjust height for smaller screens */
   .top-nav {
-    height: 8vh;
+    height: 6vh;
     font-size: 10px;
   }
  
@@ -151,8 +151,7 @@ a,
 .keen-slider__slide {
   height: 100%;
   display: flex;
-  text-align: center;
-  align-items: center;
+  padding-left: 20%;
   justify-content: center;
   
 }
@@ -171,8 +170,25 @@ nav {
   align-items: center;
   height: 10vh;
   border-bottom: 1px solid rgb(155, 154, 154);
- 
 }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  nav {
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    border-bottom: 1px solid rgb(155, 154, 154);
+  }
+
+  nav .logo1{
+    margin-left: 1rem;
+  }
+  nav .hamburger-icon{
+    margin-right: 2rem;
+  }
+}
+
 
 .nav-links {
   gap: 4rem;
@@ -194,7 +210,7 @@ a:hover {
 }
 
 .logo {
-  font-size: medium;
+  font-size: clamp(16px, 2vh, 32px);
 }
 
 .logo:hover {
@@ -216,7 +232,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 24px;
+  height: 25px;
   width: 30px;
   cursor: pointer;
 }
@@ -315,17 +331,22 @@ section {
 }
 .container {
   display: flex;
-  height: 90vh;
+  height: 100vh;
 }
 
-.left-div,
+.left-div{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-top: 5%;
+}
 .right-div {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
-  height: 90%;
+  margin-top: 3rem;
+  height: 80%;
 }
 
 .left-div {
@@ -378,7 +399,7 @@ section {
     gap: 2rem;
     margin-top: 3rem;
   }
-
+  .btn-new,
   .btn-container1 button {
     padding: 8px;
     font-size: 0.8em;
@@ -435,6 +456,15 @@ section {
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+.btn-new{
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 10rem;
+  border-radius: 15px;
+  font-family: "Poppins", sans-serif;
 }
 .btn-container1 .btn{
   font-weight: 600;
@@ -780,6 +810,8 @@ footer p {
   overflow: hidden;
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
+  letter-spacing: 5px;
+  margin-top: 1rem;
 }
 
 .social-card {
@@ -884,3 +916,49 @@ footer p {
 .qr-icon {
   margin-right: 5px; /* Adjust spacing between icon and label */
 }
+
+
+                .btn-new{
+                  padding:  1rem;
+                  border-radius: 5px;
+                  border-width: 1px;
+                  border-style: solid;
+                  
+                  background-color: #00ED64;
+                  color: #03251c;
+                }
+                .btn-new:hover{
+                  border-radius: 20px;
+                  transition: all 300ms ease;
+
+                }
+              .lanzespan{
+                background-color: #B1FF05; 
+                color:#001e2b;
+                margin-right: 1rem; 
+                padding: 5px 15px; 
+                border-radius: 20px; 
+                font-family: Poppins, sans-serif; 
+                font-size: 11px; 
+                gap: 10px; 
+                letter-spacing: 1px; 
+                font-weight: 900;
+              }
+              @media (max-width: 768px) {
+                .lanzespan{
+                  display: none;
+                  
+              }
+                }
+                @media (max-width: 768px) {
+                  .ctaText {
+                    display: none;
+                  }
+                 .animated-text {
+                    margin-top: 1rem;
+                 } 
+                 .keen-slider__slide {
+                  padding-left: 5%;
+                 }
+                }
+                
