@@ -213,3 +213,20 @@ document.addEventListener("DOMContentLoaded", function() {
     showSlide(currentIndex);
   }, 5000);
 });
+
+function embedVismeForm() {
+  var container = document.createElement("div");
+  container.classList.add("visme_d");
+  container.setAttribute("data-title", "LANZE FORM");
+  container.setAttribute("data-url", "q6pg1myr-lanze-form?fullPage=true");
+  container.setAttribute("data-domain", "forms");
+  container.setAttribute("data-full-page", "true");
+  container.setAttribute("data-min-height", "100vh");
+  container.setAttribute("data-form-id", "33768");
+  
+  var script = document.createElement("script");
+  script.src = "https://static-bundles.visme.co/forms/vismeforms-embed.js";
+  
+  document.body.appendChild(container);
+  document.body.appendChild(script);
+}
