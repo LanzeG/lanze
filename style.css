@@ -459,10 +459,13 @@ section {
 
 #socials-container {
   display: flex;
- 
+  
   margin-top: 1rem;
   gap: 1rem;
-}
+} 
+
+  
+
 
 /* ICONS */
 
