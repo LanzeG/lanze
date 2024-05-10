@@ -349,7 +349,7 @@ section {
 }
 .container {
   display: flex;
-  height: 100vh;
+  height: 93vh;
 }
 
 .left-div{
@@ -1513,6 +1513,13 @@ outline: none !important;
     .poc-her-blocks-inner{
     max-width: fit-content;
     grid-template-columns: 1fr 1fr;
-    margin-top: 10%;  
+    margin-top: 2rem;  
+    }
+    .container{
+      height: auto;
+    }
+    .right-div{
+      display: none;
+
     }
   }
