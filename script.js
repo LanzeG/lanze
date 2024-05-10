@@ -273,3 +273,26 @@ function embedVismeForm() {
     //     var contactCard = document.getElementById('contact-card');
     //     contactCard.style.display = 'block';
     // });
+
+
+    function animateValue(element, start, end, duration) {
+      var range = end - start;
+      var current = start;
+      var increment = end > start ? 1 : -1;
+      var stepTime = Math.abs(Math.floor(duration / range));
+      var timer = setInterval(function() {
+          current += increment;
+          element.textContent = current;
+          if (current === end) {
+              clearInterval(timer);
+          }
+      }, stepTime);
+  }
+
+  var customerCount = document.getElementById('customer-count');
+  var systemCount = document.getElementById('system-count');
+  var languageCount = document.getElementById('language-count');
+
+  animateValue(customerCount, 0, 3, 4000); 
+  animateValue(systemCount, 0, 17, 4000); 
+  animateValue(languageCount, 0, 12, 4000);
