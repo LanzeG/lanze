@@ -54,7 +54,7 @@ function animateText() {
         setTimeout(() => {
           textElement.style.transition = 'opacity 1s, transform 1s';
           textElement.style.opacity = 1;
-          textElement.style.transform = 'translateX(1%)';
+          textElement.style.transform = 'translateX(2%)';
           setTimeout(() => {
             textElement.style.transition = '';
             if (index < values.length - 1) {
