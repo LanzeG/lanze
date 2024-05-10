@@ -345,10 +345,14 @@
   
    <style>
 .tabs-bottom {
-    margin-top: 124px;
+    margin-top: 5%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust minmax values to control column size */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax values to control column size */
     grid-gap: 12px;
+    padding-bottom: 5%;
+    
+    
+   
 }
 
 .tabs-card {
@@ -361,6 +365,7 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    
     
 }
 
@@ -419,9 +424,9 @@
 }
 .tiles{
   height: 50vh;
-  border-bottom-left-radius: 200px ;
+  border-bottom-left-radius: px ;
 }
-#links{
+#about{
   height: 50vh;
 }
 
@@ -431,30 +436,52 @@
         -moz-osx-font-smoothing: grayscale;
     }
 }
-@media screen and (max-width: 1068px) {
+@media screen and (max-width: 758px) {
   .tabs-bottom {
     grid-template-columns: 1fr; /* Set the tabs to occupy one column only */
   }
-  .tiles,
-  #links {
+  .tiles {
     height: 100vh; /* Occupy full viewport height */
     border-bottom-left-radius: 50px;
   }
+    #about{
+      height: 100vh;
+    }
 }
-
-@media screen and (max-width: 376px) {
-  .tiles,
-  #links {
-    height: auto; /* Automatically adjust height based on content */
-    border-bottom-left-radius: 50px;
+@media screen and (max-width: 415px) {
+  #about{
+      height: 105vh;
+      
   }
-}
 
+}
+@media screen and (max-width: 380px) {
+    .tabs-card {
+        padding: 12px;
+    }
+
+    .tabs-card-title {
+      color: white;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 0;
+    margin: 16px 0 0 0;
+    }
+
+    .tabs-card-description {
+        font-size: 16px;
+        line-height: 21px;
+    }
+
+    .tabs-card-icon {
+        max-width: 24px;
+    }
+}
 
 </style>
- <section id="links" style="">
+
     <div class="tiles" style="background-color: #00ED64;  border-top-left-radius:200px; background: #001E2B; ">
-     
+      <section id="about" style="">
         <div class="tabs-bottom" ><a class="tabs-card" href="">
           <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l9751qiggjximwymo-Document%20Model.svg?auto=format%252Ccompress">
           <p class="tabs-card-title">Lorem</p>
@@ -477,17 +504,7 @@
           <p class="tabs-card-title">Lorem Ipsum</p>
           <p class="tabs-card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eveniet qui saepe omnis, maiores cum asperiores temporibus corporis quia sunt necessitatibus dicta perferendis adipisci delectus, magni id a rem nostrum.</p>
             <span class="css-1kjyyeh">
-              <div class="css-1pghxfk">
-                <!-- <span class="textlink-link-icon-class css-1n8ph0f">Start Building</span> -->
-                <div data-testid="link-icon-container" class="css-19siuc4">
-                  <span data-testid="arrow-container" class="css-1mwl2k3">
-                    <span data-testid="arrow-body" class="css-zzrgxg">
-                      <span data-testid="arrow-head" class="css-sqbkw3"></span>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </span>
+             
           </a>          
         </a><a class="tabs-card" href="">
           <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l97529834aoy92a7l-Community.svg?auto=format%252Ccompress">
@@ -506,7 +523,8 @@
               </div>
             </span>
           </a>          
-        </a></div>
+        </a>
+      </div>
     </section>
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
