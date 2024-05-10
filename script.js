@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // window.addEventListener('resize', checkDevTools);
 
 
-const values = ['Frontend', 'RPA', 'UI/UX', 'Dead'];
+const values = ['Frontend', 'RPA', 'UI/UX', 'Backend????'];
 let index = 0;
 const textElement = document.querySelector('.animated-text');
 
@@ -63,7 +63,7 @@ function animateText() {
               index = 0;
             }
             animateText();
-          }, values[index] === 'Dead' ? 10000 : 5000); 
+          }, values[index] === 'Backend????' ? 5000 : 3000); 
         }, 2000); 
       }
     }, 100); 
@@ -75,7 +75,7 @@ function animateText() {
         index = 0;
       }
       animateText();
-    }, 5000); 
+    }, 3000); 
   }
 }
 
