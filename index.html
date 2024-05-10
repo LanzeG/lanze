@@ -432,31 +432,23 @@
     }
 }
 
-/* Media query for responsiveness */
 @media screen and (max-width: 1068px) {
-    .tabs-bottom {
-        grid-template-columns: 1fr; /* Set the tabs to occupy one column only */
-    }
-    .tiles{
-      height: 100vh;
-      border-bottom-left-radius: 50px ;
-    }
-    #links{
-      height: 100vh;
-   
-    }
+  .tabs-bottom {
+    grid-template-columns: 1fr; /* Set the tabs to occupy one column only */
   }
-@media screen and (max-width: 376px) {
-    
+  .tiles,
+  #links {
+    height: 100vh; /* Occupy full viewport height */
+    border-bottom-left-radius: 50px;
+  }
+}
 
-    .tiles{
-      height: 130vh;
-      border-bottom-left-radius: 50px ;
-    }
-    #links{
-      height: 130vh;
-      
-    }
+@media screen and (max-width: 376px) {
+  .tiles,
+  #links {
+    height: auto; /* Automatically adjust height based on content */
+    border-bottom-left-radius: 50px;
+  }
 }
 
 
