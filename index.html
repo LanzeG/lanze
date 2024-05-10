@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Sans+Mono:wght@100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
   </head>
   <!-- <div class="spinner"></div> -->
   <body>
     <!-- Loading screen -->
-       <div class="loading-screen">
+       <!-- <div class="loading-screen">
       <div class="window">
         <div class="terminal-loader">
           <div class="terminal-header">
@@ -31,7 +33,7 @@
         </div>
         
       </div>
-    </div> 
+    </div>  -->
     <!-- <div class="bot-icon">
       <a href="https://lanzeonly.000webhostapp.com/login.php"><img src="assets/sendit.png" alt="Bot Icon"></a>
     </div> -->
@@ -104,10 +106,10 @@
       <div class="left-div">
         <div class="section__text">
           <div class="content-wrapper">
-            <p class="section__text-hello" style=" font-family: Source Code Pro, monospace; font-weight: lighter; letter-spacing: 2px; font-size: 14px;"><span style="color: #00ED64; ">|</span>ASPIRING DEVELOPER
+            <p class="section__text-hello" style=" font-family: Source Code Pro, monospace; font-weight: normal; letter-spacing: 2px; font-size: 14px;"><span style="color: #00ED64; ">|</span>ASPIRING DEVELOPER
 
             </p>
-            <h1 style="margin-top: 1rem">Lester Lance Bermas.</h1>
+            <h1 class="codename">Lester Lance Bermas.</h1>
             <div style=" overflow-x: hidden;">
             <h1 class="animated-text"></h1>
           </div>
@@ -117,8 +119,7 @@
             line-height: 32px;
             color: #334550;
             padding: 0;
-          
-            margin-bottom: 56px;
+            letter-spacing: .5px;
             max-width: 576px;">Experience the seamless fusion of creativity and functionality with a frontend developer primed to revolutionize your projects.
 
 </p>
@@ -192,14 +193,28 @@
             </div>
             <div class="btn-container1">
               <button class="btn-new" onclick="window.open('./assets/cv.pdf')">
-                <i class="fas fa-download"></i> Download CV
+                <!-- <i class="fas fa-download"></i>--> Download CV 
               </button>
-              
+              <style>
+                .arrow1 {
+        transition: margin-left .3s ease;
+        position: absolute;
+        
+       
+        transform: translateY(-50%);
+      
+    }
+
+    .btn:hover .arrow1 {
+        margin-left: 30px; /* Adjust the distance arrow moves */
+    }
+</style>
+              </style>
               <div class="container-fluid">
                 <button class="btn btn-share" onclick="toggleQR()">
-                  <i class="fas fa-qrcode qr-icon"></i>  Share → 
+                  <!-- <i class="fas fa-qrcode qr-icon"></i>-->  Share <span class="arrow1">&#10230;</span>
                 </button>
-                <div id="qrCode" class="card">
+                <div id="qrCode" class="card" >
                   <p>Scan to share</p>
                   <img src="assets/qr.png" alt="QR Code" style="max-width: 100%;">
                   <a href="assets/qr.png" download class="download-link" id="downloadLink">
@@ -207,7 +222,7 @@
                   </a>
                   <hr class="room">
                   <a href="#" class="copy-link" onclick="copyLink()">
-                    <i class="fas fa-link "></i> Copy Link
+                    <i class="fas fa-link "></i>Copy Link
                   </a>
                 </div>
               </div>
@@ -219,7 +234,7 @@
           <!-- https://www.mongodb.com/who-uses-mongodb -->
              <!-- https://www.mongodb.com/docs/atlas/cloud-providers-regions/ -->
                <!-- https://www.mongodb.com/docs/atlas/getting-started/ -->
-               <div class="card">
+               <div class="card-wreck">
                 <div class="poc-her-blocks-inner">
                     <a href="" data-track="true">
                         <div class="poc-hero-block">
@@ -328,54 +343,180 @@
     
   </section>
   
+   <style>
+.tabs-bottom {
+    margin-top: 124px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust minmax values to control column size */
+    grid-gap: 12px;
+}
+
+.tabs-card {
+    border: 1px solid #3d4f58;
+    padding: 24px;
+    font-family: "Euclid Circular A", sans-serif;
+    border-radius: 24px;
+    transition: all 0.25s;
+    background: #001e2b;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.tabs-card-icon {
+    max-width: 42px;
+}
+
+.tabs-card-title {
+    color: white;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 0;
+    margin: 16px 0 0 0;
+}
+
+.tabs-card-description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #b8c4c2;
+}
+
+.tabs-card-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.tabs-card a {
+    text-decoration: none;
+}
+
+.css-1kjyyeh {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.css-1pghxfk {
+    display: flex;
+    width: 100%;
+}
+
+.css-1n8ph0f {
+    font-size: 18px;
+    line-height: 48px;
+    color: #006CFA;
+}
+
+.css-19siuc4 {
+    padding-left: 16px;
+}
+.tiles{
+  height: 50vh;
+  border-bottom-left-radius: 200px ;
+}
+#links{
+  height: 50vh;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 1068px) {
+    .tabs-bottom {
+        grid-template-columns: 1fr; /* Set the tabs to occupy one column only */
+    }
+    .tiles{
+      height: 100vh;
+      border-bottom-left-radius: 50px ;
+    }
+    #links{
+      height: 100vh;
    
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/361164168_1348326159051888_1084336484785902140_n.jpg"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>2+ years <br />Frontend Development | IT Technical</p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>ICT Graduate &<br />Bachelor of Science in Information Technology</p>
-              <p>student</p>
-            </div>
-          </div>
-          <div class="text-container">
-            <p>
-              I'm a 22-year-old coding enthusiast with a passion for reading and a knack for computer networking and troubleshooting. With every line of code I write and every technical problem I solve, I strive to make a positive impact and contribute to the ever-advancing world of technology.
-            </p>
-          </div>
-          
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
+    }
+  }
+@media screen and (max-width: 376px) {
+    
+
+    .tiles{
+      height: 130vh;
+      border-bottom-left-radius: 50px ;
+    }
+    #links{
+      height: 130vh;
+      
+    }
+}
+
+
+
+
+   </style>
+    <div class="tiles" style="background-color: #00ED64;  border-top-left-radius:200px; background: #001E2B; ">
+      <section id="links" style="">
+        <div class="tabs-bottom" ><a class="tabs-card" href="">
+          <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l9751qiggjximwymo-Document%20Model.svg?auto=format%252Ccompress">
+          <p class="tabs-card-title">Lorem</p>
+          <p class="tabs-card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eveniet qui saepe omnis, maiores cum asperiores temporibus corporis quia sunt necessitatibus dicta perferendis adipisci delectus, magni id a rem nostrum.</p>
+            <span class="css-1kjyyeh">
+              <div class="css-1pghxfk">
+                <!-- <span class="textlink-link-icon-class css-1n8ph0f">Documentation</span> -->
+                <div data-testid="link-icon-container" class="css-19siuc4">
+                  <span data-testid="arrow-container" class="css-1mwl2k3">
+                    <span data-testid="arrow-body" class="css-zzrgxg">
+                      <span data-testid="arrow-head" class="css-sqbkw3"></span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </span>
+          </a>          
+        </a><a class="tabs-card" href="">
+          <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l9751hrbsm3eyq685-Develop.svg?auto=format%252Ccompress">
+          <p class="tabs-card-title">Lorem Ipsum</p>
+          <p class="tabs-card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eveniet qui saepe omnis, maiores cum asperiores temporibus corporis quia sunt necessitatibus dicta perferendis adipisci delectus, magni id a rem nostrum.</p>
+            <span class="css-1kjyyeh">
+              <div class="css-1pghxfk">
+                <!-- <span class="textlink-link-icon-class css-1n8ph0f">Start Building</span> -->
+                <div data-testid="link-icon-container" class="css-19siuc4">
+                  <span data-testid="arrow-container" class="css-1mwl2k3">
+                    <span data-testid="arrow-body" class="css-zzrgxg">
+                      <span data-testid="arrow-head" class="css-sqbkw3"></span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </span>
+          </a>          
+        </a><a class="tabs-card" href="">
+          <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l97529834aoy92a7l-Community.svg?auto=format%252Ccompress">
+          <p class="tabs-card-title">Lorem Ipsum</p>
+          <p class="tabs-card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eveniet qui saepe omnis, maiores cum asperiores temporibus corporis quia sunt necessitatibus dicta perferendis adipisci delectus, magni id a rem nostrum.</p>
+            <span class="css-1kjyyeh">
+              <div class="css-1pghxfk">
+                <!-- <span class="textlink-link-icon-class css-1n8ph0f">Join the Community</span> -->
+                <div data-testid="link-icon-container" class="css-19siuc4">
+                  <span data-testid="arrow-container" class="css-1mwl2k3">
+                    <span data-testid="arrow-body" class="css-zzrgxg">
+                      <span data-testid="arrow-head" class="css-sqbkw3"></span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </span>
+          </a>          
+        </a></div>
     </section>
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
