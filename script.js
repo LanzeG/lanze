@@ -230,3 +230,46 @@ function embedVismeForm() {
   document.body.appendChild(container);
   document.body.appendChild(script);
 }
+
+// // Disable right-click on the webpage
+// document.addEventListener('contextmenu', function(e) {
+//   e.preventDefault();
+// });
+
+// // Disable keyboard shortcuts for viewing page source
+// document.onkeydown = function(e) {
+//   if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 67)) {
+//       return false;
+//   }
+// };
+   document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        var contextMenu = document.getElementById('context-menu');
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = e.pageX + 'px';
+        contextMenu.style.top = e.pageY + 'px';
+        setTimeout(function() {
+            contextMenu.classList.add('show-menu');
+        }, 10);
+    });
+
+    // Hide custom context menu on click outside
+    document.addEventListener('click', function(e) {
+        var contextMenu = document.getElementById('context-menu');
+        contextMenu.classList.remove('show-menu');
+    });
+
+    // Functionality for menu items
+    document.getElementById('refresh').addEventListener('click', function() {
+        location.reload();
+    });
+
+    // document.getElementById('donate').addEventListener('click', function() {
+    //     var donateCard = document.getElementById('donate-card');
+    //     donateCard.style.display = 'block';
+    // });
+
+    // document.getElementById('contact').addEventListener('click', function() {
+    //     var contactCard = document.getElementById('contact-card');
+    //     contactCard.style.display = 'block';
+    // });
