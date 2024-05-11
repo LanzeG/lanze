@@ -323,7 +323,7 @@ function generateKeyAndSendToServer() {
   setCookie("uniqueKey", generatedKey, 30); // Cookie will expire in 30 days
   
   // Send the key to the server
-  fetch('https://lanze.vercel.app/api/saveKey', {
+  fetch('https://lanze.vercel.app/api/saveKey', { // Assuming your server is running locally on port 3000
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
