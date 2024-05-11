@@ -219,19 +219,44 @@
                 <button class="btn btn-share" onclick="toggleQR()">
                   <!-- <i class="fas fa-qrcode qr-icon"></i>-->  Share <span class="arrow1">&#10230;</span>
                 </button>
-                <div id="qrCode" class="card" >
+                <div id="qrCode" class="card">
                   <p>Scan to share</p>
-                  <img src="assets/qr.png" alt="QR Code" style="max-width: 100%;">
+                  <img src="assets/qr.png" alt="QR Code" style="max-width: 100%;" class="original-qr">
                   <a href="assets/qr.png" download class="download-link" id="downloadLink">
-                    <i class="fas fa-download"></i> Download
+                      <i class="fas fa-download"></i> Download
                   </a>
                   <hr class="room">
                   <a href="#" class="copy-link" onclick="copyLink()">
-                    <i class="fas fa-link "></i>Copy Link
+                      <i class="fas fa-link "></i>Copy Link
                   </a>
-                </div>
               </div>
+              <img src="assets/qr.png" alt="Larger QR Code" class="larger-qr">
               
+              </div>
+              <style>
+                .card {
+    position: relative;
+}
+
+
+.larger-qr {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    z-index: 999;
+    max-width: 150%;
+    transition: opacity 1.3s ease-in;
+
+}
+
+#qrCode:hover + .larger-qr {
+    display: block;
+    transition: opacity 1.3s ease-in;
+}
+
+              </style>
             </div>
             <!-- <img src="https://webassets.mongodb.com/_com_assets/cms/General_EVENT_Tickets_Thumbnail-y7uuq71xp4.png" alt="seraphim" width="200px"/> -->
             
@@ -343,9 +368,7 @@
           </div>
         </div>
       </div>
-      
     </div>
-    
   </section>
   <style>
     
