@@ -10,25 +10,28 @@ export default async (req, res) => {
       return res.status(400).json({ error: 'Key is required' });
     }
 
-    saveKeyToJsonFile(key);
+    updateVisitCount();
 
-    return res.status(200).json({ message: 'Key saved successfully' });
+    return res.status(200).json({ message: 'Visit count updated successfully' });
   } else {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 };
 
-// Function to save the key to a JSON file
-function saveKeyToJsonFile(key) {
-  const jsonData = { "key": key };
-  const jsonString = JSON.stringify(jsonData);
+// Function to update the visit count in the JSON file
+function updateVisitCount() {
+  try {
+    // Read existing data from file
+    let jsonData = JSON.parse(fs.readFileSync('keys.json'));
 
-  // Write the JSON string to a file named keys.json
-  fs.writeFile('keys.json', jsonString, (err) => {
-    if (err) {
-      console.error('Error writing to keys.json:', err);
-      return;
-    }
-    console.log('Key saved to keys.json');
-  });
+    // Increment visit count or initialize to 1 if it doesn't exist
+    jsonData.visits = (jsonData.visits || 0) + 1;
+
+    // Write updated data back to file
+    fs.writeFileSync('keys.json', JSON.stringify(jsonData, null, 2));
+
+    console.log('Visit count updated successfully:', jsonData.visits);
+  } catch (err) {
+    console.error('Error updating visit count:', err);
+  }
 }
