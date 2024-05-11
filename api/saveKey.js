@@ -1,44 +1,37 @@
-const http = require('http');
+// api/saveKey.js
+
 const fs = require('fs');
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/api/saveKey' && req.method === 'POST') {
-    let body = '';
-    req.on('data', chunk => {
-      body += chunk.toString();
-    });
-    req.on('end', () => {
-      const keyObject = JSON.parse(body);
-      const key = keyObject.key;
-      fs.readFile('keys.json', (err, data) => {
-        if (err && err.code !== 'ENOENT') {
-          res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: 'Internal server error' }));
-          return;
-        }
-        let keys = [];
-        if (data) {
-          keys = JSON.parse(data);
-        }
-        keys.push(key);
-        fs.writeFile('keys.json', JSON.stringify(keys), err => {
-          if (err) {
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Internal server error' }));
-            return;
-          }
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ message: 'Key saved successfully' }));
-        });
-      });
-    });
-  } else {
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Not found' }));
-  }
-});
+export default async (req, res) => {
+  if (req.method === 'POST') {
+    const { key } = req.body;
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+    if (!key) {
+      return res.status(400).json({ error: 'Key is required' });
+    }
+
+    updateVisitCount();
+
+    return res.status(200).json({ message: 'Visit count updated successfully' });
+  } else {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+};
+
+// Function to update the visit count in the JSON file
+function updateVisitCount() {
+  try {
+    // Read existing data from file
+    let jsonData = JSON.parse(fs.readFileSync('keys.json'));
+
+    // Increment visit count or initialize to 1 if it doesn't exist
+    jsonData.visits = (jsonData.visits || 0) + 1;
+
+    // Write updated data back to file
+    fs.writeFileSync('keys.json', JSON.stringify(jsonData, null, 2));
+
+    console.log('Visit count updated successfully:', jsonData.visits);
+  } catch (err) {
+    console.error('Error updating visit count:', err);
+  }
+}

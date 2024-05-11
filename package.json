@@ -1,6 +1,25 @@
 {
   "dependencies": {
     "express": "^4.19.2",
-    "fs-extra": "^10.0.0"
-  }
+    "fs-extra": "^10.0.0",
+    "mongoose": "^8.3.4"
+  },
+  "name": "lanze",
+  "description": "Hi! I'm Lanze!",
+  "version": "1.0.0",
+  "main": "1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LanzeG/lanze.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LanzeG/lanze/issues"
+  },
+  "homepage": "https://github.com/LanzeG/lanze#readme"
 }
