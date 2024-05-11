@@ -4,19 +4,24 @@ const fs = require('fs');
 const path = require('path');
 
 export default async (req, res) => {
-  if (req.method === 'POST') {
-    const { key } = req.body;
+  try {
+    if (req.method === 'POST') {
+      const { key } = req.body;
 
-    if (!key) {
-      return res.status(400).json({ error: 'Key is required' });
+      if (!key) {
+        return res.status(400).json({ error: 'Key is required' });
+      }
+
+      const keysFilePath = path.resolve('./keys.json');
+      saveKeyToJsonFile(keysFilePath, key);
+
+      return res.status(200).json({ message: 'Key saved successfully' });
+    } else {
+      return res.status(405).json({ error: 'Method not allowed' });
     }
-
-    const keysFilePath = path.resolve('./keys.json');
-    saveKeyToJsonFile(keysFilePath, key);
-
-    return res.status(200).json({ message: 'Key saved successfully' });
-  } else {
-    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (error) {
+    console.error('Error saving key:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
