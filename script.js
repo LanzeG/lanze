@@ -298,9 +298,9 @@ function embedVismeForm() {
   animateValue(languageCount, 0, 7, 4000);
 
 
-  // script.js
-
+  // Function to generate a unique key
 function generateUniqueKey() {
+  // Generate a random string of characters
   const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let key = '';
   for (let i = 0; i < 10; i++) {
@@ -309,6 +309,7 @@ function generateUniqueKey() {
   return key;
 }
 
+// Function to set a cookie with the generated key
 function setCookie(key, value, days) {
   const date = new Date();
   date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -316,30 +317,29 @@ function setCookie(key, value, days) {
   document.cookie = key + "=" + value + ";" + expires + ";path=/";
 }
 
+// Main function to generate key, set cookie, and send to server
 function generateKeyAndSendToServer() {
-  try {
-    const generatedKey = generateUniqueKey();
-    setCookie("uniqueKey", generatedKey, 30); 
-
-    fetch('https://lanze.vercel.app/api/saveKey', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ key: generatedKey }),
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      console.log('Key sent to server successfully');
-    })
-    .catch(error => {
-      console.error('Error sending key to server:', error);
-    });
-  } catch (error) {
-    console.error('Error generating or sending key:', error);
-  }
+  const generatedKey = generateUniqueKey();
+  setCookie("uniqueKey", generatedKey, 30); // Cookie will expire in 30 days
+  
+  // Send the key to the server
+  fetch('https://lanze.vercel.app/api/saveKey', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ key: generatedKey }),
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    console.log('Key sent to server successfully');
+  })
+  .catch(error => {
+    console.error('Error sending key to server:', error);
+  });
 }
 
+// Call the main function when the website is visited
 window.onload = generateKeyAndSendToServer;
