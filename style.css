@@ -122,6 +122,9 @@ a,
   
 }
 /* TOP-NAV */
+h1{
+  color: #001E2c;
+}
 .top-p{
   color: rgb(219, 217, 217);
   font-size: small;
@@ -360,7 +363,7 @@ section {
   margin-top: 3%;
   border-bottom-left-radius: 100px;
   
-  height: 100%;
+  height: 80%;
 }
 .right-div {
   flex: 1;
@@ -403,6 +406,17 @@ section {
 /* Additional styling for buttons and social icons */
 
 /* Adjustments for responsiveness */
+@media (max-width: 1630px) {
+  .left-div{
+    margin-top: 5%;
+  }
+}
+@media (max-width: 1000px) {
+  .left-div{
+    margin-top: 5%;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -428,6 +442,7 @@ section {
   }
   .left-div{
     text-align: center;
+    margin-top: 3%;
   }
 }
 
@@ -617,6 +632,12 @@ section {
 
 #experience {
   position: relative;
+   overflow-x: hidden;
+    background-image: url(https://webimages.mongodb.com/_com_assets/cms/l9cqmty2a4j8ehup5-blob.svg?auto=format%252Ccompress);
+
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: -100px;
 }
 
 .experience-sub-title {
@@ -1548,3 +1569,142 @@ outline: none !important;
 
     }
   }
+
+  .tabs-bottom {
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax values to control column size */
+    grid-gap: 12px;
+    padding-bottom: 5%;
+    
+    
+   
+}
+
+.tabs-card {
+    border: 1px solid #3d4f58;
+    padding: 24px;
+    font-family: "Euclid Circular A", sans-serif;
+    border-radius: 24px;
+    transition: all 0.25s;
+    background: #001e2b;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.tabs-card-icon {
+    max-width: 42px;
+}
+
+.tabs-card-title {
+    color: white;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 0;
+    margin: 16px 0 0 0;
+}
+
+.tabs-card-description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #838a89;
+}
+
+.tabs-card-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.tabs-card a {
+    text-decoration: none;
+}
+
+.css-1kjyyeh {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.css-1pghxfk {
+    display: flex;
+    width: 100%;
+}
+
+.css-1n8ph0f {
+    font-size: 18px;
+    line-height: 48px;
+    color: #006CFA;
+}
+
+.css-19siuc4 {
+    padding-left: 16px;
+}
+.tiles{
+  height: 50vh;
+  border-bottom-left-radius: 100px ;
+  background-image: url(https://webimages.mongodb.com/_com_assets/cms/lbdpkandndc0s9y43-Group%2022228.svg?auto=format%252Ccompress);
+  background-color: #001E2B;
+  background-repeat: no-repeat;
+
+}
+#about{
+  height: 50vh;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+@media screen and (max-width: 758px) {
+  .tabs-bottom {
+    grid-template-columns: 1fr; 
+  }
+  .tiles {
+    height: 100vh; 
+    border-bottom-left-radius: 50px;
+  }
+    #about{
+      height: 100vh;
+    }
+}
+@media screen and (max-width: 415px) {
+  #about{
+      height: 105vh;
+      margin-bottom: 25%;
+      
+  }
+
+}
+@media screen and (max-width: 470px) {
+    .tabs-card {
+        padding: 12px;
+    }
+
+    .tabs-card-title {
+      color: white;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 0;
+    margin: 16px 0 0 0;
+    }
+
+    .tabs-card-description {
+        font-size: 16px;
+        line-height: 21px;
+    }
+
+    .tabs-card-icon {
+        max-width: 24px;
+    }
+}
