@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path'); // Import the path module
+const path = require('path');
 
 export default async (req, res) => {
   if (req.method === 'POST') {
@@ -9,40 +9,33 @@ export default async (req, res) => {
       return res.status(400).json({ error: 'Key is required' });
     }
 
-    updateVisitCount();
+    // Call function to generate unique JSON file with cookie key
+    generateKeyFile(key);
 
-    return res.status(200).json({ message: 'Visit count updated successfully' });
+    return res.status(200).json({ message: 'Key file generated successfully' });
   } else {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 };
 
-// Function to update the visit count in the JSON file
-function updateVisitCount() {
+// Function to generate unique JSON file with cookie key
+function generateKeyFile(cookieKey) {
   try {
-    // Construct the path to keys.json using __dirname
-    const keysFilePath = path.join(__dirname, 'keys.json');
+    // Generate a unique filename based on current timestamp
+    const timestamp = Date.now();
+    const filename = `cookie_key_${timestamp}.json`;
 
-    // Read existing data from file
-    let jsonData = fs.readFileSync(keysFilePath, 'utf8');
+    // Construct the path for the new key file
+    const keyFilePath = path.join(__dirname, filename);
 
-    // Check if jsonData is empty
-    if (!jsonData.trim()) {
-      // If jsonData is empty, initialize it as an empty object
-      jsonData = '{}';
-    }
+    // Create an object with the cookie key
+    const data = { cookieKey: cookieKey };
 
-    // Parse JSON data
-    let parsedData = JSON.parse(jsonData);
+    // Write data to the new JSON file
+    fs.writeFileSync(keyFilePath, JSON.stringify(data, null, 2));
 
-    // Increment visit count or initialize to 1 if it doesn't exist
-    parsedData.visits = (parsedData.visits || 0) + 1;
-
-    // Write updated data back to file
-    fs.writeFileSync(keysFilePath, JSON.stringify(parsedData, null, 2));
-
-    console.log('Visit count updated successfully:', parsedData.visits);
+    console.log('Key file generated successfully:', filename);
   } catch (err) {
-    console.error('Error updating visit count:', err);
+    console.error('Error generating key file:', err);
   }
 }
