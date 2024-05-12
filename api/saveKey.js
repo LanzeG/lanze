@@ -1,6 +1,5 @@
-// api/saveKey.js
-
 const fs = require('fs');
+const path = require('path'); // Import the path module
 
 export default async (req, res) => {
   if (req.method === 'POST') {
@@ -38,4 +37,3 @@ function updateVisitCount() {
     console.error('Error updating visit count:', err);
   }
 }
-
