@@ -24,15 +24,24 @@ function updateVisitCount() {
     const keysFilePath = path.join(__dirname, 'keys.json');
 
     // Read existing data from file
-    let jsonData = JSON.parse(fs.readFileSync(keysFilePath));
+    let jsonData = fs.readFileSync(keysFilePath, 'utf8');
+
+    // Check if jsonData is empty
+    if (!jsonData.trim()) {
+      // If jsonData is empty, initialize it as an empty object
+      jsonData = '{}';
+    }
+
+    // Parse JSON data
+    let parsedData = JSON.parse(jsonData);
 
     // Increment visit count or initialize to 1 if it doesn't exist
-    jsonData.visits = (jsonData.visits || 0) + 1;
+    parsedData.visits = (parsedData.visits || 0) + 1;
 
     // Write updated data back to file
-    fs.writeFileSync(keysFilePath, JSON.stringify(jsonData, null, 2));
+    fs.writeFileSync(keysFilePath, JSON.stringify(parsedData, null, 2));
 
-    console.log('Visit count updated successfully:', jsonData.visits);
+    console.log('Visit count updated successfully:', parsedData.visits);
   } catch (err) {
     console.error('Error updating visit count:', err);
   }
