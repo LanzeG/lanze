@@ -21,17 +21,21 @@ export default async (req, res) => {
 // Function to update the visit count in the JSON file
 function updateVisitCount() {
   try {
+    // Construct the path to keys.json using __dirname
+    const keysFilePath = path.join(__dirname, 'keys.json');
+
     // Read existing data from file
-    let jsonData = JSON.parse(fs.readFileSync('keys.json'));
+    let jsonData = JSON.parse(fs.readFileSync(keysFilePath));
 
     // Increment visit count or initialize to 1 if it doesn't exist
     jsonData.visits = (jsonData.visits || 0) + 1;
 
     // Write updated data back to file
-    fs.writeFileSync('keys.json', JSON.stringify(jsonData, null, 2));
+    fs.writeFileSync(keysFilePath, JSON.stringify(jsonData, null, 2));
 
     console.log('Visit count updated successfully:', jsonData.visits);
   } catch (err) {
     console.error('Error updating visit count:', err);
   }
 }
+
