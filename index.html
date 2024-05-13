@@ -315,32 +315,40 @@
                         }
                       }
                     
-                      // Function to update the displayed key count with animation
-                      async function updateKeyCount() {
-                        const keyCountElement = document.getElementById('keyCount');
-                        const currentCount = parseInt(keyCountElement.textContent, 10) || 0;
-                        const targetCount = await fetchKeyCount();
-                    
-                        // Calculate the increment for animation
-                        const increment = Math.ceil((targetCount - currentCount) / 20); // Divide by the number of steps
-                    
-                        // Update the displayed count with animation
-                        const updateInterval = setInterval(() => {
-                          const newCount = currentCount + increment;
-                          keyCountElement.textContent = newCount.toString();
-                          if (newCount >= targetCount) {
-                            clearInterval(updateInterval); // Stop the interval when target count is reached
-                          }
-                        }, 50); // Update every 50 milliseconds
-                      }
-                    
-                      // Example of how to use the updateKeyCount function
+                      // Example of how to use the fetchKeyCount function
                       async function exampleUsage() {
-                        await updateKeyCount();
+                        const keyCount = await fetchKeyCount();
+                        console.log('Number of keys:', keyCount);
+                        // Update the text content of the element with the ID 'keyCount'
+                        document.getElementById('keyCount').textContent = keyCount.toString();
                       }
                     
                       // Call the example usage
                       exampleUsage();
+                    
+                    </script>
+                    <script>
+                      // Function to animate the value of element with id "keyCount"
+                      function animateValue(id, start, end, duration) {
+                        var range = end - start;
+                        var current = start;
+                        var increment = end > start ? 1 : -1;
+                        var stepTime = Math.abs(Math.floor(duration / range));
+                        var obj = document.getElementById(id);
+                        var timer = setInterval(function() {
+                          current += increment;
+                          if (current < 0) {
+                            current = 0; // Set to 0 if it goes negative
+                          }
+                          obj.innerHTML = current;
+                          if (current == end) {
+                            clearInterval(timer);
+                          }
+                        }, stepTime);
+                      }
+                    
+                      // Call the animateValue function with desired values
+                      animateValue("keyCount", 0, 1000, 3000); // Example: From 0 to 1000 in 3 seconds
                     </script>
                     
                     
