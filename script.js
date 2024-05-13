@@ -300,10 +300,10 @@ function embedVismeForm() {
 
 // Function to generate a unique key
 function generateUniqueKey() {
-  // Check if the key is already stored in local storage
-  let key = localStorage.getItem('uniqueKey');
+  // Check if the key is already stored in cookies
+  let key = getCookie('uniqueKey');
   
-  // If no key exists, generate a new one and store it in local storage
+  // If no key exists, generate a new one and store it in cookies
   if (!key) {
     // Generate a random string of characters
     const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -311,13 +311,28 @@ function generateUniqueKey() {
     for (let i = 0; i < 10; i++) {
       key += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
     }
-    localStorage.setItem('uniqueKey', key);
+    // Store the key in cookies
+    setCookie('uniqueKey', key, 30); // Cookie will expire in 30 days
   }
   
   return key;
 }
 
-// Main function to generate key, set cookie, and send to server
+// Function to get a cookie value
+function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : null;
+}
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+// Main function to generate key and send to server
 function generateKeyAndSendToServer() {
   // Generate unique key
   const generatedKey = generateUniqueKey();
