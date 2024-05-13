@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 
 export default async (req, res) => {
   if (req.method === 'POST') {
@@ -18,30 +19,30 @@ export default async (req, res) => {
 };
 
 // Function to update the visit count in the JSON file
-function updateVisitCount() {
+async function updateVisitCount() {
   try {
-    // Construct the path to keys.json using __dirname
-    const keysFilePath = path.join(__dirname, 'keys.json');
+    // JSON data to send
+    const data = { sample: "Hello World" };
 
-    // Read existing data from file
-    let jsonData = fs.readFileSync(keysFilePath, 'utf8');
+    // Fetch options
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
+      },
+      body: JSON.stringify(data)
+    };
 
-    // Check if jsonData is empty
-    if (!jsonData.trim()) {
-      // If jsonData is empty, initialize it as an empty object
-      jsonData = '{}';
+    // Send POST request to JSON file endpoint
+    const response = await fetch('https://api.jsonbin.io/v3/b', options);
+
+    // Check if request was successful
+    if (response.ok) {
+      console.log('Visit count updated successfully');
+    } else {
+      console.error('Failed to update visit count:', response.statusText);
     }
-
-    // Parse JSON data
-    let parsedData = JSON.parse(jsonData);
-
-    // Increment visit count or initialize to 1 if it doesn't exist
-    parsedData.visits = (parsedData.visits || 0) + 1;
-
-    // Write updated data back to file
-    fs.writeFileSync(keysFilePath, JSON.stringify(parsedData, null, 2));
-
-    console.log('Visit count updated successfully:', parsedData.visits);
   } catch (err) {
     console.error('Error updating visit count:', err);
   }
