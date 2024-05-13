@@ -298,7 +298,7 @@ function embedVismeForm() {
   animateValue(languageCount, 0, 7, 4000);
 
 
-  // Function to generate a unique key
+ // Function to generate a unique key
 function generateUniqueKey() {
   // Generate a random string of characters
   const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -319,7 +319,10 @@ function setCookie(key, value, days) {
 
 // Main function to generate key, set cookie, and send to server
 function generateKeyAndSendToServer() {
+  // Generate unique key
   const generatedKey = generateUniqueKey();
+
+  // Set cookie with the generated key
   setCookie("uniqueKey", generatedKey, 30); // Cookie will expire in 30 days
   
   // Send the key to the server
