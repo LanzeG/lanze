@@ -31,8 +31,8 @@ async function updateVisitCount(generatedKey) {
 
     const jsonData = await response.json();
 
-    // Extract the array of visitors or initialize it if it doesn't exist
-    let visitors = jsonData.visitors || [];
+    // Extract the existing visitors array
+    let visitors = jsonData.record.visitors || [];
 
     // Check if the generated key already exists in the list of visitors
     if (!visitors.includes(generatedKey)) {
@@ -40,7 +40,7 @@ async function updateVisitCount(generatedKey) {
       visitors.push(generatedKey);
 
       // Construct the data with the updated array of visitors
-      const data = { visitors: [...visitors] };
+      const data = { ...jsonData, record: { ...jsonData.record, visitors } };
 
       // Fetch options for the PUT request
       const putOptions = {
