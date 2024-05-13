@@ -315,18 +315,34 @@
                         }
                       }
                     
-                      // Example of how to use the fetchKeyCount function
+                      // Function to update the displayed key count with animation
+                      async function updateKeyCount() {
+                        const keyCountElement = document.getElementById('keyCount');
+                        const currentCount = parseInt(keyCountElement.textContent, 10) || 0;
+                        const targetCount = await fetchKeyCount();
+                    
+                        // Calculate the increment for animation
+                        const increment = Math.ceil((targetCount - currentCount) / 20); // Divide by the number of steps
+                    
+                        // Update the displayed count with animation
+                        const updateInterval = setInterval(() => {
+                          const newCount = currentCount + increment;
+                          keyCountElement.textContent = newCount.toString();
+                          if (newCount >= targetCount) {
+                            clearInterval(updateInterval); // Stop the interval when target count is reached
+                          }
+                        }, 50); // Update every 50 milliseconds
+                      }
+                    
+                      // Example of how to use the updateKeyCount function
                       async function exampleUsage() {
-                        const keyCount = await fetchKeyCount();
-                        console.log('Number of keys:', keyCount);
-                        // Update the text content of the element with the ID 'keyCount'
-                        document.getElementById('keyCount').textContent = keyCount.toString();
+                        await updateKeyCount();
                       }
                     
                       // Call the example usage
                       exampleUsage();
-                    
                     </script>
+                    
                     
               <a href="" data-track="true">
                 <!-- https://www.mongodb.com/try/download/community -->
