@@ -281,11 +281,30 @@
                     <a href="" data-track="true">
                       <div id="hero-container">
                         <div class="poc-hero-block">
-                          <div class="poc-hero-block-title" id="keyCount">Loading...</div>
+                          <div class="poc-hero-block-title" id="keyCount">
+                            <div class="loader"></div> <!-- Loader will be inserted here -->
+                          </div>
                           <div class="poc-hero-block-description">Website Visits →</div>
                         </div>
                       </div>
-                    </a>  
+                    </a>
+                    <style>
+                      .loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite; /* Using a CSS animation */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+                    </style>
+                    
               <a href="" data-track="true">
                 <!-- https://www.mongodb.com/try/download/community -->
                 <div class="poc-hero-block">
