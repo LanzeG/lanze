@@ -63,7 +63,7 @@ function animateText() {
               index = 0;
             }
             animateText();
-          }, values[index] === 'Backend????' ? 5000 : 3000); 
+          }, values[index] === 'Backend????' ? 3000 : 2000); 
         }, 2000); 
       }
     }, 100); 
