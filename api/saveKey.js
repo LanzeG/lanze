@@ -40,7 +40,7 @@ async function updateVisitCount(generatedKey) {
       visitors.push(generatedKey);
 
       // Construct the data with the updated array of visitors
-      const data = { ...jsonData, record: { ...jsonData.record, visitors } };
+      const data = { visitors };
 
       // Fetch options for the PUT request
       const putOptions = {
