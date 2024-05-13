@@ -314,7 +314,10 @@
                         const keyCount = await fetchKeyCount();
                         console.log('Number of keys:', keyCount);
                         const element = document.getElementById('keyCount');
-                        let currentCount = parseInt(element.textContent);
+                        let currentCount = parseInt(element.textContent.trim()); // Ensure to trim whitespace
+                        if (isNaN(currentCount)) {
+                          currentCount = 0; // Set default value if initial value cannot be parsed
+                        }
                         const targetCount = keyCount;
                         const increment = targetCount > currentCount ? 1 : -1;
                     
@@ -331,9 +334,6 @@
                       }
                     
                       exampleUsage();
-                    </script>
-                    
-                    
                     </script>
                     
                     
