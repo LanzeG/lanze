@@ -1,5 +1,3 @@
-import fetch from 'node-fetch'; // Import fetch directly
-
 export default async (req, res) => {
   if (req.method === 'POST') {
     const { key } = req.body;
@@ -31,6 +29,9 @@ async function updateVisitCount() {
       },
       body: JSON.stringify(data)
     };
+
+    // Dynamic import of node-fetch
+    const fetch = (await import('node-fetch')).default;
 
     // Send POST request to JSON file endpoint
     const response = await fetch('https://api.jsonbin.io/v3/b', options);
