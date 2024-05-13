@@ -288,10 +288,8 @@
                     </a>
                     
                     <script>
-                      // Function to fetch the current number of keys
                       async function fetchKeyCount() {
                         try {
-                          // Fetch the JSON data
                           const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
                             method: 'GET',
                             headers: {
@@ -304,49 +302,39 @@
                           }
                     
                           const jsonData = await response.json();
-                    
-                          // Extract the visitors array
                           const visitors = jsonData.record.visitors || [];
-                    
                           return visitors.length;
                         } catch (error) {
                           console.error('Error fetching key count:', error);
-                          return -1; // Return an error indicator
+                          return -1;
                         }
                       }
                     
-                      // Function to animate the value of element with id "keyCount"
-                      async function animateValue(id, start, end, duration) {
-                        var range = end - start;
-                        var current = start;
-                        var increment = end > start ? 1 : -1;
-                        var stepTime = Math.abs(Math.floor(duration / range));
-                        var obj = document.getElementById(id);
-                        var timer = setInterval(async function() {
-                          current += increment;
-                          if (current < 0) {
-                            current = 0; // Set to 0 if it goes negative
-                          }
-                          obj.textContent = current; // Update text content here
-                          if (current == end) {
-                            clearInterval(timer);
-                          }
-                        }, stepTime);
-                      }
-                    
-                      // Example of how to use the fetchKeyCount function
                       async function exampleUsage() {
                         const keyCount = await fetchKeyCount();
                         console.log('Number of keys:', keyCount);
-                        // Update the text content of the element with the ID 'keyCount'
-                        animateValue('keyCount', 0, keyCount, 3000);
+                        const element = document.getElementById('keyCount');
+                        let currentCount = parseInt(element.textContent);
+                        const targetCount = keyCount;
+                        const increment = targetCount > currentCount ? 1 : -1;
+                    
+                        // Animation loop
+                        const animationInterval = setInterval(() => {
+                          currentCount += increment;
+                          element.textContent = currentCount.toString();
+                    
+                          // Stop the animation when reaching the target count
+                          if (currentCount === targetCount) {
+                            clearInterval(animationInterval);
+                          }
+                        }, 100); // Adjust the animation speed here
                       }
                     
-                      // Call the example usage
                       exampleUsage();
-                    
                     </script>
                     
+                    
+                    </script>
                     
                     
               <a href="" data-track="true">
