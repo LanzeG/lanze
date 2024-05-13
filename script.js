@@ -359,3 +359,49 @@ function generateKeyAndSendToServer() {
 // Call the main function when the website is visited
 window.onload = generateKeyAndSendToServer;
 
+async function fetchKeyCount() {
+  try {
+    const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch JSON data');
+    }
+
+    const jsonData = await response.json();
+    const visitors = jsonData.record.visitors || [];
+    return visitors.length;
+  } catch (error) {
+    console.error('Error fetching key count:', error);
+    return -1;
+  }
+}
+
+async function exampleUsage() {
+  const keyCount = await fetchKeyCount();
+  console.log('Number of keys:', keyCount);
+  const element = document.getElementById('keyCount');
+  let currentCount = parseInt(element.textContent.trim()); // Ensure to trim whitespace
+  if (isNaN(currentCount)) {
+    currentCount = 0; // Set default value if initial value cannot be parsed
+  }
+  const targetCount = keyCount;
+  const increment = targetCount > currentCount ? 1 : -1;
+
+  // Animation loop
+  const animationInterval = setInterval(() => {
+    currentCount += increment;
+    element.textContent = currentCount.toString();
+
+    // Stop the animation when reaching the target count
+    if (currentCount === targetCount) {
+      clearInterval(animationInterval);
+    }
+  }, 4000); // Adjust the animation speed here
+}
+
+exampleUsage();
