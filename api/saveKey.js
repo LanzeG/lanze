@@ -52,7 +52,7 @@ async function updateVisitCount(generatedKey) {
         body: JSON.stringify(data),
       };
 
-      // Send PUT request to update the JSON file with the new visitor
+      // Send PUT request to update the JSON file with the new visitor list
       const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
 
       if (!putResponse.ok) {
