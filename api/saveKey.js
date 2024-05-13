@@ -34,8 +34,8 @@ async function updateVisitCount(generatedKey) {
     // Extract the array of visitors or initialize it if it doesn't exist
     let visitors = jsonData.visitors || [];
 
-    // Concatenate the new visitor key to the existing array
-    visitors = [...visitors, generatedKey];
+    // Push the new visitor key to the existing array
+    visitors.push(generatedKey);
 
     // Construct the data with the updated array of visitors
     const data = { visitors };
