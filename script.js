@@ -298,32 +298,29 @@ function embedVismeForm() {
   animateValue(languageCount, 0, 7, 4000);
 
 
- // Function to generate a unique key
+// Function to generate a unique key
 function generateUniqueKey() {
-  // Generate a random string of characters
-  const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let key = '';
-  for (let i = 0; i < 10; i++) {
-    key += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+  // Check if the key is already stored in local storage
+  let key = localStorage.getItem('uniqueKey');
+  
+  // If no key exists, generate a new one and store it in local storage
+  if (!key) {
+    // Generate a random string of characters
+    const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    key = '';
+    for (let i = 0; i < 10; i++) {
+      key += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    localStorage.setItem('uniqueKey', key);
   }
+  
   return key;
-}
-
-// Function to set a cookie with the generated key
-function setCookie(key, value, days) {
-  const date = new Date();
-  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-  const expires = "expires=" + date.toUTCString();
-  document.cookie = key + "=" + value + ";" + expires + ";path=/";
 }
 
 // Main function to generate key, set cookie, and send to server
 function generateKeyAndSendToServer() {
   // Generate unique key
   const generatedKey = generateUniqueKey();
-
-  // Set cookie with the generated key
-  setCookie("uniqueKey", generatedKey, 30); // Cookie will expire in 30 days
   
   // Send the key to the server
   fetch('https://lanze.vercel.app/api/saveKey', {
@@ -346,3 +343,4 @@ function generateKeyAndSendToServer() {
 
 // Call the main function when the website is visited
 window.onload = generateKeyAndSendToServer;
+
