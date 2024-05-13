@@ -6,7 +6,8 @@ export default async (req, res) => {
       return res.status(400).json({ error: 'Key is required' });
     }
 
-    await updateVisitCount();
+    // Pass the generated key to the updateVisitCount function
+    await updateVisitCount(key);
 
     return res.status(200).json({ message: 'Visit count updated successfully' });
   } else {
@@ -42,5 +43,3 @@ async function updateVisitCount(generatedKey) {
     console.error('Error appending key to JSON:', err);
   }
 }
-
-
