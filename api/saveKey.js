@@ -17,11 +17,31 @@ export default async (req, res) => {
 
 async function updateVisitCount(generatedKey) {
   try {
-    // Construct the data to be appended
-    const data = { visitors: generatedKey };
+    // Fetch the existing data from the JSON file
+    const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
+      }
+    });
 
-    // Fetch options
-    const options = {
+    if (!response.ok) {
+      throw new Error('Failed to fetch existing data');
+    }
+
+    const jsonData = await response.json();
+
+    // Extract the array of visitors or initialize it if it doesn't exist
+    const visitors = jsonData.visitors || [];
+
+    // Append the new visitor to the array
+    visitors.push(generatedKey);
+
+    // Construct the data with the updated array of visitors
+    const data = { visitors };
+
+    // Fetch options for the PUT request
+    const putOptions = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -30,14 +50,13 @@ async function updateVisitCount(generatedKey) {
       body: JSON.stringify(data),
     };
 
-    // Send PUT request to JSON file endpoint
-    const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', options);
+    // Send PUT request to update the JSON file with the new visitor
+    const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
 
-    // Check if request was successful
-    if (response.ok) {
+    if (putResponse.ok) {
       console.log('Key appended to JSON successfully');
     } else {
-      console.error('Failed to append key to JSON:', response.statusText);
+      console.error('Failed to append key to JSON:', putResponse.statusText);
     }
   } catch (err) {
     console.error('Error appending key to JSON:', err);
