@@ -14,10 +14,11 @@ export default async (req, res) => {
   }
 };
 
-// Function to update the visit count in the JSON file
-// Function to update the visit count in the JSON file
 async function updateVisitCount(generatedKey) {
   try {
+    // Construct the data to be appended
+    const data = { visitors: generatedKey };
+
     // Fetch options
     const options = {
       method: 'PUT',
@@ -25,7 +26,7 @@ async function updateVisitCount(generatedKey) {
         'Content-Type': 'application/json',
         'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
       },
-      body: JSON.stringify({ visitors: generatedKey }),
+      body: JSON.stringify(data),
     };
 
     // Send PUT request to JSON file endpoint
@@ -41,4 +42,5 @@ async function updateVisitCount(generatedKey) {
     console.error('Error appending key to JSON:', err);
   }
 }
+
 
