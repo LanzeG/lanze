@@ -634,10 +634,9 @@ section {
   position: relative;
    overflow-x: hidden;
     background-image: url(https://webimages.mongodb.com/_com_assets/cms/l9cqmty2a4j8ehup5-blob.svg?auto=format%252Ccompress);
-
     background-repeat: no-repeat;
     background-position-x: right;
-    background-position-y: -100px;
+    background-position-y: -200px;
 }
 
 .experience-sub-title {
