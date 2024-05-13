@@ -1,3 +1,20 @@
+export default async (req, res) => {
+  if (req.method === 'POST') {
+    const { key } = req.body;
+
+    if (!key) {
+      return res.status(400).json({ error: 'Key is required' });
+    }
+
+    // Pass the generated key to the updateVisitCount function
+    await updateVisitCount(key);
+
+    return res.status(200).json({ message: 'Visit count updated successfully' });
+  } else {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+};
+
 async function updateVisitCount(generatedKey) {
   try {
     // Fetch the existing data from the JSON file
