@@ -401,7 +401,7 @@ async function exampleUsage() {
     if (currentCount === targetCount) {
       clearInterval(animationInterval);
     }
-  }, 4000); // Adjust the animation speed here
+  }, 100); // Adjust the animation speed here
 }
 
 exampleUsage();
