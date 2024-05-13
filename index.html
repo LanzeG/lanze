@@ -315,41 +315,38 @@
                         }
                       }
                     
-                      // Example of how to use the fetchKeyCount function
-                      async function exampleUsage() {
-                        const keyCount = await fetchKeyCount();
-                        console.log('Number of keys:', keyCount);
-                        // Update the text content of the element with the ID 'keyCount'
-                        document.getElementById('keyCount').textContent = keyCount.toString();
-                      }
-                    
-                      // Call the example usage
-                      exampleUsage();
-                    
-                    </script>
-                    <script>
                       // Function to animate the value of element with id "keyCount"
-                      function animateValue(id, start, end, duration) {
+                      async function animateValue(id, start, end, duration) {
                         var range = end - start;
                         var current = start;
                         var increment = end > start ? 1 : -1;
                         var stepTime = Math.abs(Math.floor(duration / range));
                         var obj = document.getElementById(id);
-                        var timer = setInterval(function() {
+                        var timer = setInterval(async function() {
                           current += increment;
                           if (current < 0) {
                             current = 0; // Set to 0 if it goes negative
                           }
-                          obj.innerHTML = current;
+                          obj.textContent = current; // Update text content here
                           if (current == end) {
                             clearInterval(timer);
                           }
                         }, stepTime);
                       }
                     
-                      // Call the animateValue function with desired values
-                      animateValue("keyCount", 0, 1000, 3000); // Example: From 0 to 1000 in 3 seconds
+                      // Example of how to use the fetchKeyCount function
+                      async function exampleUsage() {
+                        const keyCount = await fetchKeyCount();
+                        console.log('Number of keys:', keyCount);
+                        // Update the text content of the element with the ID 'keyCount'
+                        animateValue('keyCount', 0, keyCount, 3000);
+                      }
+                    
+                      // Call the example usage
+                      exampleUsage();
+                    
                     </script>
+                    
                     
                     
               <a href="" data-track="true">
