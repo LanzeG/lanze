@@ -2,7 +2,8 @@
   "dependencies": {
     "express": "^4.19.2",
     "fs-extra": "^10.0.0",
-    "mongoose": "^8.3.4"
+    "mongoose": "^8.3.4",
+    "node-fetch": "^3.3.2"
   },
   "name": "lanze",
   "description": "Hi! I'm Lanze!",
