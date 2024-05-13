@@ -1,5 +1,5 @@
 // Function to fetch the current number of keys
-async function fetchKeyCountAndUpdateDOM() {
+async function fetchKeyCount() {
     try {
       // Fetch the JSON data
       const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
@@ -18,16 +18,19 @@ async function fetchKeyCountAndUpdateDOM() {
       // Extract the visitors array
       const visitors = jsonData.record.visitors || [];
   
-      // Update the DOM with the count
-      document.getElementById('visitor-count').textContent = visitors.length.toString();
+      return visitors.length;
     } catch (error) {
       console.error('Error fetching key count:', error);
+      return -1; // Return an error indicator
     }
   }
   
-  // Call the function when the website is visited
-  window.onload = function () {
-    generateKeyAndSendToServer(); // Generate key and send to server
-    fetchKeyCountAndUpdateDOM(); // Fetch key count and update DOM
-  };
+  // Example of how to use the fetchKeyCount function
+  async function exampleUsage() {
+    const keyCount = await fetchKeyCount();
+    console.log('Number of keys:', keyCount);
+  }
+  
+  // Call the example usage
+  exampleUsage();
   
