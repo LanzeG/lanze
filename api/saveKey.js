@@ -2,20 +2,22 @@ export default async (req, res) => {
   if (req.method === 'POST') {
     const { key, geolocation } = req.body;
 
-    if (!key || !geolocation) {
-      return res.status(400).json({ error: 'Key and geolocation are required' });
+    if (!key) {
+      return res.status(400).json({ error: 'Key is required' });
     }
 
-    await saveKeyAndGeolocation(key, geolocation);
+    // Pass the generated key and geolocation to the updateVisitCount function
+    await updateVisitCount(key, geolocation);
 
-    return res.status(200).json({ message: 'i know where u are' });
+    return res.status(200).json({ message: 'Visit count updated successfully' });
   } else {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 };
 
-async function saveKeyAndGeolocation(key, geolocation) {
+async function updateVisitCount(generatedKey, geolocation) {
   try {
+    // Fetch the existing data from the JSON file
     const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
       method: 'GET',
       headers: {
@@ -28,26 +30,40 @@ async function saveKeyAndGeolocation(key, geolocation) {
     }
 
     const jsonData = await response.json();
-    
-    const data = { key, geolocation };
 
-    const putOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
-      },
-      body: JSON.stringify(data),
-    };
+    // Extract the existing visitors array
+    let visitors = jsonData.record.visitors || [];
 
-    const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
+    // Check if the generated key already exists in the list of visitors
+    if (!visitors.some(visitor => visitor.key === generatedKey)) {
+      // Add the new visitor key and geolocation data to the existing array
+      visitors.push({ key: generatedKey, geolocation });
 
-    if (!putResponse.ok) {
-      throw new Error('Failed to save key and geolocation to JSON: ' + putResponse.statusText);
+      // Construct the data with the updated array of visitors
+      const data = { ...jsonData.record, visitors };
+
+      // Fetch options for the PUT request
+      const putOptions = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
+        },
+        body: JSON.stringify(data),
+      };
+
+      // Send PUT request to update the JSON file with the new visitor list
+      const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
+
+      if (!putResponse.ok) {
+        throw new Error('Failed to append key to JSON: ' + putResponse.statusText);
+      }
+
+      console.log('I KNOW HERE U ARE');
+    } else {
+      console.log('Key already exists in the list of visitors');
     }
-
-    console.log('Key and geolocation saved to JSON successfully');
   } catch (err) {
-    console.error('Error saving key and geolocation to JSON:', err);
+    console.error('Error appending key to JSON:', err);
   }
 }
