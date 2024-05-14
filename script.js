@@ -355,7 +355,7 @@ function embedVismeForm() {
         throw new Error('Failed to fetch IP address');
       }
       const ipData = await response.json();
-      console.log('ur IP Address :)', ipData.ip);
+      // console.log('ur IP Address :)', ipData.ip);
       return ipData.ip;
     } catch (error) {
       console.error('Error fetching IP address:', error);
@@ -436,7 +436,7 @@ async function fetchKeyCount() {
 
 async function exampleUsage() {
   const keyCount = await fetchKeyCount();
-  console.log('Number of keys:', keyCount);
+  // console.log('Number of keys:', keyCount);
   const element = document.getElementById('keyCount');
   let currentCount = parseInt(element.textContent.trim()); // Ensure to trim whitespace
   if (isNaN(currentCount)) {
