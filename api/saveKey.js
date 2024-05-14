@@ -1,13 +1,13 @@
 export default async (req, res) => {
   if (req.method === 'POST') {
-    const { key, geolocation } = req.body;
+    const { key, ip, geolocation } = req.body;
 
     if (!key) {
       return res.status(400).json({ error: 'Key is required' });
     }
 
-    // Pass the generated key and geolocation to the updateVisitCount function
-    await updateVisitCount(key, geolocation);
+    // Pass the generated key, IP address, and geolocation to the updateVisitCount function
+    await updateVisitCount(key, ip, geolocation);
 
     return res.status(200).json({ message: 'Visit count updated successfully' });
   } else {
@@ -15,7 +15,7 @@ export default async (req, res) => {
   }
 };
 
-async function updateVisitCount(generatedKey, geolocation) {
+async function updateVisitCount(generatedKey, ip, geolocation) {
   try {
     // Fetch the existing data from the JSON file
     const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
@@ -36,9 +36,10 @@ async function updateVisitCount(generatedKey, geolocation) {
 
     // Check if the generated key already exists in the list of visitors
     if (!visitors.some(visitor => visitor.key === generatedKey)) {
-      // Add the new visitor key and geolocation data to the existing array
+      // Add the new visitor key, IP address, and geolocation data to the existing array
       const newVisitor = {
         key: generatedKey,
+        ip: ip,
         geolocation: {
           country: geolocation.country,
           city: geolocation.city,
@@ -69,7 +70,7 @@ async function updateVisitCount(generatedKey, geolocation) {
         throw new Error('Failed to append key to JSON: ' + putResponse.statusText);
       }
 
-      console.log('Key and geolocation appended to JSON successfully');
+      console.log('Key, IP address, and geolocation appended to JSON successfully');
     } else {
       console.log('Key already exists in the list of visitors');
     }

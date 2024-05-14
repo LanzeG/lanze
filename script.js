@@ -327,7 +327,7 @@ function embedVismeForm() {
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
   }
   
-  async function getGeolocationData() {
+  async function fetchGeolocation() {
     try {
       const response = await fetch(`https://api-bdc.net/data/ip-geolocation?key=bdc_6b2e37564d1c4c28aa017b51719a541a`);
       if (!response.ok) {
@@ -347,35 +347,65 @@ function embedVismeForm() {
     }
   }
   
+  async function fetchIPAddress() {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch IP address');
+      }
+      const ipData = await response.json();
+      console.log('IP Address:', ipData.ip);
+      return ipData.ip;
+    } catch (error) {
+      console.error('Error fetching IP address:', error);
+      return null;
+    }
+  }
+  
   async function generateKeyAndSendToServer() {
     const generatedKey = generateUniqueKey();
-    const geolocationData = await getGeolocationData();
+    const ip = await fetchIPAddress();
+    const geoData = await fetchGeolocation();
   
-    if (!geolocationData) {
-      console.error('No geolocation data available');
-      return;
-    }
+    const requestBody = {
+      key: generatedKey,
+      ip: ip,
+      geolocation: geoData ? {
+        country: {
+          isoAlpha2: geoData.country.isoAlpha2,
+          isoAlpha3: geoData.country.isoAlpha3,
+          m49Code: geoData.country.m49Code,
+          name: geoData.country.name,
+          isoName: geoData.country.isoName
+        },
+        city: geoData.city,
+        latitude: geoData.latitude,
+        longitude: geoData.longitude,
+        timeZone: geoData.timeZone
+      } : null,
+    };
   
     fetch('https://lanze.vercel.app/api/saveKey', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ key: generatedKey, geolocation: geolocationData }),
+      body: JSON.stringify(requestBody),
     })
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      console.log('Key and geolocation data sent to server successfully');
+      console.log('Key, IP address, and geolocation data sent to server successfully');
     })
     .catch(error => {
-      console.error('Error sending key and geolocation data to server:', error);
+      console.error('Error sending data to server:', error);
     });
   }
   
   // Call the main function when the website is visited
   window.onload = generateKeyAndSendToServer;
+  
   
   
   
