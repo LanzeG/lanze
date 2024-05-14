@@ -333,7 +333,13 @@ function embedVismeForm() {
       if (!response.ok) {
         throw new Error('Failed to fetch geolocation data');
       }
-      return await response.json();
+      const data = await response.json();
+      return {
+        country: data.countryName,
+        city: data.city,
+        latitude: data.latitude,
+        longitude: data.longitude
+      };
     } catch (error) {
       console.error('Error fetching geolocation data:', error);
       return null;

@@ -2,14 +2,13 @@ export default async (req, res) => {
   if (req.method === 'POST') {
     const { key, geolocation } = req.body;
 
-    if (!key) {
-      return res.status(400).json({ error: 'Key is required' });
+    if (!key || !geolocation) {
+      return res.status(400).json({ error: 'Key and geolocation are required' });
     }
 
-    // Pass the generated key and geolocation to the saveKeyAndGeolocation function
     await saveKeyAndGeolocation(key, geolocation);
 
-    return res.status(200).json({ message: 'Key and geolocation saved successfully' });
+    return res.status(200).json({ message: 'i know where u are' });
   } else {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -17,7 +16,6 @@ export default async (req, res) => {
 
 async function saveKeyAndGeolocation(key, geolocation) {
   try {
-    // Fetch the existing data from the JSON file
     const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
       method: 'GET',
       headers: {
@@ -30,11 +28,9 @@ async function saveKeyAndGeolocation(key, geolocation) {
     }
 
     const jsonData = await response.json();
-
-    // Add the new visitor key and geolocation to the data
+    
     const data = { key, geolocation };
 
-    // Fetch options for the PUT request
     const putOptions = {
       method: 'PUT',
       headers: {
@@ -44,7 +40,6 @@ async function saveKeyAndGeolocation(key, geolocation) {
       body: JSON.stringify(data),
     };
 
-    // Send PUT request to update the JSON file with the new data
     const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
 
     if (!putResponse.ok) {
