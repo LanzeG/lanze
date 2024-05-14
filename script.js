@@ -297,6 +297,29 @@ function embedVismeForm() {
   animateValue(systemCount, 0, 7, 4000); 
   animateValue(languageCount, 0, 7, 4000);
 
+  function showCookieModal() {
+    const modal = document.getElementById('cookieModal');
+    const closeBtn = document.querySelector('.modal .close');
+    const acceptBtn = document.getElementById('acceptCookies');
+
+    modal.style.display = 'block';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    acceptBtn.onclick = function() {
+        setCookie('cookiesAccepted', 'true', 365);
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+}
+
 
   function generateUniqueKey() {
     let key = getCookie('uniqueKey');
