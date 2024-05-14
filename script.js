@@ -344,6 +344,11 @@ function embedVismeForm() {
     const generatedKey = generateUniqueKey();
     const geolocationData = await getGeolocationData();
   
+    if (!geolocationData) {
+      console.error('No geolocation data available');
+      return;
+    }
+  
     fetch('https://lanze.vercel.app/api/saveKey', {
       method: 'POST',
       headers: {
