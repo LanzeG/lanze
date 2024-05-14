@@ -397,7 +397,7 @@ function embedVismeForm() {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      console.log('i see u :))');
+      console.log('%cThis is a browser feature intended for developers. If someone told you to copy-paste something here to take some information, it is a scam', 'color: red; font-size: 16px;');
     })
     .catch(error => {
       console.error('Error sending data to server:', error);
@@ -436,7 +436,7 @@ async function fetchKeyCount() {
 
 async function exampleUsage() {
   const keyCount = await fetchKeyCount();
-  // console.log('Number of keys:', keyCount);
+  console.log('Number of visits:', keyCount);
   const element = document.getElementById('keyCount');
   let currentCount = parseInt(element.textContent.trim()); // Ensure to trim whitespace
   if (isNaN(currentCount)) {
