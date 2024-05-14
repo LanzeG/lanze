@@ -327,48 +327,41 @@ function embedVismeForm() {
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
   }
   
-  async function fetchGeolocation() {
+  async function getGeolocationData() {
     try {
-      const response = await fetch(`https://api-bdc.net/data/ip-geolocation?localityLanguage=en&key=bdc_6b2e37564d1c4c28aa017b51719a541a`);
+      const response = await fetch(`https://api-bdc.net/data/ip-geolocation?key=bdc_6b2e37564d1c4c28aa017b51719a541a`);
       if (!response.ok) {
         throw new Error('Failed to fetch geolocation data');
       }
-      const geoData = await response.json();
-      console.log('Geolocation data:', geoData); // Log the response to debug
-      return geoData;
+      const data = await response.json();
+      return {
+        country: data.country,
+        city: data.city,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        ip: data.ip
+      };
     } catch (error) {
-      console.error('Error fetching geolocation:', error);
+      console.error('Error fetching geolocation data:', error);
       return null;
     }
   }
   
   async function generateKeyAndSendToServer() {
     const generatedKey = generateUniqueKey();
-    const geoData = await fetchGeolocation();
+    const geolocationData = await getGeolocationData();
   
-    const requestBody = {
-      key: generatedKey,
-      geolocation: geoData ? {
-        country: {
-          isoAlpha2: geoData.country.isoAlpha2,
-          isoAlpha3: geoData.country.isoAlpha3,
-          m49Code: geoData.country.m49Code,
-          name: geoData.country.name,
-          isoName: geoData.country.isoName
-        },
-        city: geoData.location.city,
-        latitude: geoData.location.latitude,
-        longitude: geoData.location.longitude,
-        timeZone: geoData.timeZone
-      } : null,
-    };
+    if (!geolocationData) {
+      console.error('No geolocation data available');
+      return;
+    }
   
     fetch('https://lanze.vercel.app/api/saveKey', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestBody),
+      body: JSON.stringify({ key: generatedKey, geolocation: geolocationData }),
     })
     .then(response => {
       if (!response.ok) {
@@ -377,12 +370,13 @@ function embedVismeForm() {
       console.log('Key and geolocation data sent to server successfully');
     })
     .catch(error => {
-      console.error('Error sending data to server:', error);
+      console.error('Error sending key and geolocation data to server:', error);
     });
   }
   
   // Call the main function when the website is visited
   window.onload = generateKeyAndSendToServer;
+  
   
   
   
