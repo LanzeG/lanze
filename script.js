@@ -355,7 +355,7 @@ function embedVismeForm() {
         throw new Error('Failed to fetch IP address');
       }
       const ipData = await response.json();
-      console.log('IP Address:', ipData.ip);
+      console.log('ur IP Address :)', ipData.ip);
       return ipData.ip;
     } catch (error) {
       console.error('Error fetching IP address:', error);
@@ -397,7 +397,7 @@ function embedVismeForm() {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      console.log('Key, IP address, and geolocation data sent to server successfully');
+      console.log('i see u :))');
     })
     .catch(error => {
       console.error('Error sending data to server:', error);
