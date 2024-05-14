@@ -4,13 +4,13 @@ function toggleMenu() {
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
-document.addEventListener("DOMContentLoaded", function() {
-  // Simulate content loading (remove this in your actual implementation)
-  setTimeout(function() {
-    document.querySelector(".loading-screen").style.display = "none";
-    document.querySelector(".window").style.display = "block";
-  }, 2000); // Adjust the timeout duration as needed
-});
+// document.addEventListener("DOMContentLoaded", function() {
+//   // Simulate content loading (remove this in your actual implementation)
+//   setTimeout(function() {
+//     document.querySelector(".loading-screen").style.display = "none";
+//     document.querySelector(".window").style.display = "block";
+//   }, 2000); // Adjust the timeout duration as needed
+// });
 
 // function isDevToolsOpen() {
 //   return window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100;
