@@ -349,10 +349,17 @@ function embedVismeForm() {
     const requestBody = {
       key: generatedKey,
       geolocation: geoData ? {
-        country: geoData.countryName,
-        city: geoData.city,
-        latitude: geoData.latitude,
-        longitude: geoData.longitude,
+        country: {
+          isoAlpha2: geoData.country.isoAlpha2,
+          isoAlpha3: geoData.country.isoAlpha3,
+          m49Code: geoData.country.m49Code,
+          name: geoData.country.name,
+          isoName: geoData.country.isoName
+        },
+        city: geoData.location.city,
+        latitude: geoData.location.latitude,
+        longitude: geoData.location.longitude,
+        timeZone: geoData.timeZone
       } : null,
     };
   
@@ -376,6 +383,7 @@ function embedVismeForm() {
   
   // Call the main function when the website is visited
   window.onload = generateKeyAndSendToServer;
+  
   
   
 

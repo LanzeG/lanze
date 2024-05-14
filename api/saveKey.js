@@ -37,7 +37,17 @@ async function updateVisitCount(generatedKey, geolocation) {
     // Check if the generated key already exists in the list of visitors
     if (!visitors.some(visitor => visitor.key === generatedKey)) {
       // Add the new visitor key and geolocation data to the existing array
-      visitors.push({ key: generatedKey, geolocation });
+      const newVisitor = {
+        key: generatedKey,
+        geolocation: {
+          country: geolocation.country,
+          city: geolocation.city,
+          latitude: geolocation.latitude,
+          longitude: geolocation.longitude,
+          timeZone: geolocation.timeZone
+        }
+      };
+      visitors.push(newVisitor);
 
       // Construct the data with the updated array of visitors
       const data = { ...jsonData.record, visitors };
