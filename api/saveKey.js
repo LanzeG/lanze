@@ -1,21 +1,21 @@
 export default async (req, res) => {
   if (req.method === 'POST') {
-    const { key } = req.body;
+    const { key, geolocation } = req.body;
 
     if (!key) {
       return res.status(400).json({ error: 'Key is required' });
     }
 
-    // Pass the generated key to the updateVisitCount function
-    await updateVisitCount(key);
+    // Pass the generated key and geolocation to the updateVisitCount function
+    await updateVisitCount(key, geolocation);
 
-    return res.status(200).json({ message: 'Visit count updated successfully' });
+    return res.status(200).json({ message: 'Visit count and geolocation updated successfully' });
   } else {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 };
 
-async function updateVisitCount(generatedKey) {
+async function updateVisitCount(generatedKey, geolocation) {
   try {
     // Fetch the existing data from the JSON file
     const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
@@ -35,12 +35,12 @@ async function updateVisitCount(generatedKey) {
     let visitors = jsonData.record.visitors || [];
 
     // Check if the generated key already exists in the list of visitors
-    if (!visitors.includes(generatedKey)) {
-      // Add the new visitor key to the existing array
-      visitors.push(generatedKey);
+    if (!visitors.some(visitor => visitor.key === generatedKey)) {
+      // Add the new visitor key and geolocation to the existing array
+      visitors.push({ key: generatedKey, geolocation });
 
       // Construct the data with the updated array of visitors
-      const data = { ...jsonData.record, visitors };
+      const data = { visitors };
 
       // Fetch options for the PUT request
       const putOptions = {
@@ -56,14 +56,14 @@ async function updateVisitCount(generatedKey) {
       const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
 
       if (!putResponse.ok) {
-        throw new Error('Failed to append key to JSON: ' + putResponse.statusText);
+        throw new Error('Failed to append key and geolocation to JSON: ' + putResponse.statusText);
       }
 
-      console.log('Key appended to JSON successfully');
+      console.log('Key and geolocation appended to JSON successfully');
     } else {
       console.log('Key already exists in the list of visitors');
     }
   } catch (err) {
-    console.error('Error appending key to JSON:', err);
+    console.error('Error appending key and geolocation to JSON:', err);
   }
 }
