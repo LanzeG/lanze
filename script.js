@@ -298,21 +298,16 @@ function embedVismeForm() {
   animateValue(languageCount, 0, 7, 4000);
 
 
-// Function to generate a unique key
 function generateUniqueKey() {
-  // Check if the key is already stored in cookies
   let key = getCookie('uniqueKey');
   
-  // If no key exists, generate a new one and store it in cookies
   if (!key) {
-    // Generate a random string of characters
     const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     key = '';
     for (let i = 0; i < 10; i++) {
       key += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
     }
-    // Store the key in cookies
-    setCookie('uniqueKey', key, 30); // Cookie will expire in 30 days
+    setCookie('uniqueKey', key, 30); 
   }
   
   return key;
@@ -332,12 +327,9 @@ function setCookie(name, value, days) {
   document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
-// Main function to generate key and send to server
 function generateKeyAndSendToServer() {
-  // Generate unique key
   const generatedKey = generateUniqueKey();
   
-  // Send the key to the server
   fetch('https://lanze.vercel.app/api/saveKey', {
     method: 'POST',
     headers: {
@@ -405,3 +397,13 @@ async function exampleUsage() {
 }
 
 exampleUsage();
+
+document.addEventListener("DOMContentLoaded", function() {
+  const botIcon = document.getElementById("bot-icon");
+  const chatbox = document.getElementById("chatbox");
+
+  botIcon.addEventListener("click", function() {
+    chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+  });
+});
+
