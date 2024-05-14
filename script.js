@@ -297,34 +297,54 @@ function embedVismeForm() {
   animateValue(systemCount, 0, 7, 4000); 
   animateValue(languageCount, 0, 7, 4000);
 
-  function generateUniqueKey() {
-    let key = getCookie('uniqueKey');
-    
-    if (!key) {
-      const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      key = '';
-      for (let i = 0; i < 10; i++) {
-        key += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-      }
-      setCookie('uniqueKey', key, 30); 
-    }
-    
-    return key;
-  }
-  
-  // Function to get a cookie value
   function getCookie(name) {
     const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return cookieValue ? cookieValue.pop() : null;
-  }
-  
-  // Function to set a cookie
-  function setCookie(name, value, days) {
+}
+
+// Function to set a cookie
+function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = "expires=" + date.toUTCString();
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
-  }
+}
+
+// Function to generate a unique key and set it as a cookie if not already set
+function generateUniqueKey() {
+    // Check if the 'uniqueKey' cookie exists
+    let key = getCookie('uniqueKey');
+
+    // If 'uniqueKey' cookie does not exist, generate a new key and set the cookie
+    if (!key) {
+        const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        key = '';
+        for (let i = 0; i < 10; i++) {
+            key += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+        setCookie('uniqueKey', key, 30); // Set the cookie to expire in 30 days
+    }
+
+    return key;
+}
+
+// Function to show the cookie consent modal
+function showCookieModal() {
+    const modal = document.getElementById('cookieModal');
+    modal.style.display = 'block';
+
+    // Event listener to close the modal when the 'x' is clicked
+    document.getElementById('closeModal').onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    // Event listener to accept cookies
+    document.getElementById('acceptCookies').onclick = function() {
+        generateUniqueKey(); // Set the unique key cookie
+        modal.style.display = 'none';
+    };
+}
+
   
   async function fetchGeolocation() {
     try {
@@ -388,28 +408,28 @@ function embedVismeForm() {
     fetch('https://lanze.vercel.app/api/saveKey', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
       },
       body: JSON.stringify(requestBody),
-    })
-    .then(response => {
+  })
+  .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok');
       }
       console.log('i see u :))');
-    })
-    .catch(error => {
+  })
+  .catch(error => {
       console.error('Error sending data to server:', error);
-    });
+  });
+}
+
+// Call both functions sequentially when the website is visited
+window.onload = function() {
+  generateKeyAndSendToServer();
+  if (!getCookie('uniqueKey')) {
+      showCookieModal();
   }
-  
-  // Call the main function when the website is visited
-  window.onload = generateKeyAndSendToServer;
-  
-  
-  
-  
-  
+};
 
 async function fetchKeyCount() {
   try {
