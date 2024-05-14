@@ -336,7 +336,7 @@ function embedVismeForm() {
       const data = await response.json();
       return {
         country: data.country,
-        city: data.city,
+        city: data.city, // Retrieving city from API response
         latitude: data.latitude,
         longitude: data.longitude,
         ip: data.ip
@@ -346,6 +346,7 @@ function embedVismeForm() {
       return null;
     }
   }
+  
   
   async function fetchIPAddress() {
     try {
