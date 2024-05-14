@@ -1,80 +1,78 @@
-export default async (req, res) => {
-  if (req.method === 'POST') {
-    const { key, ip, geolocation } = req.body;
-
-    if (!key) {
-      return res.status(400).json({ error: 'Key is required' });
+function generateUniqueKey() {
+  let key = getCookie('uniqueKey');
+  
+  if (!key) {
+    const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    key = '';
+    for (let i = 0; i < 10; i++) {
+      key += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
     }
-
-    // Pass the generated key, IP address, and geolocation to the updateVisitCount function
-    await updateVisitCount(key, ip, geolocation);
-
-    return res.status(200).json({ message: 'Visit count updated successfully' });
-  } else {
-    return res.status(405).json({ error: 'Method not allowed' });
+    setCookie('uniqueKey', key, 30); 
   }
-};
+  
+  return key;
+}
 
-async function updateVisitCount(generatedKey, ip, geolocation) {
+// Function to get a cookie value
+function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : null;
+}
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+async function getGeolocationData() {
   try {
-    // Fetch the existing data from the JSON file
-    const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
-      method: 'GET',
-      headers: {
-        'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
-      }
-    });
-
+    const response = await fetch(`https://api-bdc.net/data/ip-geolocation?key=bdc_6b2e37564d1c4c28aa017b51719a541a`);
     if (!response.ok) {
-      throw new Error('Failed to fetch existing data');
+      throw new Error('Failed to fetch geolocation data');
     }
-
-    const jsonData = await response.json();
-
-    // Extract the existing visitors array
-    let visitors = jsonData.record.visitors || [];
-
-    // Check if the generated key already exists in the list of visitors
-    if (!visitors.some(visitor => visitor.key === generatedKey)) {
-      // Add the new visitor key, IP address, and geolocation data to the existing array
-      const newVisitor = {
-        key: generatedKey,
-        ip: ip,
-        geolocation: {
-          country: geolocation.country,
-          city: geolocation.city,
-          latitude: geolocation.latitude,
-          longitude: geolocation.longitude,
-          timeZone: geolocation.timeZone
-        }
-      };
-      visitors.push(newVisitor);
-
-      // Construct the data with the updated array of visitors
-      const data = { ...jsonData.record, visitors };
-
-      // Fetch options for the PUT request
-      const putOptions = {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
-        },
-        body: JSON.stringify(data),
-      };
-
-      // Send PUT request to update the JSON file with the new visitor list
-      const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
-
-      if (!putResponse.ok) {
-        throw new Error('Failed to append key to JSON: ' + putResponse.statusText);
-      }
-
-      console.log('Key, IP address, and geolocation appended to JSON successfully');
-    } else {
-      console.log('Key already exists in the list of visitors');
-    }
-  } catch (err) {
-    console.error('Error appending key to JSON:', err);
+    const data = await response.json();
+    return {
+      country: data.country,
+      city: data.city,
+      latitude: data.latitude,
+      longitude: data.longitude,
+      ip: data.ip
+    };
+  } catch (error) {
+    console.error('Error fetching geolocation data:', error);
+    return null;
   }
 }
+
+async function generateKeyAndSendToServer() {
+  const generatedKey = generateUniqueKey();
+  const geolocationData = await getGeolocationData();
+
+  if (!geolocationData) {
+    console.error('No geolocation data available');
+    return;
+  }
+
+  fetch('https://lanze.vercel.app/api/saveKey', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ key: generatedKey, ip: geolocationData.ip, geolocation: geolocationData }),
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    console.log('Key and geolocation data sent to server successfully');
+  })
+  .catch(error => {
+    console.error('Error sending key and geolocation data to server:', error);
+  });
+}
+
+// Call the main function when the website is visited
+window.onload = generateKeyAndSendToServer;
