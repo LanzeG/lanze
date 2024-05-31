@@ -123,6 +123,7 @@ function toggleQR() {
                 text: 'The QR code has been downloaded successfully.',
                 icon: 'success',
                 confirmButtonText: 'OK',
+                toast: true,
                 width: '350px', // Set the width of the modal
                 customClass: {
                     confirmButton: 'swal-confirm-button' // Add custom class for OK button
@@ -151,6 +152,7 @@ function toggleQR() {
       Swal.fire({
           text: 'The link has been copied to clipboard.',
           icon: 'success',
+          toast: true,
           confirmButtonText: 'OK',
           width: '350px', // Set the width of the modal
           customClass: {
