@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+  /* Add your CSS styles here */
+  .unique-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .unique-left-div {
+    flex: 1;
+    width: 100%;
+  }
+
+  .unique-right-div {
+    flex: 1;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .unique-section {
+    margin-bottom: 40px;
+  }
+
+  /* Base styles for unique-button */
+.unique-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #a6f18f;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+/* Remove margin-right for the last unique-button in smaller screens */
+.unique-button:last-child {
+  margin-right: 0;
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 600px) {
+  .unique-button {
+    display: block; /* Display as block to stack vertically on smaller screens */
+    margin-bottom: 10px; /* Add margin between stacked buttons */
+  }
+
+  /* Remove margin-bottom for the last unique-button in smaller screens */
+  .unique-button:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+  .unique-pre {
+    display: none; /* Initially hide all code blocks */
+    background-color: #1F2937;
+    color: #D1D5DB;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: auto;
+  }
+
+  .unique-pre.active {
+    display: block; /* Display code block when active class is added */
+  }
+
+  .unique-pre code {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .unique-left-div {
+      width: 48%;
+    }
+
+    .unique-right-div {
+      width: 48%;
+      margin-top: 0;
+      margin-left: 4%;
+    }
+    
+  }
+</style>
+</head>
+<body>
+
+<div class="unique-container">
+  <div class="unique-left-div">
+    <div class="unique-section">
+      <h1>Built by developers, for developers</h1>
+      <p>The document data model maps to how you think and code.</p>
+    </div>
+
+    <div class="unique-section">
+      <h2>Model</h2>
+    </div>
+
+    <div class="unique-section">
+      <h2>Optimize</h2>
+    </div>
+  </div>
+
+  <div class="unique-right-div">
+    <div class="unique-section">
+      <div class="unique-button" onclick="toggleCode('unique-javascript-code')">Javascript</div>
+      <div class="unique-button" onclick="toggleCode('unique-python-code')">Python</div>
+      <div class="unique-button" onclick="toggleCode('unique-java-code')">Java</div>
+      <div class="unique-button" onclick="toggleCode('unique-csharp-code')">C#</div>
+      <div class="unique-button" onclick="toggleCode('unique-php-code')">PHP</div>
+
+    </div>
+
+    <div class="unique-section">
+      <pre id="unique-javascript-code" class="unique-pre active"><code>// Query on embedded documents
+0
+1 const cursor = db.collection('orders').aggregate([{
+2   "$vectorSearch": {
+3     "index" :"default",
+4     "path" :"name_embedding",
+5     "queryVector" : query_embedding,
+6     "numCandidates" : 150,
+7     "limit" : 10
+8   }
+9 }]);
+
+10
+
+11 // Process multiple documents and return
+12 // computed results with aggregation operations
+13
+
+14 db.customers.aggregate([
+15</code></pre>
+    </div>
+
+    <div class="unique-section">
+      <pre id="unique-python-code" class="unique-pre"><code>// Python Code
+import numpy as np
+import pandas as pd
+
+data = {'Name': ['Tom', 'Jerry', 'Spike', 'Tyke'],
+        'Age': [5, 6, 7, 8]}
+df = pd.DataFrame(data)
+
+print(df)
+</code></pre>
+    </div>
+
+    <div class="unique-section">
+      <pre id="unique-java-code" class="unique-pre"><code>// Java Code
+class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello, Java!");
+  }
+}
+</code></pre>
+    </div>
+<pre id="unique-php-code" class="unique-pre"><code>&lt;?php
+    // PHP Code
+    $data = array("Peter", "Joe", "Glenn", "Cleveland");
+    
+    echo "Original Array:";
+    foreach ($data as $value) {
+        echo "&lt;br&gt;" . $value;
+    }
+    ?>
+    </code></pre>    
+
+<div class="unique-section">
+      <pre id="unique-csharp-code" class="unique-pre"><code>// C# Code
+using System;
+
+class Program {
+  static void Main(string[] args) {
+    Console.WriteLine("Hello, C#!");
+  }
+}
+</code></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleCode(id) {
+    var codeBlocks = document.querySelectorAll('.unique-pre');
+    for (var i = 0; i < codeBlocks.length; i++) {
+      if (codeBlocks[i].id === id) {
+        codeBlocks[i].classList.add('active');
+      } else {
+        codeBlocks[i].classList.remove('active');
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

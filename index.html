@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
     <link rel="icon" href="assets/l.png" type="image/png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Sans+Mono:wght@100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
@@ -34,9 +34,14 @@
         
       </div>
     </div>  -->
-    <!-- <div class="bot-icon">
-      <a href="https://lanzeonly.000webhostapp.com/login.php"><img src="assets/sendit.png" alt="Bot Icon"></a>
+    <!-- <div class="bot-icon" id="bot-icon">
+      <a href="#"><img src="assets/sendit.png" alt="Bot Icon"></a>
     </div> -->
+    
+    <div class="chatbox" id="chatbox">
+      <!-- <iframe src="https://lanzeonly.000webhostapp.com/" width="100%" height="500px" frameborder="0"></iframe> -->
+    </div>
+    
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <ul class="custom-menu" id="context-menu">
     <li id="refresh">Refresh</li>
@@ -108,7 +113,7 @@
       </div>
     </nav>
     <div class="container">
-      <div class="left-div">
+      <div class="left-div" style="margin-top: 5%;">
         <div class="section__text">
           <div class="content-wrapper">
             <p class="section__text-hello" style=" font-family: Source Code Pro, monospace; font-weight: normal; letter-spacing: 2px; font-size: 14px;"><span style="color: #00ED64; ">|</span>ASPIRING DEVELOPER
@@ -159,7 +164,7 @@
                   <span class="BG"></span>
                 </button>
               </a>
-              <a href="https://www.linkedin.com/in/lester-bermas-b886182a2/">
+              <a href="https://www.linkedin.com/in/LanzeG/">
                 <button class="Btn linkdin">
                   <span class="svgContainer">
                     <svg
@@ -219,19 +224,44 @@
                 <button class="btn btn-share" onclick="toggleQR()">
                   <!-- <i class="fas fa-qrcode qr-icon"></i>-->  Share <span class="arrow1">&#10230;</span>
                 </button>
-                <div id="qrCode" class="card" >
+                <div id="qrCode" class="card">
                   <p>Scan to share</p>
-                  <img src="assets/qr.png" alt="QR Code" style="max-width: 100%;">
+                  <img src="assets/qr.png" alt="QR Code" style="max-width: 100%;" class="original-qr">
                   <a href="assets/qr.png" download class="download-link" id="downloadLink">
-                    <i class="fas fa-download"></i> Download
+                      <i class="fas fa-download"></i> Download
                   </a>
                   <hr class="room">
                   <a href="#" class="copy-link" onclick="copyLink()">
-                    <i class="fas fa-link "></i>Copy Link
+                      <i class="fas fa-link "></i>Copy Link
                   </a>
-                </div>
               </div>
+              <img src="assets/qr.png" alt="Larger QR Code" class="larger-qr">
               
+              </div>
+              <style>
+                .card {
+    position: relative;
+}
+
+
+.larger-qr {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    z-index: 999;
+    max-width: 150%;
+    transition: opacity 1.3s ease-in;
+
+}
+
+#qrCode:hover + .larger-qr {
+    display: block;
+    transition: opacity 1.3s ease-in;
+}
+
+              </style>
             </div>
             <!-- <img src="https://webassets.mongodb.com/_com_assets/cms/General_EVENT_Tickets_Thumbnail-y7uuq71xp4.png" alt="seraphim" width="200px"/> -->
             
@@ -253,53 +283,16 @@
                             <div class="poc-hero-block-description">Deployed Systems →</div>
                         </div>
                     </a>
-              <a href="" data-track="true">
-                <div id="hero-container">
-                  <div class="poc-hero-block">
-                    <div class="poc-hero-block-title">Loading...</div>
-                    <div class="poc-hero-block-description">Website Visits →</div>
-                  </div>
-                </div>
-                <script>
-                   // Function to fetch website visits from your custom backend
-                  async function fetchWebsiteVisits() {
-                    try {
-                      const response = await fetch('/visit-count'); // Assuming your backend is running on the same server
-                      const data = await response.json();
-                      return data.visits; // Assuming your backend returns the number of visits
-                    } catch (error) {
-                      console.error('Error fetching website visits:', error);
-                      return 0; // Default to 0 visits if there's an error
-                    }
-                  }
-
-                  // Function to create the HTML for the hero block
-                  async function createHeroBlock() {
-                    const visits = await fetchWebsiteVisits();
-                    const html = `
-                      <div class="poc-hero-block">
-                        <div class="poc-hero-block-title">${visits}</div>
-                        <div class="poc-hero-block-description">Website Visits →</div>
+                    <a href="" data-track="true">
+                      <div id="hero-container">
+                        <div class="poc-hero-block">
+                          <div class="poc-hero-block-title" id="keyCount">
+                            <div class="loader"></div> <!-- Loader will be inserted here -->
+                          </div>
+                          <div class="poc-hero-block-description">Website Visits →</div>
+                        </div>
                       </div>
-                    `;
-                    return html;
-                  }
-
-                  // Function to update the hero block with the fetched visit count
-                  async function updateHeroBlock() {
-                    try {
-                      const html = await createHeroBlock();
-                      document.getElementById('hero-container').innerHTML = html;
-                    } catch (error) {
-                      console.error('Error updating hero block:', error);
-                    }
-                  }
-
-                  // Update the hero block when the page loads
-                  window.onload = updateHeroBlock;
-                                </script>
-              </a>
-    
+                    </a>
               <a href="" data-track="true">
                 <!-- https://www.mongodb.com/try/download/community -->
                 <div class="poc-hero-block">
@@ -309,14 +302,10 @@
               </a>
               <!--  -->
             </div>
-            <script>
             
-          </script>
-   
+            <!-- <script src="api/fetchcount.js"></script> -->
            </div>
          </div>
-              
-              
               <div class="poc-hero-separator"></div>
             </div>
           </div>
@@ -324,16 +313,16 @@
             <div class="image-wrapper">
               <div class="webxp-481-carousels-wrapper">
                 <div class="webxp-481-padding-1 webxp-481-carousel-row">
-                  <img src="https://webimages.mongodb.com/_com_assets/cms/lr7wflic1x0w4quag-481-frame-1.svg?auto=format%252Ccompress" style="margin-right: 1.5rem;">
-                  <img src="https://webimages.mongodb.com/_com_assets/cms/lr7wflic1x0w4quag-481-frame-1.svg?auto=format%252Ccompress">
+                  <img src="assets/lr7wflic1x0w4quag-481-frame-1.svg?auto=format%252Ccompress" style="margin-right: 1.5rem;">
+                  <img src="assets/lr7wflic1x0w4quag-481-frame-1.svg?auto=format%252Ccompress">
                 </div>
                 <div class="webxp-481-padding-1 webxp-481-carousel-row" style="margin-top: 2rem; margin-left: 10rem; ">
-                  <img src="https://webimages.mongodb.com/_com_assets/cms/lr7wh38el1wkcsl00-481-frame-2.svg?auto=format%252Ccompress" style="margin-right: 1.5rem;">
-                  <img src="https://webimages.mongodb.com/_com_assets/cms/lr7wh38el1wkcsl00-481-frame-2.svg?auto=format%252Ccompress">
+                  <img src="assets/lr7wh38el1wkcsl00-481-frame-2.svg?auto=format%252Ccompress" style="margin-right: 1.5rem;">
+                  <img src="assets/lr7wh38el1wkcsl00-481-frame-2.svg?auto=format%252Ccompress">
                 </div>
                 <div class="webxp-481-padding-2 webxp-481-carousel-row">
-                  <img src="https://webimages.mongodb.com/_com_assets/cms/lr7wjwi70kp9n351m-3.svg?auto=format%252Ccompress" style="margin-right: 1.5rem;">
-                  <img src="https://webimages.mongodb.com/_com_assets/cms/lr7wjwi70kp9n351m-3.svg?auto=format%252Ccompress">
+                  <img src="assets/lr7wjwi70kp9n351m-3.svg?auto=format%252Ccompress" style="margin-right: 1.5rem;">
+                  <img src="assets/lr7wjwi70kp9n351m-3.svg?auto=format%252Ccompress">
               </div>
               
               </div>
@@ -343,154 +332,17 @@
           </div>
         </div>
       </div>
-      
     </div>
-    
   </section>
-  
-   <style>
-.tabs-bottom {
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax values to control column size */
-    grid-gap: 12px;
-    padding-bottom: 5%;
+  <style>
     
-    
-   
-}
-
-.tabs-card {
-    border: 1px solid #3d4f58;
-    padding: 24px;
-    font-family: "Euclid Circular A", sans-serif;
-    border-radius: 24px;
-    transition: all 0.25s;
-    background: #001e2b;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    
-    
-}
-
-.tabs-card-icon {
-    max-width: 42px;
-}
-
-.tabs-card-title {
-    color: white;
-    font-weight: 500;
-    font-size: 24px;
-    padding: 0;
-    margin: 16px 0 0 0;
-}
-
-.tabs-card-description {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #b8c4c2;
-}
-
-.tabs-card-link {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    margin-top: auto;
-}
-
-.tabs-card a {
-    text-decoration: none;
-}
-
-.css-1kjyyeh {
-    display: flex;
-    align-items: center;
-    text-align: left;
-}
-
-.css-1pghxfk {
-    display: flex;
-    width: 100%;
-}
-
-.css-1n8ph0f {
-    font-size: 18px;
-    line-height: 48px;
-    color: #006CFA;
-}
-
-.css-19siuc4 {
-    padding-left: 16px;
-}
-.tiles{
-  height: 50vh;
-  border-bottom-left-radius: px ;
-}
-#about{
-  height: 50vh;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) {
-    * {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-}
-@media screen and (max-width: 758px) {
-  .tabs-bottom {
-    grid-template-columns: 1fr; /* Set the tabs to occupy one column only */
-  }
-  .tiles {
-    height: 100vh; /* Occupy full viewport height */
-    border-bottom-left-radius: 50px;
-  }
-    #about{
-      height: 100vh;
-    }
-}
-@media screen and (max-width: 415px) {
-  #about{
-      height: 105vh;
-      
-  }
-
-}
-@media screen and (max-width: 380px) {
-    .tabs-card {
-        padding: 12px;
-    }
-
-    .tabs-card-title {
-      color: white;
-    font-weight: 500;
-    font-size: 24px;
-    padding: 0;
-    margin: 16px 0 0 0;
-    }
-
-    .tabs-card-description {
-        font-size: 16px;
-        line-height: 21px;
-    }
-
-    .tabs-card-icon {
-        max-width: 24px;
-    }
-}
-
-</style>
-
-    <div class="tiles" style="background-color: #00ED64;  border-top-left-radius:200px; background: #001E2B; ">
-      <section id="about" style="">
+  </style>
+    <div class="tiles" style="border-top-left-radius:200px;">
+      <section id="about">
         <div class="tabs-bottom" ><a class="tabs-card" href="">
-          <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l9751qiggjximwymo-Document%20Model.svg?auto=format%252Ccompress">
-          <p class="tabs-card-title">Lorem</p>
-          <p class="tabs-card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eveniet qui saepe omnis, maiores cum asperiores temporibus corporis quia sunt necessitatibus dicta perferendis adipisci delectus, magni id a rem nostrum.</p>
+          <img class="tabs-card-icon" src="assets/l9751qiggjximwymo-Document Model.svg?auto=format%252Ccompress">
+          <p class="tabs-card-title" style="font-family: Poppins, sans-serif;">Foundation</p><br>
+          <p class="tabs-card-description">Since 2018, my programming journey has been anchored in Java, a language I've delved into amidst the complexities of code, navigating its syntax intricacies and unlocking the potential for innovation and problem-solving.</p>
             <span class="css-1kjyyeh">
               <div class="css-1pghxfk">
                 <!-- <span class="textlink-link-icon-class css-1n8ph0f">Documentation</span> -->
@@ -505,16 +357,17 @@
             </span>
           </a>          
         </a><a class="tabs-card" href="">
-          <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l9751hrbsm3eyq685-Develop.svg?auto=format%252Ccompress">
-          <p class="tabs-card-title">Lorem Ipsum</p>
-          <p class="tabs-card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eveniet qui saepe omnis, maiores cum asperiores temporibus corporis quia sunt necessitatibus dicta perferendis adipisci delectus, magni id a rem nostrum.</p>
+          <img class="tabs-card-icon" src="assets/l9751hrbsm3eyq685-Develop.svg?auto=format%252Ccompress">
+          <p class="tabs-card-title" style="font-family: Poppins, sans-serif;">Web Development</p><br>
+          <p class="tabs-card-description">Since 2022, I've switched gears to web development, honing my skills in PHP & JavaScript as my main language, using its flexibility to create user-friendly interfaces and engaging experiences online.</p>
             <span class="css-1kjyyeh">
              
           </a>          
         </a><a class="tabs-card" href="">
-          <img class="tabs-card-icon" src="https://webimages.mongodb.com/_com_assets/cms/l97529834aoy92a7l-Community.svg?auto=format%252Ccompress">
-          <p class="tabs-card-title">Lorem Ipsum</p>
-          <p class="tabs-card-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eveniet qui saepe omnis, maiores cum asperiores temporibus corporis quia sunt necessitatibus dicta perferendis adipisci delectus, magni id a rem nostrum.</p>
+          <img class="tabs-card-icon" src="assets/general_content_learn_inverse.svg?auto=format%252Ccompress">
+          <p class="tabs-card-title" style="font-family: Poppins, sans-serif;">Education</p><br>
+          <p class="tabs-card-description">•2020 - Present - Bachelor of Science in Information Technology <br>
+            <strong>Technological University of the Philippines</strong><br>•2017-2019 - Information and Communication Technology <br> <strong>Pasay City South High School</strong>  </p>
             <span class="css-1kjyyeh">
               <div class="css-1pghxfk">
                 <!-- <span class="textlink-link-icon-class css-1n8ph0f">Join the Community</span> -->
@@ -532,7 +385,7 @@
       </div>
     </section>
     <section id="experience">
-      <p class="section__text__p1">Explore My</p>
+      <p class="section__text-hello" style=" font-family: Source Code Pro, monospace; font-weight: normal; letter-spacing: 2px; font-size: 14px; text-align: center;"><span style="color: #00ED64; ">|</span>EXPLORE MY
       <h1 class="title">Experience</h1>
       <div class="experience-details-container">
         <div class="about-containers">
@@ -656,35 +509,100 @@
                 </div>
               </article>
               <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Node.js</h3>
-                  <p>Intermediate</p>
-                </div>
-                <article>
-              </article>
-            
             </div>
           </div>
             </head>
             <body>
-            
-            <!-- <div class="details-container">
-              <h2 class="experience-sub-title">Certifications</h2>
-              <div class="article-container" id="certificates-container">
-                <div id="certificate-card">
-                  <a class="cert" id="show-certificate-btn">
-                    <img class="certificate-image default" style="width: 400px; height: 250px;" src="assets/CERTSSS.png" alt="Certificate">
-                    <div class="overlay-text" style="width: 240px; height: auto;"><p class="text-align" style="text-align: center; color: rgb(17, 17, 17);
-                      " >No Preview Available</p></div>
-                  </a>
+                
+              <style>
+                .certificate-image {
+                  max-width: 100%;
+                  height: auto;
+                }
+                
+                .certificate-image.default {
+                  filter: none; /* No blur for default image */
+                }
+                
+                .certificate-image.blur {
+                  filter: blur(3px); /* Blur effect for other images */
+                }
+                
+                .cert {
+                  display: block;
+                  position: relative;
+                }
+                
+                .overlay-text {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  background-color: rgba(255, 251, 251, 0.8); /* Adjust opacity and color as needed */
+                  padding: 10px;
+                  border-radius: 5px;
+                  font-size: 18px; /* Adjust font size as needed */
+                  display: none; /* Initially hide overlay text */
+                  box-shadow: 0 0 5rem rgba(0, 0, 0, 1);
+
+                  
+                }
+                
+                .certificate-image {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover; /* Ensures the image covers the entire container */
+                }
+                </style>
+                </head>
+                <body>
+                
+                <div class="details-container">
+                  <h2 class="experience-sub-title">Certifications</h2>
+                  <div class="article-container" id="certificates-container">
+                    <div id="certificate-card">
+                      <a class="cert" id="show-certificate-btn">
+                        <img class="certificate-image default" style="width: 400px; height: 250px;" src="assets/CERTSSS.png" alt="Certificate">
+                        <div class="overlay-text" style="width: 240px; height: auto;"><p class="text-align" style="text-align: center; color: rgb(17, 17, 17);
+                          " >No Preview Available</p></div>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div> -->
+                
+                <script>
+                  const certificateURLs = [
+                    "assets/CERTSSS.png", // Default image URL
+                    "./assets/GDSD.png",
+                    "./assets/CAIED.png",
+                    "./assets/SQL.png",
+                    "./assets/ncii.png"
+                  ];
+                  
+                  let currentIndex = 0; // Start with the default image
+
+    function showNextCertificate() {
+      currentIndex = (currentIndex + 1) % certificateURLs.length; // Move to the next image
+      
+      // Skip the default image
+      if (currentIndex === 0) {
+        currentIndex = 1;
+      }
+      
+      const certificateImage = document.querySelector('.certificate-image');
+      const overlayText = document.querySelector('.overlay-text');
+      
+      certificateImage.src = certificateURLs[currentIndex];
+      
+      certificateImage.classList.remove('default'); // Ensure default class is removed
+      
+      certificateImage.classList.add('blur'); // Add blur class to other images
+      overlayText.style.display = 'block'; // Show overlay text for other images
+    }
+
+    document.getElementById('show-certificate-btn').addEventListener('click', showNextCertificate);
+    </script>
+            
           <img
         src="./assets/arrow.png"
         alt="Arrow icon"
@@ -693,7 +611,7 @@
       />
     </section>
     <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
+      <p class="section__text-hello" style=" font-family: Source Code Pro, monospace; font-weight: normal; letter-spacing: 2px; font-size: 14px; text-align: center;"><span style="color: #00ED64; ">|</span>BROWSE MY RECENT
       <h1 class="title">Projects</h1>
       <div class="experience-details-container">
         <div class="about-containers">
@@ -792,7 +710,7 @@
         
         <div class="card">
           <div class="img" style="width: 300px; height: 200px; overflow: hidden;">
-            <img src="/assets/web1.png" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
+            <img src="" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
        
           </div>
           <div class="card__content">
@@ -806,7 +724,7 @@
         
         <div class="card">
           <div class="img" style="width: 300px; height: 200px; overflow: hidden;">
-            <img src="/assets/web2.png" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
+            <img src="" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
           </div>
           <div class="card__content">
             <p class="card__title">YOUR MARKET</p>
@@ -818,7 +736,7 @@
         </div>
         <div class="card">
           <div class="img" style="width: 300px; height: 200px; overflow: hidden;">
-            <img src="/assets/web3.png" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
+            <img src="" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
           </div>
           
           <div class="card__content">
@@ -831,7 +749,7 @@
         </div>
         <div class="card">
           <div class="img" style="width: 300px; height: 200px; overflow: hidden;">
-            <img src="/assets/web5.png" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
+            <img src="" alt="" style="width: 100%; height: auto; border-radius: 10px; ">
           </div>
           <div class="card__content">
             <p class="card__title">DOCUMENT REQUEST</p>
@@ -862,7 +780,7 @@
             alt="LinkedIn icon"
             class="icon contact-icon"
           />
-          <p><a href="https://www.linkedin.com/in/lester-bermas-b886182a2/">LinkedIn</a></p>
+          <p><a href="https://www.linkedin.com/in/LanzeG/">LinkedIn</a></p>
         </div>
       </div>
        <div class="contact-container">
@@ -872,13 +790,12 @@
     <footer>
       <nav>
         <div class="nav-links-container" style="margin-top: 2rem;">
-          <ul class="nav-links">
+          <!-- <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
-            <!-- <li><a href="learning.html">Frontend</a></li> -->
-          </ul>
+          </ul> -->
         </div>
       </nav>
       <p>Copyright &#169; 2024 & lanze. All Rights Reserved.</p>
