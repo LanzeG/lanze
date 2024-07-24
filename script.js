@@ -295,9 +295,9 @@ function embedVismeForm() {
   var systemCount = document.getElementById('system-count');
   var languageCount = document.getElementById('language-count');
 
-  animateValue(customerCount, 0, 2, 4000); 
-  animateValue(systemCount, 0, 7, 4000); 
-  animateValue(languageCount, 0, 7, 4000);
+  animateValue(customerCount, 0, 4, 4000); 
+  animateValue(systemCount, 0, 11, 4000); 
+  animateValue(languageCount, 0, 9, 4000);
 
 
   function generateUniqueKey() {
