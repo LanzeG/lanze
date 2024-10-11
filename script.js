@@ -35,7 +35,7 @@ function toggleMenu() {
 // window.addEventListener('resize', checkDevTools);
 
 
-const values = ['Frontend', 'RPA', 'UI/UX', 'Backend???'];
+const values = ['Frontend', 'RPA', 'UI/UX', 'Backend', 'Product Engineer'];
 let index = 0;
 const textElement = document.querySelector('.animated-text');
 
@@ -63,7 +63,7 @@ function animateText() {
               index = 0;
             }
             animateText();
-          }, values[index] === 'Backend????' ? 3000 : 2000); 
+          }, values[index] === 'Product Engineer' ? 3000 : 2000); 
         }, 2000); 
       }
     }, 100); 
@@ -266,10 +266,13 @@ function embedVismeForm() {
         location.reload();
     });
 
-    // document.getElementById('donate').addEventListener('click', function() {
-    //     var donateCard = document.getElementById('donate-card');
-    //     donateCard.style.display = 'block';
-    // });
+    document.addEventListener('DOMContentLoaded', function() {
+      const donateButton = document.getElementById('donate');
+      
+      donateButton.addEventListener('click', function() {
+        window.donationPopup.show();
+      });
+    });
 
     // document.getElementById('contact').addEventListener('click', function() {
     //     var contactCard = document.getElementById('contact-card');
@@ -295,9 +298,9 @@ function embedVismeForm() {
   var systemCount = document.getElementById('system-count');
   var languageCount = document.getElementById('language-count');
 
-  animateValue(customerCount, 0, 4, 4000); 
-  animateValue(systemCount, 0, 11, 4000); 
-  animateValue(languageCount, 0, 9, 4000);
+  animateValue(customerCount, 0, 7, 4000); 
+  animateValue(systemCount, 0, 24, 4000); 
+  animateValue(languageCount, 0, 11, 4000);
 
 
   function generateUniqueKey() {
