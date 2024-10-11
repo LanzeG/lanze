@@ -602,7 +602,160 @@
 
     document.getElementById('show-certificate-btn').addEventListener('click', showNextCertificate);
     </script>
-            
+
+                  <style>
+        .v0-unique-carousel-container {
+            width: 100%;
+            max-width: 1200px;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .v0-unique-carousel-row {
+            display: flex;
+            width: 200%;
+        }
+
+        #v0UniqueTopRow {
+            animation: v0UniqueScrollRight 40s linear infinite;
+        }
+
+        #v0UniqueBottomRow {
+            animation: v0UniqueScrollLeft 40s linear infinite;
+        }
+
+        .v0-unique-logo-container {
+            flex: 0 0 10%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .v0-unique-logo-container img {
+            width: 100%;
+            height: 60px;
+            object-fit: contain;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        @keyframes v0UniqueScrollRight {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes v0UniqueScrollLeft {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .v0-unique-carousel-container:hover .v0-unique-carousel-row {
+            animation-play-state: paused;
+        }
+
+        @media (max-width: 768px) {
+            .v0-unique-logo-container {
+                flex: 0 0 20%;
+            }
+        }
+    </style>
+
+    <div class="v0-unique-carousel-container">
+        <div class="v0-unique-carousel-row" id="v0UniqueTopRow">
+            <div class="v0-unique-logo-container">
+                <img src="https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt0462ae8bbfea7451/64d2713b646ccd3df08229a7/lgwpl72akptbke7gp-AWS_logo_RGB.svg?height=80&width=150" alt="AWS">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt31a78bf43a83fe84/6682e296c66c881d2d69e73f/Microsoft-Azure-Logo.png?height=80&width=150" alt="Microsoft Azure">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt656769ac48060ba9/667ee74b66137ca874adb4cd/google_cloud.svg?height=80&width=150" alt="Google Cloud">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Bubble_Logo_no_code.svg?height=80&width=150" alt="Bubble">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vercel_logo_black.svg/2560px-Vercel_logo_black.svg.png" alt="Vercel">
+            </div>
+            <!-- Duplicate logos for seamless scrolling -->
+            <div class="v0-unique-logo-container">
+                <img src="https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt0462ae8bbfea7451/64d2713b646ccd3df08229a7/lgwpl72akptbke7gp-AWS_logo_RGB.svg?height=80&width=150" alt="AWS">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt31a78bf43a83fe84/6682e296c66c881d2d69e73f/Microsoft-Azure-Logo.png?height=80&width=150" alt="Microsoft Azure">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt656769ac48060ba9/667ee74b66137ca874adb4cd/google_cloud.svg?height=80&width=150" alt="Google Cloud">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Bubble_Logo_no_code.svg?height=80&width=150" alt="Bubble">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vercel_logo_black.svg/2560px-Vercel_logo_black.svg.png" alt="Vercel">
+            </div>
+        </div>
+        <div class="v0-unique-carousel-row" id="v0UniqueBottomRow">
+            <div class="v0-unique-logo-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF92cQQ4NZcQqHvhn7tpFJubjqObfe3s2hgw&s?height=80&width=150" alt="Capgemini">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fu1uxgyrzm2633keatvl7.png?height=80&width=150" alt="Fireworks AI">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*rFBQjOsQlWRC9iyFkKSRgg.png?height=80&width=150" alt="TCS">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png?height=80&width=150" alt="Flutter">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg?height=80&width=150" alt="Node.js">
+            </div>
+            <!-- Duplicate logos for seamless scrolling -->
+            <div class="v0-unique-logo-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF92cQQ4NZcQqHvhn7tpFJubjqObfe3s2hgw&s?height=80&width=150" alt="Capgemini">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://media.dev.to/cdn-cgi/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fu1uxgyrzm2633keatvl7.png?height=80&width=150" alt="Fireworks AI">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*rFBQjOsQlWRC9iyFkKSRgg.png?height=80&width=150" alt="TCS">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png?height=80&width=150" alt="Flutter">
+            </div>
+            <div class="v0-unique-logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg?height=80&width=150" alt="Node.js">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const v0UniqueTopRow = document.getElementById('v0UniqueTopRow');
+            const v0UniqueBottomRow = document.getElementById('v0UniqueBottomRow');
+            const v0UniqueCarouselContainer = document.querySelector('.v0-unique-carousel-container');
+
+            v0UniqueCarouselContainer.addEventListener('mouseenter', () => {
+                v0UniqueTopRow.style.animationPlayState = 'paused';
+                v0UniqueBottomRow.style.animationPlayState = 'paused';
+            });
+
+            v0UniqueCarouselContainer.addEventListener('mouseleave', () => {
+                v0UniqueTopRow.style.animationPlayState = 'running';
+                v0UniqueBottomRow.style.animationPlayState = 'running';
+            });
+        });
+    </script>
+
           <img
         src="./assets/arrow.png"
         alt="Arrow icon"
