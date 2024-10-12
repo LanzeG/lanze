@@ -261,35 +261,23 @@ function embedVismeForm() {
         contextMenu.classList.remove('show-menu');
     });
 
-       // Function to embed Visme form
-    function embedVismeForm() {
-        console.log("Visme form embedded.");
-        // Your actual Visme form embed code here
-    }
-
     // Functionality for menu items
     document.getElementById('refresh').addEventListener('click', function() {
         location.reload();
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        const donateButton = document.getElementById('donate');
-        donateButton.addEventListener('click', function() {
-            window.donationPopup.show();
-        });
-
-        // Buttonform functionality to embed Visme form and show contact card
-        const buttonForm = document.querySelector('.buttonform');
-        if (buttonForm) {
-            buttonForm.addEventListener('click', function() {
-                embedVismeForm();
-                var contactCard = document.getElementById('contact-card');
-                contactCard.style.display = 'block';
-            });
-        } else {
-            console.log("Button with class 'buttonform' not found.");
-        }
+      const donateButton = document.getElementById('donate');
+      
+      donateButton.addEventListener('click', function() {
+        window.donationPopup.show();
+      });
     });
+
+    // document.getElementById('contact').addEventListener('click', function() {
+    //     var contactCard = document.getElementById('contact-card');
+    //     contactCard.style.display = 'block';
+    // });
 
 
     function animateValue(element, start, end, duration) {
@@ -484,4 +472,3 @@ exampleUsage();
 //     chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
 //   });
 // });
-
