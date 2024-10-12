@@ -274,10 +274,13 @@ function embedVismeForm() {
       });
     });
 
-    // document.getElementById('contact').addEventListener('click', function() {
-    //     var contactCard = document.getElementById('contact-card');
-    //     contactCard.style.display = 'block';
-    // });
+
+    document.querySelector('.buttonform').addEventListener('click', function() {
+        embedVismeForm();
+        var contactCard = document.getElementById('contact-card');
+        contactCard.style.display = 'block';
+    });
+
 
 
     function animateValue(element, start, end, duration) {
