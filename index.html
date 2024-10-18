@@ -1543,114 +1543,135 @@
 <style>
   .lanze_chatbot_2023 {
       position: fixed;
-      bottom: 80px;
+      bottom: 20px;
       right: 20px;
-      width: 350px;
-      height: 500px;
-      background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      width: 380px;
+      height: 600px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       display: none;
       flex-direction: column;
       overflow: hidden;
-      font-family: 'Poppins', sans-serif;
       transition: all 0.3s ease;
       z-index: 1001;
   }
 
   .lanze_chatbot_2023_header {
-      background-color: #008350;
-      color: #fff;
-      padding: 15px;
+      background-color: #4f46e5;
+      color: #ffffff;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
   }
 
   .lanze_chatbot_2023_title {
-      font-weight: bold;
+      font-weight: 600;
       font-size: 18px;
   }
 
   .lanze_chatbot_2023_close {
       background: none;
       border: none;
-      color: #fff;
+      color: #ffffff;
       font-size: 24px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: color 0.2s ease;
   }
 
   .lanze_chatbot_2023_close:hover {
-      transform: scale(1.1);
+      color: #e0e7ff;
   }
 
   .lanze_chatbot_2023_messages {
       flex-grow: 1;
       overflow-y: auto;
-      padding: 15px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
   }
 
   .lanze_chatbot_2023_message {
       margin-bottom: 15px;
-      padding: 10px 15px;
-      border-radius: 20px;
-      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      max-width: 85%;
       word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
 
   .lanze_chatbot_2023_message.bot {
-      background-color: #f1f0f0;
+      background-color: #f3f4f6;
       align-self: flex-start;
+      color: #1c1e21;
+      border-bottom-left-radius: 4px;
   }
 
   .lanze_chatbot_2023_message.user {
-      background-color: #008350;
-      color: #fff;
+      background-color: #4f46e5;
+      color: #ffffff;
       align-self: flex-end;
+      border-bottom-right-radius: 4px;
   }
 
   .lanze_chatbot_2023_input {
       display: flex;
-      padding: 15px;
-      border-top: 1px solid #e0e0e0;
+      padding: 16px;
+      border-top: 1px solid #e5e7eb;
+      background-color: #ffffff;
+      align-items: center;
   }
 
   .lanze_chatbot_2023_input input {
       flex-grow: 1;
-      border: none;
-      padding: 10px;
-      border-radius: 25px;
+      border: 1px solid #e5e7eb;
+      padding: 12px 16px;
+      border-radius: 24px;
       margin-right: 10px;
       font-size: 14px;
+      background-color: #f9fafb;
+      color: #1c1e21;
+      transition: border-color 0.2s ease;
+  }
+
+  .lanze_chatbot_2023_input input:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
   }
 
   .lanze_chatbot_2023_input button {
-      background-color: #008350;
-      color: #fff;
+      background-color: #4f46e5;
+      color: #ffffff;
       border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 10px 16px;
+      border-radius: 24px;
       cursor: pointer;
       transition: background-color 0.2s ease;
+      font-size: 14px;
+      font-weight: 600;
   }
 
   .lanze_chatbot_2023_input button:hover {
-      background-color: #3a7bc8;
+      background-color: #4338ca;
   }
 
   .atlas_ai_app_contact_us {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #008350;
+      background-color: #4f46e5;
       color: #ffffff;
       padding: 12px 24px;
-      border-radius: 25px;
+      border-radius: 24px;
       text-decoration: none;
       font-size: 16px;
+      font-weight: 600;
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
@@ -1658,7 +1679,7 @@
   }
 
   .atlas_ai_app_contact_us:hover {
-      background-color: #008350;
+      background-color: #4338ca;
       transform: translateY(-2px);
   }
 
@@ -1666,6 +1687,7 @@
       width: 24px;
       height: 24px;
       margin-right: 10px;
+      fill: #ffffff;
   }
 
   @media (max-width: 480px) {
@@ -1677,161 +1699,480 @@
           border-radius: 0;
       }
   }
+
+  .typing-indicator {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      background-color: #f3f4f6;
+      border-radius: 18px;
+      margin-bottom: 15px;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+  }
+
+  .typing-indicator span {
+      height: 8px;
+      width: 8px;
+      background-color: #4f46e5;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+      animation: typing 1s infinite;
+  }
+
+  .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+  }
+
+  .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+  }
+
+  @keyframes typing {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+  }
+
+  ::-webkit-scrollbar {
+      width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: #f9fafb;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
+  }
+
+  .image-upload-label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: #f3f4f6;
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: background-color 0.2s ease;
+  }
+
+  .image-upload-label:hover {
+      background-color: #e5e7eb;
+  }
+
+  .image-upload-label svg {
+      width: 20px;
+      height: 20px;
+      fill: #4f46e5;
+  }
+
+  #imageUpload {
+      display: none;
+  }
+
+  .user-image {
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 8px;
+      margin-top: 8px;
+  }
 </style>
 </head>
 <body>
 <a href="#" class="atlas_ai_app_contact_us" id="contactUsButton">
-  <svg class="atlas_ai_app_contact_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="atlas_ai_app_contact_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
   </svg>
-  Chat bot
+  Chat with AI
 </a>
 
 <div class="lanze_chatbot_2023" id="chatbot">
   <div class="lanze_chatbot_2023_header">
-      <span class="lanze_chatbot_2023_title">Chat with guru</span>
+      <span class="lanze_chatbot_2023_title">AI Assistant</span>
       <button class="lanze_chatbot_2023_close" id="closeChatbot">&times;</button>
   </div>
   <div class="lanze_chatbot_2023_messages" id="chatMessages"></div>
   <div class="lanze_chatbot_2023_input">
+      <!-- <label for="imageUpload" class="image-upload-label">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+          </svg>
+      </label> -->
+      <!-- <input type="file" id="imageUpload" accept="image/*"> -->
       <input type="text" id="userInput" placeholder="Type your message...">
       <button id="sendMessage">Send</button>
   </div>
 </div>
 
+<script src="https://apis.google.com/js/api.js"></script>
 <script>
- const chatbot = document.getElementById('chatbot');
-const chatMessages = document.getElementById('chatMessages');
-const userInput = document.getElementById('userInput');
-const sendMessage = document.getElementById('sendMessage');
-const contactUsButton = document.getElementById('contactUsButton');
-const closeChatbot = document.getElementById('closeChatbot');
+    class GeminiAPI {
+        constructor() {
+            this.html = 'AIzaSyDo3qjgS3NbYYbXfZ3GEJA923qcjZwKQJY'; // Replace with your actual Gemini API key
+            this.vuejs = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+            this.SaaS = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent';
+            this.requestsPerMinute = 60;
+            this.requestQueue = [];
+            this.lastRequestTime = 0;
+        }
 
-const botResponses = {
-    greetings: [
-        "Hey there! I'm your friendly neighborhood tech guru. What can I help you with today?",
-        "Hello! Ready to dive into some coding or tech troubleshooting?",
-        "Hi! Got any computer conundrums I can help crack?",
-        "Greetings, fellow tech enthusiast! What brings you to my digital domain today?"
-    ],
-    farewell: [
-        "Thanks for the chat! Remember, I'm always here for your programming and tech needs. Take care!",
-        "It was great helping you out. Don't hesitate to come back if you hit any more coding snags. Bye for now!",
-        "Glad I could assist. Keep coding and stay curious! Catch you later!",
-        "Always a pleasure to help a fellow tech lover. Until next time, may your code be bug-free!"
-    ],
-    unknown: [
-        "Hmm, that's a bit outside my expertise. I'm really more of a programming and computer troubleshooting kind of AI. Can we pivot back to something in that realm?",
-        "I'm scratching my virtual head here. Remember, I'm specialized in programming and tech support. Got anything along those lines?",
-        "That's an interesting question, but it's not really in my wheelhouse. I'm your go-to for programming and computer issues. Want to try something in that area?",
-        "I'm afraid I don't have much to say on that topic. I'm more of a code monkey and tech support guru. How about we chat about something more computer-related?"
-    ],
-    programming: [
-        "Ah, programming! My favorite topic. What language or framework are you working with?",
-        "Code is poetry, isn't it? What kind of project are you working on?",
-        "Programming challenges are my jam! What specific issue are you tackling?",
-        "Diving into some coding, eh? Tell me more about what you're trying to achieve."
-    ],
-    debugging: [
-        "Bugs can be frustrating, but don't worry! Can you share the error message or describe what's happening?",
-        "Debugging time! Let's start by isolating the problem. Where exactly is the code misbehaving?",
-        "Ah, the thrill of the bug hunt! What have you tried so far to fix it?",
-        "Debugging is like being a code detective. Let's gather some clues. What's the unexpected behavior you're seeing?"
-    ],
-    computer_issues: [
-        "Computer acting up? No worries, we'll get to the bottom of it. Can you describe the problem in detail?",
-        "Tech troubles can be a pain, but we'll sort it out. What exactly is your computer doing (or not doing)?",
-        "Alright, let's play tech support. What symptoms is your computer showing?",
-        "Computer issues are my specialty. Walk me through what's happening step by step."
-    ]
-};
+        async sendMessage(message, image = null) {
+            return new Promise((resolve, reject) => {
+                this.requestQueue.push({ message, image, resolve, reject });
+                this.processQueue();
+            });
+        }
 
-function getRandomResponse(category) {
-    const responses = botResponses[category] || botResponses.unknown;
-    return responses[Math.floor(Math.random() * responses.length)];
-}
+        async processQueue() {
+            if (this.requestQueue.length === 0) return;
 
-function saveToCookies(messages) {
-    document.cookie = `chatHistory=${JSON.stringify(messages)}; expires=${new Date(Date.now() + 86400000).toUTCString()}; path=/`;
-}
+            const now = Date.now();
+            const timeElapsed = now - this.lastRequestTime;
+            const minInterval = 60000 / this.requestsPerMinute;
 
-function loadFromCookies() {
-    const cookie = document.cookie.split('; ').find(row => row.startsWith('chatHistory='));
-    return cookie ? JSON.parse(cookie.split('=')[1]) : [];
-}
+            if (timeElapsed < minInterval) {
+                setTimeout(() => this.processQueue(), minInterval - timeElapsed);
+                return;
+            }
 
-let chatbotMessages = loadFromCookies();
+            const { message, image, resolve, reject } = this.requestQueue.shift();
+            this.lastRequestTime = now;
 
-function displayMessages() {
-    chatMessages.innerHTML = '';
-    chatbotMessages.forEach(message => {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('lanze_chatbot_2023_message', message.role);
-        messageElement.textContent = message.content;
-        chatMessages.appendChild(messageElement);
+            try {
+                let response;
+                if (image) {
+                    response = await this.analyzeImage(image, message);
+                } else {
+                    response = await this.generateTextResponse(message);
+                }
+                resolve(response);
+            } catch (error) {
+                console.error('Error in processQueue:', error);
+                reject(error.message || "An unexpected error occurred. Please contact the developer.");
+            }
+
+            setTimeout(() => this.processQueue(), minInterval);
+        }
+
+        async generateTextResponse(message) {
+            try {
+                const response = await fetch(`${this.vuejs}?key=${this.html}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                parts: [
+                                    {
+                                        text: "You are a helpful assistant specialized in programming and computer troubleshooting."
+                                    },
+                                    {
+                                        text: message
+                                    }
+                                ]
+                            }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (!data.candidates || data.candidates.length === 0) {
+                    throw new Error('No response from the API');
+                }
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error('Error in generateTextResponse:', error);
+                throw error;
+            }
+        }
+
+        async analyzeImage(image, message) {
+            try {
+                const base64Image = image.split(',')[1];
+                const response = await fetch(`${this.SaaS}?key=${this.html}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                parts: [
+                                    {
+                                        text: "Analyze this image and describe its contents in detail."
+                                    },
+                                    {
+                                        inline_data: {
+                                            mime_type: "image/jpeg",
+                                            data: base64Image
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (!data.candidates || data.candidates.length === 0) {
+                    throw new Error('No response from the API');
+                }
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error('Error in analyzeImage:', error);
+                throw error;
+            }
+        }
+    }
+
+    const chatbot = document.getElementById('chatbot');
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const contactUsButton = document.getElementById('contactUsButton');
+    const closeChatbot = document.getElementById('closeChatbot');
+    const imageUpload = document.getElementById('imageUpload');
+
+    const geminiApi = new GeminiAPI();
+
+    function saveToCookies(messages) {
+        const expirationDate = new Date();
+        expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+        const cookieValue = encodeURIComponent(JSON.stringify(messages));
+        document.cookie = `intersectionHis=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/; SameSite=Strict`;
+    }
+
+    function loadFromCookies() {
+        const cookieValue = document.cookie.split('; ').find(row => row.startsWith('intersectionHis='));
+        if (cookieValue) {
+            const decodedValue = decodeURIComponent(cookieValue.split('=')[1]);
+            return JSON.parse(decodedValue);
+        }
+        return [];
+    }
+
+    let chatbotMessages = loadFromCookies();
+
+    function displayMessages() {
+        chatMessages.innerHTML = '';
+        chatbotMessages.forEach(message => {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('lanze_chatbot_2023_message', message.role);
+            if (message.type === 'image') {
+                const img = document.createElement('img');
+                img.src = message.content;
+                img.alt = 'User uploaded image';
+                img.classList.add('user-image');
+                messageElement.appendChild(img);
+            } else {
+                messageElement.textContent = message.content;
+            }
+            chatMessages.appendChild(messageElement);
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addMessage(role, content, type = 'text') {
+        chatbotMessages.push({ role, content, type });
+        displayMessages();
+        saveToCookies(chatbotMessages);
+    }
+
+    function showTypingIndicator() {
+        const typingIndicator = document.createElement('div');
+        typingIndicator.classList.add('typing-indicator');
+        typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const typingIndicator = chatMessages.querySelector('.typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    function getLesterLanceBermasInfo(query) {
+        const lowercaseQuery = query.toLowerCase();
+        const info = {
+            name: "Lester Lance Bermas",
+            education: "Technological University of the Philippines Manila",
+            school: "Technological University of the Philippines Manila",
+            university: "Technological University of the Philippines Manila",
+            achievement: "Graduated Magna Cum Laude",
+            profession: "Full Stack Developer",
+            characteristics: "Innovative, detail-oriented, problem-solver, continuous learner",
+            birthDate: "December 8, 2001",
+            role: "Product Engineer at SP MADRID"
+        };
+
+        if (lowercaseQuery.includes("developer of this website") || 
+            lowercaseQuery.includes("programmer of this ai") ||
+            lowercaseQuery.includes("who made this") ||
+            lowercaseQuery.includes("who created this")) {
+            return "Lester Lance Bermas from SP Madrid";
+        }
+
+        if (lowercaseQuery.includes("name of the developer")) {
+            return info.name;
+        }
+
+        if (lowercaseQuery.includes("school of the developer")) {
+            return info.school;
+        }
+
+        if (lowercaseQuery.includes("university of the developer")) {
+            return info.university;
+        }
+
+        if (lowercaseQuery.includes("education?")) {
+            return info.education;
+        }
+
+        if (lowercaseQuery.includes("achievement of the developer")) {
+            return info.achievement;
+        }
+
+        if (lowercaseQuery.includes("achievement?")) {
+            return info.achievement;
+        }
+
+
+        if (lowercaseQuery.includes("profession of the developer")) {
+            return info.profession;
+        }
+
+        if (lowercaseQuery.includes("profession?")) {
+            return info.profession;
+        }
+
+        if (lowercaseQuery.includes("characteristics of the developer")) {
+            return info.characteristics;
+        }
+
+        if (lowercaseQuery.includes("characteristics?")) {
+            return info.characteristics;
+        }
+
+        if (lowercaseQuery.includes("birth date of the developer") || 
+            lowercaseQuery.includes("birthday of the developer") || lowercaseQuery.includes("bday?")) {
+            return info.birthDate;
+        }
+
+        if (lowercaseQuery.includes("role of the developer")) {
+            return info.role;
+        }
+        if (lowercaseQuery.includes("role?")) {
+            return info.role;
+        }
+
+        if (lowercaseQuery.includes("lester lance bermas")) {
+            return `Lester Lance Bermas is the developer of this website. Ask me about specific details like his (education, profession, role, birthday, name, achievement, etc.`;
+        }
+
+        return null;
+    }
+    async function getBotResponse(message, image = null) {
+        const lesterInfo = getLesterLanceBermasInfo(message);
+        if (lesterInfo) {
+            return lesterInfo;
+        }
+
+        try {
+            const response = await geminiApi.sendMessage(message, image);
+            return response;
+        } catch (error) {
+            console.error('Error in getBotResponse:', error);
+            return `I apologize, but I encountered an error while processing your responce. Please try again or contact the developer: ${error.message}`;
+        }
+    }
+
+    contactUsButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        chatbot.style.display = 'flex';
+        if (chatbotMessages.length === 0) {
+            addMessage('bot', "Hi there! I'm an AI created by Lanze, specialized in programming and computer troubleshooting. How can I help you today?");
+        }
+        displayMessages();
     });
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
 
-function addMessage(role, content) {
-    chatbotMessages.push({ role, content });
-    displayMessages();
-    saveToCookies(chatbotMessages);
-}
+    closeChatbot.addEventListener('click', () => {
+        chatbot.style.display = 'none';
+    });
 
-function getBotResponse(message) {
-    message = message.toLowerCase();
-    if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-        return getRandomResponse('greetings');
-    } else if (message.includes('bye') || message.includes('goodbye')) {
-        return getRandomResponse('farewell');
-    } else if (message.includes('code') || message.includes('programming') || message.includes('develop')) {
-        return getRandomResponse('programming');
-    } else if (message.includes('bug') || message.includes('error') || message.includes('doesn\'t work')) {
-        return getRandomResponse('debugging');
-    } else if (message.includes('computer') || message.includes('laptop') || message.includes('pc') || message.includes('mac')) {
-        return getRandomResponse('computer_issues');
-    } else {
-        return getRandomResponse('unknown') + " Remember, I'm specialized in programming and computer troubleshooting, so I might not be much help with other topics.";
+    sendMessage.addEventListener('click', async () => {
+        const message = userInput.value.trim();
+        if (message) {
+            addMessage('user', message);
+            userInput.value = '';
+            showTypingIndicator();
+            try {
+                const response = await getBotResponse(message);
+                removeTypingIndicator();
+                addMessage('bot', response);
+            } catch (error) {
+                console.error('Error in sendMessage:', error);
+                removeTypingIndicator();
+                addMessage('bot', `I apologize, but I encountered an error. Please try again. Error details: ${error.message}`);
+            }
+            displayMessages();
+        }
+    });
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage.click();
+        }
+    });
+
+    imageUpload.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = async function(event) {
+                const imageData = event.target.result;
+                addMessage('user', imageData, 'image');
+                showTypingIndicator();
+                try {
+                    const response = await getBotResponse("Analyze this image", imageData);
+                    removeTypingIndicator();
+                    addMessage('bot', response);
+                } catch (error) {
+                    console.error('Error in image analysis:', error);
+                    removeTypingIndicator();
+                    addMessage('bot', `I apologize, but I encountered an error while analyzing the image. Please try again. Error details: ${error.message}`);
+                }
+                displayMessages();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Initial load of messages
+    if (chatbotMessages.length > 0) {
+        displayMessages();
     }
-}
-
-contactUsButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    chatbot.style.display = 'flex';
-    if (chatbotMessages.length === 0) {
-        addMessage('bot', getRandomResponse('greetings') + " Just a friendly reminder, I'm an AI specialized in programming and computer troubleshooting. How can I assist you today?");
-    }
-    displayMessages();
-});
-
-closeChatbot.addEventListener('click', () => {
-    chatbot.style.display = 'none';
-});
-
-sendMessage.addEventListener('click', () => {
-    const message = userInput.value.trim();
-    if (message) {
-        addMessage('user', message);
-        userInput.value = '';
-        setTimeout(() => {
-            addMessage('bot', getBotResponse(message));
-        }, 500);
-    }
-});
-
-userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendMessage.click();
-    }
-});
-
-// Initial load of messages
-if (chatbotMessages.length > 0) {
-    displayMessages();
-}
 </script>
-
     <script src="script.js"></script>
     <script src="popup.js"></script>
     <script src="script.js"></script>
