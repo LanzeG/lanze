@@ -1803,12 +1803,12 @@
   </div>
   <div class="lanze_chatbot_2023_messages" id="chatMessages"></div>
   <div class="lanze_chatbot_2023_input">
-      <label for="imageUpload" class="image-upload-label">
+      <!-- <label for="imageUpload" class="image-upload-label">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
           </svg>
-      </label>
-      <input type="file" id="imageUpload" accept="image/*">
+      </label> -->
+      <!-- <input type="file" id="imageUpload" accept="image/*"> -->
       <input type="text" id="userInput" placeholder="Type your message...">
       <button id="sendMessage">Send</button>
   </div>
@@ -1903,47 +1903,47 @@
         }
 
         async analyzeImage(image, message) {
-        try {
-            const base64Image = image.split(',')[1];
-            const response = await fetch(`${this.SaaS}?key=${this.html}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    contents: [
-                        {
-                            parts: [
-                                {
-                                    text: "Analyze this image and describe its contents in detail."
-                                },
-                                {
-                                    inline_data: {
-                                        mime_type: "image/jpeg",
-                                        data: base64Image
+            try {
+                const base64Image = image.split(',')[1];
+                const response = await fetch(`${this.SaaS}?key=${this.html}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                parts: [
+                                    {
+                                        text: "Analyze this image and describe its contents in detail."
+                                    },
+                                    {
+                                        inline_data: {
+                                            mime_type: "image/jpeg",
+                                            data: base64Image
+                                        }
                                     }
-                                }
-                            ]
-                        }
-                    ]
-                })
-            });
+                                ]
+                            }
+                        ]
+                    })
+                });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
-            const data = await response.json();
-            if (!data.candidates || data.candidates.length === 0) {
-                throw new Error('No response from the API');
+                const data = await response.json();
+                if (!data.candidates || data.candidates.length === 0) {
+                    throw new Error('No response from the API');
+                }
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error('Error in analyzeImage:', error);
+                throw error;
             }
-            return data.candidates[0].content.parts[0].text;
-        } catch (error) {
-            console.error('Error in analyzeImage:', error);
-            throw error;
         }
     }
-}
 
     const chatbot = document.getElementById('chatbot');
     const chatMessages = document.getElementById('chatMessages');
