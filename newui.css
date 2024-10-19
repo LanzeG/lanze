@@ -915,8 +915,8 @@ body {
   position: fixed;
   left: 20px;
   right: 20px;
-  background-color: #f8f8f8;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
   border-radius: 8px;
   padding: 20px;
   z-index: 1005;
