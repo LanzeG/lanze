@@ -459,7 +459,7 @@ async function exampleUsage() {
     if (currentCount === targetCount) {
       clearInterval(animationInterval);
     }
-  }, 100); // Adjust the animation speed here
+  }, 30); // Adjust the animation speed here
 }
 
 exampleUsage();
