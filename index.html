@@ -738,11 +738,14 @@
                         </ul>
                     </div>
                     <div class="ivy_footer_2023_column ivy_footer_2023_newsletter">
-                        <h3>Interested how to execute your ideas with Lanze?</h3>
-                        <form class="ivy_footer_2023_newsletter_form">
-                            <input type="email" placeholder="Enter your email" class="ivy_footer_2023_newsletter_input"
-                                required>
-                            <button type="submit" class="ivy_footer_2023_newsletter_button">Send →</button>
+                        <h3>Interested in how to execute your ideas with Lanze?</h3>
+                        <form action="https://api.web3forms.com/submit" method="POST" class="ivy_footer_2023_newsletter_form">
+                            <input type="hidden" name="access_key" value="f543ee2a-4892-4e19-99a7-46f5d464868c">
+                            <label for="email" class="sr-only">Email address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" class="ivy_footer_2023_newsletter_input" required>
+                            <button type="submit" class="ivy_footer_2023_newsletter_button">
+                                Send <span aria-hidden="true">→</span>
+                            </button>
                         </form>
                     </div>
                 </div>
