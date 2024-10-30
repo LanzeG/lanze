@@ -1,0 +1,42 @@
+<div id="location-container" style="font-family: Arial, sans-serif; padding: 10px;">
+  <button onclick="getLocation()" style="padding: 5px 10px; margin-bottom: 10px;">Get Location</button>
+  <div id="coordinates" style="font-family: monospace; font-size: 16px; margin-top: 10px;"></div>
+  <div id="status-message" style="margin-top: 10px; font-size: 14px;"></div>
+</div>
+
+<script>
+function getLocation() {
+  var coordinatesDiv = document.getElementById('coordinates');
+  var statusMessage = document.getElementById('status-message');
+
+  function updateStatus(message) {
+    statusMessage.textContent = message;
+  }
+
+  updateStatus('Fetching your location...');
+
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude.toFixed(6);
+      var lng = position.coords.longitude.toFixed(6);
+      
+      coordinatesDiv.textContent = `${lat}, ${lng}`;
+      updateStatus('Location fetched successfully');
+    }, function(error) {
+      updateStatus('Error: ' + error.message);
+      coordinatesDiv.textContent = '';
+      
+      if (error.code === 1) {
+        updateStatus('Permission denied. Please allow location access in your browser settings.');
+      }
+    }, {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    });
+  } else {
+    updateStatus('Geolocation is not supported by your browser');
+    coordinatesDiv.textContent = '';
+  }
+}
+</script>
