@@ -419,10 +419,10 @@ function embedVismeForm() {
 
 async function fetchKeyCount() {
   try {
-    const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
+    const response = await fetch('https://api.jsonbin.io/v3/b/6722c991e41b4d34e44b993e', {
       method: 'GET',
       headers: {
-        'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
+        'X-Master-Key': '$2a$10$2pPl9TwYcFIst5KzUDs/UOkjyAQsPAgohEJffeEf5bC5h2zGAitRi'
       }
     });
 
