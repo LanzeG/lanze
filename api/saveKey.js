@@ -18,10 +18,10 @@ export default async (req, res) => {
 async function updateVisitCount(generatedKey, ip, geolocation) {
   try {
     // Fetch the existing data from the JSON file
-    const response = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', {
+    const response = await fetch('https://api.jsonbin.io/v3/b/6722c991e41b4d34e44b993e', {
       method: 'GET',
       headers: {
-        'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
+        'X-Master-Key': '$2a$10$2pPl9TwYcFIst5KzUDs/UOkjyAQsPAgohEJffeEf5bC5h2zGAitRi'
       }
     });
 
@@ -58,13 +58,13 @@ async function updateVisitCount(generatedKey, ip, geolocation) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'X-Master-Key': '$2a$10$RIBk7Eb2nSMdrVUxf6KZVumd.l6WiMDM.dOeas7o1uteZMLORqGe6'
+          'X-Master-Key': '$2a$10$2pPl9TwYcFIst5KzUDs/UOkjyAQsPAgohEJffeEf5bC5h2zGAitRi'
         },
         body: JSON.stringify(data),
       };
 
       // Send PUT request to update the JSON file with the new visitor list
-      const putResponse = await fetch('https://api.jsonbin.io/v3/b/664170abad19ca34f86892d0', putOptions);
+      const putResponse = await fetch('https://api.jsonbin.io/v3/b/6722c991e41b4d34e44b993e', putOptions);
 
       if (!putResponse.ok) {
         throw new Error('Failed to append key to JSON: ' + putResponse.statusText);
