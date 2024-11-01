@@ -110,17 +110,6 @@ body {
     padding: 0;
 }
 
-.nav-links {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: right; /* Align links to the right */
-}
-
-.nav-links li {
-    display: inline;
-    margin-left: 20px;
-}
 
 .btns {
     text-align: center;
@@ -179,27 +168,6 @@ body {
         height: 40px;
         margin-bottom: 10px; /* Reduce margin for smaller screens */
     }
-
-    .nav-links {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .nav-links li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .bot-icon {
-        bottom: 10px;
-        right: 10px;
-    }
-
-    .bot-icon img {
-        width: 80px;
-        height: 40px;
-    }
-
     .content-section {
         margin: 20px 10px; /* Adjust margins for smaller screens */
     }
