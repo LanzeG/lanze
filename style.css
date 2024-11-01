@@ -202,55 +202,9 @@ h1{
 /* DESKTOP NAV */
 
 
-nav,
-.nav-links {
-  display: flex;
-  
-}
-
-nav {
-  justify-content: space-around;
-  
-  align-items: center;
-  height: 10vh;
-  border-bottom: 1px solid rgb(155, 154, 154);
-}
-nav .logo{
-  margin-right: 30rem;
-}
-/* Responsive adjustments */
-@media screen and (max-width: 1200px) {
-  nav .logo1{
-    margin-left: -16rem;
-  }
-}
-@media screen and (max-width: 980px) {
-  nav .logo1{
-    margin-left: -12rem;
-  }
-}
-@media screen and (max-width: 768px) {
-  nav {
-    justify-content: space-between;
-    align-items: center;
-    height: 7vh;
-    border-bottom: 1px solid rgb(155, 154, 154);
-  }
-
-  nav .logo1{
-    margin-left: 2rem;
-  }
-  nav .hamburger-icon{
-    margin-right: 2rem;
-  }
-}
 
 
-.nav-links {
-  gap: 4rem;
-  list-style: none;
-  font-size: medium;
-}
+
 
 a {
   color: black;
