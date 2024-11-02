@@ -525,3 +525,222 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+const mdbEditor = ace.edit("mdb-editor");
+mdbEditor.setTheme("ace/theme/textmate");
+
+const mdbLanguageSelect = document.getElementById('mdb-language-select');
+const mdbChallengeDiv = document.getElementById('mdb-challenge');
+const mdbSubmitBtn = document.getElementById('mdb-submit-btn');
+const mdbTryAgainBtn = document.getElementById('mdb-try-again-btn');
+const mdbHintBtn = document.getElementById('mdb-hint-btn');
+const mdbResultDiv = document.getElementById('mdb-result');
+
+const mdbChallenges = {
+    python: [
+        {
+            question: "Write a function that returns the sum of two numbers.",
+            initialCode: "def sum_two_numbers(a, b):\n    # Your code here\n    pass\n\n# Test your function\nprint(sum_two_numbers(3, 4))",
+            solution: "def sum_two_numbers(a, b):\n    return a + b\n\n# Test your function\nprint(sum_two_numbers(3, 4))"
+        },
+        {
+            question: "Create a Flask route that returns 'Hello, World!' when accessed.",
+            initialCode: "from flask import Flask\n\napp = Flask(__name__)\n\n# Your code here\n\nif __name__ == '__main__':\n    app.run(debug=True)",
+            solution: "from flask import Flask\n\napp = Flask(__name__)\n\n@app.route('/')\ndef hello_world():\n    return 'Hello, World!'\n\nif __name__ == '__main__':\n    app.run(debug=True)"
+        },
+        {
+            question: "Write a function to check if a number is prime.",
+            initialCode: "def is_prime(n):\n    # Your code here\n    pass\n\n# Test your function\nprint(is_prime(17))\nprint(is_prime(4))",
+            solution: "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\n# Test your function\nprint(is_prime(17))\nprint(is_prime(4))"
+        },
+        {
+            question: "Create a decorator that measures the execution time of a function.",
+            initialCode: "import time\n\n# Your decorator code here\n\n@measure_time\ndef slow_function():\n    time.sleep(2)\n\nslow_function()",
+            solution: "import time\n\ndef measure_time(func):\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        end = time.time()\n        print(f'{func.__name__} took {end - start:.2f} seconds')\n        return result\n    return wrapper\n\n@measure_time\ndef slow_function():\n    time.sleep(2)\n\nslow_function()"
+        }
+    ],
+    javascript: [
+        {
+            question: "Write a function that returns the sum of two numbers.",
+            initialCode: "function sumTwoNumbers(a, b) {\n    // Your code here\n}\n\n// Test your function\nconsole.log(sumTwoNumbers(3, 4));",
+            solution: "function sumTwoNumbers(a, b) {\n    return a + b;\n}\n\n// Test your function\nconsole.log(sumTwoNumbers(3, 4));"
+        },
+        {
+            question: "Create an Express route that returns 'Hello, World!' when accessed.",
+            initialCode: "const express = require('express');\nconst app = express();\n\n// Your code here\n\napp.listen(3000, () => console.log('Server running on port 3000'));",
+            solution: "const express = require('express');\nconst app = express();\n\napp.get('/', (req, res) => {\n    res.send('Hello, World!');\n});\n\napp.listen(3000, () => console.log('Server running on port 3000'));"
+        },
+        {
+            question: "Write a function to check if a string is a palindrome.",
+            initialCode: "function isPalindrome(str) {\n    // Your code here\n}\n\n// Test your function\nconsole.log(isPalindrome('racecar'));\nconsole.log(isPalindrome('hello'));",
+            solution: "function isPalindrome(str) {\n    const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');\n    return cleanStr === cleanStr.split('').reverse().join('');\n}\n\n// Test your function\nconsole.log(isPalindrome('racecar'));\nconsole.log(isPalindrome('hello'));"
+        },
+        {
+            question: "Implement a debounce function.",
+            initialCode: "function debounce(func, delay) {\n    // Your code here\n}\n\n// Usage\nconst debouncedLog = debounce(() => console.log('Debounced'), 1000);\ndebouncedLog();\ndebouncedLog();\ndebouncedLog();",
+            solution: "function debounce(func, delay) {\n    let timeoutId;\n    return function (...args) {\n        clearTimeout(timeoutId);\n        timeoutId = setTimeout(() => func.apply(this, args), delay);\n    };\n}\n\n// Usage\nconst debouncedLog = debounce(() => console.log('Debounced'), 1000);\ndebouncedLog();\ndebouncedLog();\ndebouncedLog();"
+        }
+    ],
+    java: [
+        {
+            question: "Write a method that returns the sum of two integers.",
+            initialCode: "public class Solution {\n    public static int sumTwoNumbers(int a, int b) {\n        // Your code here\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(sumTwoNumbers(3, 4));\n    }\n}",
+            solution: "public class Solution {\n    public static int sumTwoNumbers(int a, int b) {\n        return a + b;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(sumTwoNumbers(3, 4));\n    }\n}"
+        },
+        {
+            question: "Create a Spring Boot controller that returns 'Hello, World!' when accessed.",
+            initialCode: "import org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\nimport org.springframework.web.bind.annotation.RestController;\n\n@SpringBootApplication\n@RestController\npublic class HelloWorldApplication {\n\n    public static void main(String[] args) {\n        SpringApplication.run(HelloWorldApplication.class, args);\n    }\n\n    // Your code here\n}",
+            solution: "import org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\n@SpringBootApplication\n@RestController\npublic class HelloWorldApplication {\n\n    public static void main(String[] args) {\n        SpringApplication.run(HelloWorldApplication.class, args);\n    }\n\n    @GetMapping(\"/\")\n    public String hello() {\n        return \"Hello, World!\";\n    }\n}"
+        },
+        {
+            question: "Implement a method to reverse a string.",
+            initialCode: "public class StringReverser {\n    public static String reverseString(String str) {\n        // Your code here\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        System.out.println(reverseString(\"Hello, World!\"));\n    }\n}",
+            solution: "public class StringReverser {\n    public static String reverseString(String str) {\n        return new StringBuilder(str).reverse().toString();\n    }\n\n    public static void main(String[] args) {\n        System.out.println(reverseString(\"Hello, World!\"));\n    }\n}"
+        },
+        {
+            question: "Create a generic method to find the maximum element in an array.",
+            initialCode: "public class MaxFinder {\n    public static <T extends Comparable<T>> T findMax(T[] array) {\n        // Your code here\n        return null;\n    }\n\n    public static void main(String[] args) {\n        Integer[] intArray = {3, 7, 2, 5, 1, 9};\n        System.out.println(findMax(intArray));\n\n        String[] strArray = {\"apple\", \"banana\", \"cherry\", \"date\"};\n        System.out.println(findMax(strArray));\n    }\n}",
+            solution: "public class MaxFinder {\n    public static <T extends Comparable<T>> T findMax(T[] array) {\n        if (array == null || array.length == 0) {\n            return null;\n        }\n        T max = array[0];\n        for (int i = 1; i < array.length; i++) {\n            if (array[i].compareTo(max) > 0) {\n                max = array[i];\n            }\n        }\n        return max;\n    }\n\n    public static void main(String[] args) {\n        Integer[] intArray = {3, 7, 2, 5, 1, 9};\n        System.out.println(findMax(intArray));\n\n        String[] strArray = {\"apple\", \"banana\", \"cherry\", \"date\"};\n        System.out.println(findMax(strArray));\n    }\n}"
+        }
+    ],
+    csharp: [
+        {
+            question: "Write a method that returns the sum of two integers.",
+            initialCode: "public class Solution\n{\n    public static int SumTwoNumbers(int a, int b)\n    {\n        // Your code here\n        return 0;\n    }\n\n    public static void Main(string[] args)\n    {\n        Console.WriteLine(SumTwoNumbers(3, 4));\n    }\n}",
+            solution: "public class Solution\n{\n    public static int SumTwoNumbers(int a, int b)\n    {\n        return a + b;\n    }\n\n    public static void Main(string[] args)\n    {\n        Console.WriteLine(SumTwoNumbers(3, 4));\n    }\n}"
+        },
+        {
+            question: "Create an ASP.NET Core controller that returns 'Hello, World!' when accessed.",
+            initialCode: "using Microsoft.AspNetCore.Mvc;\n\nnamespace HelloWorld.Controllers\n{\n    [ApiController]\n    [Route(\"/\")]\n    public class HelloController : ControllerBase\n    {\n        // Your code here\n    }\n}",
+            solution: "using Microsoft.AspNetCore.Mvc;\n\nnamespace HelloWorld.Controllers\n{\n    [ApiController]\n    [Route(\"/\")]\n    public class HelloController : ControllerBase\n    {\n        [HttpGet]\n        public string Get()\n        {\n            return \"Hello, World!\";\n        }\n    }\n}"
+        },
+        {
+            question: "Implement a LINQ query to find all even numbers in a list.",
+            initialCode: "using System;\nusing System.Linq;\nusing System.Collections.Generic;\n\npublic class Program\n{\n    public static void Main()\n    {\n        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\n        \n        // Your LINQ query here\n        var evenNumbers = numbers;\n        \n        foreach (var num in evenNumbers)\n        {\n            Console.WriteLine(num);\n        }\n    }\n}",
+            solution: "using System;\nusing System.Linq;\nusing System.Collections.Generic;\n\npublic class Program\n{\n    public static void Main()\n    {\n        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\n        \n        var evenNumbers = numbers.Where(n => n % 2 == 0);\n        \n        foreach (var num in evenNumbers)\n        {\n            Console.WriteLine(num);\n        }\n    }\n}"
+        },
+        {
+            question: "Create a generic method to swap two values.",
+            initialCode: "using System;\n\npublic class Swapper\n{\n    public static void Swap<T>(ref T a, ref T b)\n    {\n        // Your code here\n    }\n\n    public static void Main()\n    {\n        int x = 5, y = 10;\n        Console.WriteLine($\"Before swap: x = {x}, y = {y}\");\n        Swap(ref x, ref y);\n        Console.WriteLine($\"After swap: x = {x}, y = {y}\");\n\n        string s1 = \"Hello\", s2 = \"World\";\n        Console.WriteLine($\"Before swap: s1 = {s1}, s2 = {s2}\");\n        Swap(ref s1, ref s2);\n        Console.WriteLine($\"After swap: s1 = {s1}, s2 = {s2}\");\n    }\n}",
+            solution: "using System;\n\npublic class Swapper\n{\n    public static void Swap<T>(ref T a, ref T b)\n    {\n        T temp = a;\n        a = b;\n        b = temp;\n    }\n\n    public static void Main()\n    {\n        int x = 5, y = 10;\n        Console.WriteLine($\"Before swap: x = {x}, y = {y}\");\n        Swap(ref x, ref y);\n        Console.WriteLine($\"After swap: x = {x}, y = {y}\");\n\n        string s1 = \"Hello\", s2 = \"World\";\n        Console.WriteLine($\"Before swap: s1 = {s1}, s2 = {s2}\");\n        Swap(ref s1, ref s2);\n        Console.WriteLine($\"After swap: s1 = {s1}, s2 = {s2}\");\n    }\n}"
+        }
+    ],
+    ruby: [
+        {
+            question: "Write a method that returns the sum of two numbers.",
+            initialCode: "def sum_two_numbers(a, b)\n  # Your code here\nend\n\n# Test your method\nputs sum_two_numbers(3, 4)",
+            solution: "def sum_two_numbers(a, b)\n  a + b\nend\n\n# Test your method\nputs sum_two_numbers(3, 4)"
+        },
+        {
+            question: "Create a Sinatra route that returns 'Hello, World!' when accessed.",
+            initialCode: "require 'sinatra'\n\n# Your code here",
+            solution: "require 'sinatra'\n\nget '/' do\n  'Hello, World!'\nend"
+        },
+        {
+            question: "Implement a method to check if a number is prime.",
+            initialCode: "def prime?(number)\n  # Your code here\nend\n\n# Test your method\nputs prime?(17)\nputs prime?(4)",
+            solution: "def prime?(number)\n  return false if number <= 1\n  (2..Math.sqrt(number)).none? { |i| number % i == 0 }\nend\n\n# Test your method\nputs prime?(17)\nputs prime?(4)"
+        },
+        {
+            question: "Create a class method to reverse a string.",
+            initialCode: "class String\n  def self.reverse(str)\n    # Your code here\n  end\nend\n\n# Test your method\nputs String.reverse(\"Hello, World!\")",
+            solution: "class String\n  def self.reverse(str)\n    str.chars.reverse.join\n  end\nend\n\n# Test your method\nputs String.reverse(\"Hello, World!\")"
+        }
+    ]
+};
+
+let mdbCurrentChallenge;
+let mdbIsAnswerRevealed = false;
+
+function mdbSetLanguage(language) {
+    mdbEditor.session.setMode(`ace/mode/${language}`);
+    const availableChallenges = mdbChallenges[language].filter(c => c !== mdbCurrentChallenge);
+    mdbCurrentChallenge = availableChallenges[Math.floor(Math.random() * availableChallenges.length)];
+    mdbChallengeDiv.textContent = mdbCurrentChallenge.question;
+    mdbEditor.setValue(mdbCurrentChallenge.initialCode);
+    mdbEditor.clearSelection();
+    mdbResultDiv.style.display = "none";
+    mdbIsAnswerRevealed = false;
+    mdbUpdateButtons();
+}
+
+function mdbUpdateButtons() {
+    if (mdbIsAnswerRevealed) {
+        mdbSubmitBtn.style.display = "none";
+        mdbTryAgainBtn.style.display = "block";
+    } else {
+        mdbSubmitBtn.style.display = "block";
+        mdbTryAgainBtn.style.display = "none";
+    }
+}
+
+function mdbSubmitAnswer() {
+    const userCode = mdbEditor.getValue();
+    const solution = mdbCurrentChallenge.solution;
+
+    if (userCode.replace(/\s/g, '') === solution.replace(/\s/g, '')) {
+        mdbResultDiv.textContent = "Correct! Well done!";
+        mdbResultDiv.className = "success";
+    } else {
+        mdbResultDiv.textContent = "Not quite right. Try again or use the hint button to see the solution.";
+        mdbResultDiv.className = "error";
+    }
+    mdbResultDiv.style.display = "block";
+}
+
+function mdbRevealAnswer() {
+    mdbEditor.setValue(mdbCurrentChallenge.solution);
+    mdbEditor.clearSelection();
+    mdbResultDiv.textContent = "Answer revealed. Study the solution and try to understand it!";
+    mdbResultDiv.className = "success";
+    mdbResultDiv.style.display = "block";
+    mdbIsAnswerRevealed = true;
+
+    mdbEditor.getSession().addMarker(new ace.Range(0, 0, mdbEditor.getSession().getLength(), 0), "mdb-revealed-answer", "fullLine");
+    mdbEditor.getSession().setMode("ace/mode/" + mdbLanguageSelect.value);
+    
+    mdbUpdateButtons();
+}
+
+function mdbTryAgain() {
+    mdbSetLanguage(mdbLanguageSelect.value);
+}
+
+mdbLanguageSelect.addEventListener('change', (e) => mdbSetLanguage(e.target.value));
+mdbSubmitBtn.addEventListener('click', mdbSubmitAnswer);
+mdbHintBtn.addEventListener('click', mdbRevealAnswer);
+mdbTryAgainBtn.addEventListener('click', mdbTryAgain);
+
+// Initialize with Python
+mdbSetLanguage('python');
+const modal = document.getElementById('thankYouModal');
+const closeBtn = document.getElementsByClassName('close')[0];
+let selectedPlan = '';
+
+function showModal(plan) {
+    selectedPlan = plan;
+    const message = plan === 'Custom Website' 
+        ? 'Thank you for your interest in our Custom Website solution. Our team will contact you shortly to discuss your specific needs.'
+        : `Thank you for choosing our ${plan} package. We'll be in touch soon to start your project!`;
+    
+    document.getElementById('modalMessage').textContent = message;
+    modal.style.display = 'block';
+}
+
+function sendEmail() {
+    const email = 'bermas.lester10@gmail.com';
+    const subject = encodeURIComponent(`Inquiry about ${selectedPlan} package`);
+    const body = encodeURIComponent(`I'm interested in the ${selectedPlan} package. Please provide more information.`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    modal.style.display = 'none';
+}
+
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
