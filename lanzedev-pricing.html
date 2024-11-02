@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Services Pricing</title>
+    <style>
+        :root {
+            --primary-color: #00ed64;
+            --primary-hover: #00c454;
+            --text-color: #1a1a1a;
+            --background-light: #f7f7f7;
+            --card-background: #ffffff;
+            --border-color: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Poppins, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-light);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding: 2rem;
+        }
+
+        .pricing-container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .pricing-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .promo-banner {
+            background: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .popular-tag {
+            background: #e6f9f1;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .plan-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #666;
+        }
+
+        .billing-cycle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-rates {
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-rates h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #000;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background: #333;
+        }
+
+        .learn-more {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .learn-more:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-container {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+
+        .custom-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .popup-icon {
+            font-size: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .popup-title {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .popup-message {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-email {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-button {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-button:hover {
+            background-color: var(--primary-hover);
+        }
+    </style>
+</head>
+<body>
+    <div id="customPopup" class="custom-popup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <div class="popup-icon">🎉</div>
+            <h2 class="popup-title">Thank You!</h2>
+            <p class="popup-message"></p>
+            <p class="popup-email">bermas.lester10@gmail.com</p>
+            <button class="popup-button">Send Email</button>
+        </div>
+    </div>
+    <div class="back" style="margin-top: 10px;">
+       <a href="index.html#home" style="color: #001e2b;">  &#129192;Go back</a>
+    </div>
+    <div class="pricing-container">
+        <!-- Business Website Package -->
+        <div class="pricing-card">
+            <div class="promo-banner">10% off for first-time clients</div>
+            <div class="card-content">
+                <div class="plan-name">
+                    Business Website
+                    <span class="popular-tag">Most Popular</span>
+                </div>
+                <p class="plan-description">Professional online presence for your business</p>
+                <div class="price">₱75,000<span> one-time</span></div>
+                <div class="billing-cycle">3-4 weeks delivery</div>
+                
+                <div class="card-rates">
+                    <h3>Website type</h3>
+                    <p>Responsive, up to 10 pages</p>
+                </div>
+
+                <h3>What's included</h3>
+                <ul class="feature-list">
+                    <li>Custom design</li>
+                    <li>Mobile-friendly layout</li>
+                    <li>Content Management System (CMS)</li>
+                    <li>Contact form and Google Maps integration</li>
+                    <li>Basic SEO optimization</li>
+                    <li>Social media integration</li>
+                    <li>1 month of support and training</li>
+                </ul>
+
+                <a href="#" class="cta-button">Get started</a>
+            </div>
+        </div>
+
+        <!-- POS System Package -->
+        <div class="pricing-card">
+            <div class="promo-banner">Free hardware setup included</div>
+            <div class="card-content">
+                <div class="plan-name">POS System</div>
+                <p class="plan-description">Streamline your sales and inventory</p>
+                <div class="price">₱150,000<span> one-time</span></div>
+                <div class="billing-cycle">6-8 weeks delivery</div>
+                
+                <div class="card-rates">
+                    <h3>System type</h3>
+                    <p>Custom POS with hardware integration</p>
+                </div>
+
+                <h3>What's included</h3>
+                <ul class="feature-list">
+                    <li>Custom POS software development</li>
+                    <li>Inventory management system</li>
+                    <li>Sales reporting and analytics</li>
+                    <li>Employee management and time tracking</li>
+                    <li>Customer database and loyalty program</li>
+                    <li>Hardware setup (1 terminal included)</li>
+                    <li>3 months of support and updates</li>
+                </ul>
+
+                <a href="#" class="cta-button">Get started</a>
+            </div>
+        </div>
+
+        <!-- RPA Solution Package -->
+        <div class="pricing-card">
+            <div class="promo-banner">Includes 1-year maintenance</div>
+            <div class="card-content">
+                <div class="plan-name">RPA Solution</div>
+                <p class="plan-description">Automate your business processes</p>
+                <div class="price">₱250,000<span> one-time</span></div>
+                <div class="billing-cycle">8-12 weeks delivery</div>
+                
+                <div class="card-rates">
+                    <h3>Automation type</h3>
+                    <p>Custom RPA for your specific needs</p>
+                </div>
+
+                <h3>What's included</h3>
+                <ul class="feature-list">
+                    <li>Process analysis and optimization</li>
+                    <li>Custom RPA software development</li>
+                    <li>Integration with existing systems</li>
+                    <li>Automated data entry and processing</li>
+                    <li>Workflow automation</li>
+                    <li>Reporting and analytics dashboard</li>
+                    <li>Staff training and documentation</li>
+                    <li>1 year of support and maintenance</li>
+                </ul>
+
+                <a href="#" class="cta-button">Get started</a>
+            </div>
+        </div>
+
+        <!-- Custom Website Solution -->
+        <div class="pricing-card">
+            <div class="promo-banner">Tailored to your specific requirements</div>
+            <div class="card-content">
+                <div class="plan-name">Custom Website</div>
+                <p class="plan-description">For unique and complex projects</p>
+                <div class="price">Custom<span> pricing</span></div>
+                <div class="billing-cycle">Timeline varies</div>
+                
+                <div class="card-rates">
+                    <h3>Project scope</h3>
+                    <p>Fully customized to your needs</p>
+                </div>
+
+                <h3>Potential features</h3>
+                <ul class="feature-list">
+                    <li>Complex web applications</li>
+                    <li>E-commerce solutions</li>
+                    <li>AI/ML integration</li>
+                    <li>IoT and real-time data processing</li>
+                    <li>Advanced security measures</li>
+                    <li>High-performance optimizations</li>
+                    <li>Third-party API integrations</li>
+                    <li>Scalable cloud architecture</li>
+                </ul>
+
+                <a href="#" class="cta-button">Get in touch</a>
+                <a href="#" class="learn-more">Learn more</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add hover effect to pricing cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('mouseover', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseout', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Custom Popup functionality
+        const customPopup = document.getElementById('customPopup');
+        const popupMessage = customPopup.querySelector('.popup-message');
+        const popupClose = customPopup.querySelector('.popup-close');
+        const popupButton = customPopup.querySelector('.popup-button');
+
+        function showPopup(message, plan) {
+            popupMessage.textContent = message;
+            customPopup.style.display = 'flex';
+            
+            popupButton.onclick = () => {
+                window.location.href = `mailto:bermas.lester10@gmail.com?subject=Inquiry about ${plan} package`;
+            };
+        }
+
+        popupClose.onclick = () => {
+            customPopup.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target == customPopup) {
+                customPopup.style.display = 'none';
+            }
+        };
+
+        // Add click handlers for CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const plan = e.target.closest('.pricing-card').querySelector('.plan-name').textContent.trim();
+                let message;
+                if (plan === 'Custom Website') {
+                    message = 'Thank you for your interest in our Custom Website solution. Our team will contact you shortly to discuss your specific needs.';
+                } else {
+                    message = `Thank you for choosing our ${plan} package. We'll be in touch soon to start your project!`;
+                }
+                showPopup(message, plan);
+            });
+        });
+    </script>
+</body>
+</html>
