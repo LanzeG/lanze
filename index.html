@@ -82,13 +82,30 @@
     <!-- MongoDB-style Navbar -->
     <nav class="mdb-navbar">
         <div class="mdb-navbar-container">
-            <a href="#" class="mdb-logo">
-                <svg viewBox="0 0 16 16" class="mdb-logo-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M7.022 13.934h1.596c.125-.766.227-1.524.302-2.275h.016c.561 1.092 1.526 2.275 2.618 2.275h.842c-1.071-1.142-2.618-3.627-2.618-6.23 0-2.166.576-3.496 1.541-4.848h-.882c-.787.993-1.27 2.119-1.501 3.228h-.016a39.46 39.46 0 0 0-.302-3.228H7.022c.125.766.227 1.524.302 2.275h-.016C6.747 4.039 5.782 2.856 4.69 2.856h-.842c1.071 1.142 2.618 3.627 2.618 6.23 0 2.166-.576 3.496-1.541 4.848h.882c.787-.993 1.27-2.119 1.501-3.228h.016c.075.751.177 1.509.302 2.275l-.604.953z"
-                        fill="currentColor" />
+            <a href="#" class="mdb-logo" style="margin-left: 1%;">
+                <svg width="45%" height="45%" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00ED64;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#13AA52;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M20 40L40 20L35 15L10 40L35 65L40 60L20 40Z" fill="url(#greenGradient)" stroke="#001E2B"
+                        stroke-width="2" />
+                    <path d="M70 40L50 60L55 65L80 40L55 15L50 20L70 40Z" fill="url(#greenGradient)" stroke="#001E2B"
+                        stroke-width="2" />
+                    <rect x="42" y="25" width="6" height="30" fill="#00ED64" rx="2" stroke="#001E2B" stroke-width="2">
+                        <animate attributeName="opacity" values="1;0;1" dur="1.5s" repeatCount="indefinite" />
+                    </rect>
+                    <text x="100" y="48" fill="#001E2B" class="logo-text"
+                        style="font-family: 'Euclid Circular A', 'Helvetica Neue', sans-serif; font-weight: 600; font-size: 36px;">Lanze</text>
+                    <text x="102" y="68" fill="#00684A" class="logo-subtext"
+                        style="font-family: 'Euclid Circular A', 'Helvetica Neue', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.1em;">DEV
+                        SOLUTIONS</text>
+                    <circle class="circle2" cx="220" cy="45" r="5" fill="url(#greenGradient)" stroke="#001E2B"
+                        stroke-width="1.5" />
                 </svg>
-                <span class="mdb-logo-text">LanzeDev.</span>
             </a>
             <ul class="mdb-nav-items">
                 <li class="mdb-nav-item">
@@ -378,7 +395,7 @@
                     </div>
                 </li>
                 <li class="mdb-nav-item">
-                    <a href="#" class="mdb-nav-link">Pricing</a>
+                    <a href="lanzedev-pricing.html" class="mdb-nav-link">Pricing</a>
                 </li>
             </ul>
             <div class="mdb-mobile-menu">
@@ -403,7 +420,7 @@
                 Back
             </button>
             <div class="mdb-mobile-header-actions">
-                
+
                 <button class="mdb-mobile-close" id="mdbMobileCloseBtn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 18L18 6M6 6l12 12" />
@@ -411,7 +428,7 @@
                 </button>
             </div>
         </div>
-        
+
         <div class="mdb-mobile-menu-content-inner">
             <!-- Main Menu -->
             <div class="mdb-mobile-menu-main">
@@ -420,7 +437,8 @@
                         <div class="mdb-mobile-item-content">
                             <h4>About</h4>
                         </div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 10px;">
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </a>
@@ -428,7 +446,8 @@
                         <div class="mdb-mobile-item-content">
                             <h4>Resources</h4>
                         </div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 10px;">
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </a>
@@ -436,7 +455,8 @@
                         <div class="mdb-mobile-item-content">
                             <h4>Solutions</h4>
                         </div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 10px;">
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </a>
@@ -444,38 +464,49 @@
                         <div class="mdb-mobile-item-content">
                             <h4>Contact</h4>
                         </div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 10px;">
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </a>
-                    <a href="#" class="mdb-mobile-item">
+                    <a href="#" class="mdb-mobile-item" data-submenu="pricing">
                         <div class="mdb-mobile-item-content">
                             <h4>Pricing</h4>
                         </div>
                     </a>
                     <a href="#" class="mdb-mobile-item">
-                        <div class="mdb-mobile-item-content">
+                        <div class="mdb-mobile-item-content" data-submenu="support">
                             <h4>Support</h4>
+                        </div>
+                    </a>
+                    <a href="#" class="mdb-mobile-item" data-submenu="Practice">
+                        <div class="mdb-mobile-item-content">
+                            <h4>Practice with Lanze</h4>
                         </div>
                     </a>
                     <a href="#" class="mdb-mobile-item" data-submenu="language">
                         <div class="mdb-mobile-item-content">
                             <div class="mdb-mobile-language">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
-                                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                    <path
+                                        d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                    </path>
                                 </svg>
                                 <span>English</span>
                             </div>
                         </div>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 10px;">
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </a>
                 </div>
             </div>
-    
+
             <!-- About Submenu -->
+
             <div class="mdb-mobile-submenu" id="about">
                 <div class="mdb-mobile-section">
                     <h3 class="mdb-mobile-section-title">PLATFORM</h3>
@@ -517,13 +548,14 @@
                         </div>
                     </a>
                 </div>
-    
+
                 <div class="mdb-mobile-section">
                     <h3 class="mdb-mobile-section-title">SELF MANAGED</h3>
                     <a href="#" class="mdb-mobile-item">
                         <div class="mdb-mobile-item-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                <path
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
                         </div>
                         <div class="mdb-mobile-item-content">
@@ -534,7 +566,8 @@
                     <a href="#" class="mdb-mobile-item">
                         <div class="mdb-mobile-item-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                <path
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                         </div>
                         <div class="mdb-mobile-item-content">
@@ -555,7 +588,8 @@
                     </a>
                 </div>
             </div>
-    
+
+
             <!-- Solutions Submenu -->
             <div class="mdb-mobile-submenu" id="solutions">
                 <div class="mdb-mobile-section">
@@ -581,7 +615,7 @@
                         </div>
                     </a>
                 </div>
-    
+
                 <div class="mdb-mobile-section">
                     <h3 class="mdb-mobile-section-title">TURN YOUR IDEA TO REALITY</h3>
                     <a href="#" class="mdb-mobile-item">
@@ -606,7 +640,7 @@
                     </a>
                 </div>
             </div>
-    
+
             <!-- Resources Submenu -->
             <div class="mdb-mobile-submenu" id="resources">
                 <div class="mdb-mobile-section">
@@ -636,7 +670,7 @@
                         </div>
                     </a>
                 </div>
-    
+
                 <div class="mdb-mobile-section">
                     <h3 class="mdb-mobile-section-title">CONNECT</h3>
                     <a href="#" class="mdb-mobile-item">
@@ -653,7 +687,8 @@
                     <a href="#" class="mdb-mobile-item">
                         <div class="mdb-dropdown-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                                <path
+                                    d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                             </svg>
                         </div>
                         <div class="mdb-mobile-item-content">
@@ -663,13 +698,13 @@
                     </a>
                 </div>
             </div>
-    
+
             <!-- Contact Submenu -->
-            <div class="mdb-mobile-submenu" id="contact">
+            <div class="mdb-mobile-submenu" id="contact" style="height: 60%;">
                 <div class="mdb-mobile-section">
                     <h3 class="mdb-mobile-section-title">CONTACTS</h3>
                     <a href="#" class="mdb-mobile-item">
-                        <div  class="mdb-mobile-item-content">
+                        <div class="mdb-mobile-item-content">
                             <h4>Careers</h4>
                             <p>Start your next adventure</p>
                         </div>
@@ -704,6 +739,200 @@
                             <p>Learn more about who we are</p>
                         </div>
                     </a>
+                </div>
+            </div>
+
+            <div class="mdb-mobile-submenu" id="Practice" style="height: 100%;">
+                <div class="mdb-mobile-section">
+                    <div class="mdb-container">
+                        <label for="mdb-language-select">Select Language:</label>
+                        <select id="mdb-language-select">
+                            <option value="python">Python</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="java">Java</option>
+                            <option value="csharp">C#</option>
+                            <option value="ruby">Ruby</option>
+                        </select>
+
+                        <div id="mdb-challenge"></div>
+
+                        <div id="mdb-editor"></div>
+
+                        <div class="mdb-button-container">
+                            <button id="mdb-submit-btn" class="mdb-action-button">Submit Answer</button>
+                            <button id="mdb-try-again-btn" class="mdb-action-button" style="display: none;">Try
+                                Again</button>
+                            <button id="mdb-hint-btn" title="Reveal Answer">
+                                <i class="fas fa-lightbulb"></i>
+                            </button>
+                        </div>
+                        <div id="mdb-result"></div>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+            <div class="mdb-mobile-submenu" id="pricing">
+                <div class="mdb-mobile-section">
+
+                    <div class="pricing-grid">
+                        <!-- Business Website Card -->
+                        <div class="pricing-card">
+                            <div class="promo-banner">10% off for first-time clients</div>
+                            <div class="card-content">
+                                <div class="plan-header">
+                                    <h3>Business Website <span class="tag">Most Popular</span></h3>
+                                    <p>Professional online presence for your business</p>
+                                </div>
+
+                                <div class="price-section">
+                                    <h2>₱75,000 <span>one-time</span></h2>
+                                    <p>3-4 weeks delivery</p>
+                                </div>
+
+                                <div class="type-section">
+                                    <h4>Website type</h4>
+                                    <p>Responsive, up to 10 pages</p>
+                                </div>
+
+                                <div class="features-section">
+                                    <h4>What's included</h4>
+                                    <ul>
+                                        <li>Custom design</li>
+                                        <li>Mobile-friendly layout</li>
+                                        <li>Content Management System (CMS)</li>
+                                        <li>Contact form and Google Maps integration</li>
+                                        <li>Basic SEO optimization</li>
+                                        <li>Social media integration</li>
+                                        <li>1 month of support and training</li>
+                                    </ul>
+                                </div>
+
+                                <button class="cta-button" onclick="showModal('Business Website')">Get started</button>
+                            </div>
+                        </div>
+
+                        <!-- POS System Card -->
+                        <div class="pricing-card">
+                            <div class="promo-banner">Free hardware setup included</div>
+                            <div class="card-content">
+                                <div class="plan-header">
+                                    <h3>POS System</h3>
+                                    <p>Streamline your sales and inventory</p>
+                                </div>
+
+                                <div class="price-section">
+                                    <h2>₱150,000 <span>one-time</span></h2>
+                                    <p>6-8 weeks delivery</p>
+                                </div>
+
+                                <div class="type-section">
+                                    <h4>System type</h4>
+                                    <p>Custom POS with hardware integration</p>
+                                </div>
+
+                                <div class="features-section">
+                                    <h4>What's included</h4>
+                                    <ul>
+                                        <li>Custom POS software development</li>
+                                        <li>Inventory management system</li>
+                                        <li>Sales reporting and analytics</li>
+                                        <li>Employee management and time tracking</li>
+                                        <li>Customer database and loyalty program</li>
+                                        <li>Hardware setup (1 terminal included)</li>
+                                        <li>3 months of support and updates</li>
+                                    </ul>
+                                </div>
+
+                                <button class="cta-button" onclick="showModal('POS System')">Get started</button>
+                            </div>
+                        </div>
+
+                        <!-- RPA Solution Card -->
+                        <div class="pricing-card">
+                            <div class="promo-banner">Includes 1-year maintenance</div>
+                            <div class="card-content">
+                                <div class="plan-header">
+                                    <h3>RPA Solution</h3>
+                                    <p>Automate your business processes</p>
+                                </div>
+
+                                <div class="price-section">
+                                    <h2>₱250,000 <span>one-time</span></h2>
+                                    <p>8-12 weeks delivery</p>
+                                </div>
+
+                                <div class="type-section">
+                                    <h4>Automation type</h4>
+                                    <p>Custom RPA for your specific needs</p>
+                                </div>
+
+                                <div class="features-section">
+                                    <h4>What's included</h4>
+                                    <ul>
+                                        <li>Process analysis and optimization</li>
+                                        <li>Custom RPA software development</li>
+                                        <li>Integration with existing systems</li>
+                                        <li>Automated data entry and processing</li>
+                                        <li>Workflow automation</li>
+                                        <li>Reporting and analytics dashboard</li>
+                                        <li>Staff training and documentation</li>
+                                        <li>1 year of support and maintenance</li>
+                                    </ul>
+                                </div>
+
+                                <button class="cta-button" onclick="showModal('RPA Solution')">Get started</button>
+                            </div>
+                        </div>
+
+                        <!-- Custom Website Card -->
+                        <div class="pricing-card">
+                            <div class="promo-banner">Tailored to your specific requirements</div>
+                            <div class="card-content">
+                                <div class="plan-header">
+                                    <h3>Custom Website</h3>
+                                    <p>For unique and complex projects</p>
+                                </div>
+
+                                <div class="price-section">
+                                    <h2>Custom <span>pricing</span></h2>
+                                    <p>Timeline varies</p>
+                                </div>
+
+                                <div class="type-section">
+                                    <h4>Project scope</h4>
+                                    <p>Fully customized to your needs</p>
+                                </div>
+
+                                <div class="features-section">
+                                    <h4>Potential features</h4>
+                                    <ul>
+                                        <li>Complex web applications</li>
+                                        <li>E-commerce solutions</li>
+                                        <li>AI/ML integration</li>
+                                        <li>IoT and real-time data processing</li>
+                                        <li>Advanced security measures</li>
+                                        <li>High-performance optimizations</li>
+                                        <li>Third-party API integrations</li>
+                                        <li>Scalable cloud architecture</li>
+                                    </ul>
+                                </div>
+
+                                <button class="cta-button" onclick="showModal('Custom Website')">Get in touch</button>
+                                <a href="#" class="learn-more">Learn more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thank You Modal -->
+            <div id="thankYouModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Thank You!</h2>
+                    <p id="modalMessage"></p>
+                    <p>We'll be in touch at: <strong>bermas.lester10@gmail.com</strong></p>
+                    <button onclick="sendEmail()" class="modal-button">Send Email Now</button>
                 </div>
             </div>
         </div>
