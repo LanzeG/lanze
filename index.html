@@ -1899,8 +1899,8 @@
                     class GeminiAPI {
                         constructor() {
                             this.html = 'AIzaSyCeYp_rP5hZUbnmaGdZ6t2tsMCUmsPNXE8';
-                            this.vuejs = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent';
-                            this.SaaS  = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-vision-latest:generateContent';
+                            this.vuejs = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+                            this.SaaS  = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
                             this.requestsPerMinute = 60;
                             this.requestQueue = [];
                             this.lastRequestTime = 0;
@@ -1956,7 +1956,7 @@
                                             {
                                                 parts: [
                                                     {
-                                                        text: "You are a helpful assistant specialized in programming and computer troubleshooting."
+                                                        text: "You are a helpful assistant specialized in programming and computer troubleshooting. when you are ask about my techstack, this should be full stack developer and and currently learning about mobile development"
                                                     },
                                                     {
                                                         text: message
